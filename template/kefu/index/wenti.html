@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>{$order.consignee} {$order.kuaidi_name}【问题件处理】</title>
+    <link rel="stylesheet" href="http://www.yudw.com/css/weui.css"/>
+</head>
+<body>
+<div class="page">
+    <div class="page__hd">
+        <h1 class="page__title"></h1>
+        <p class="page__desc"><center>{$order.consignee} 的 {$order.kuaidi_name}快递</center></p>
+    </div>
+    <div class="page__bd">
+        
+        <div class="weui-cells__title">选择模版</div>
+        <div class="weui-cells weui-cells_checkbox">
+        
+        
+            <label class="weui-cell weui-check__label" for="11">
+                <div class="weui-cell__hd">
+                    <input type="radio" class="weui-check" name="checkbox1" id="11" checked="checked">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>【不在宿舍】不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍不在宿舍</p>
+                </div>
+            </label>
+            
+            
+            <label class="weui-cell weui-check__label" for="12">
+                <div class="weui-cell__hd">
+                    <input type="radio" name="checkbox1" class="weui-check" id="12">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>【宿舍没人】宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人宿舍没人</p>
+                </div>
+            </label>
+            
+            
+            <a href="javascript:void(0);" class="weui-cell weui-cell_link">
+                <div class="weui-cell__bd">添加模版</div>
+            </a>
+        </div>
+
+        <div class="weui-cells__title"><font color="#000000">补充说明</font></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入文本" name="add" rows="3"></textarea>
+                    <div class="weui-textarea-counter"><span>0</span>/200</div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="weui-cells__title">客服</div>
+        <div class="weui-cells">
+            
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">处理客服</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">中国</option>
+                        <option value="2">美国</option>
+                        <option value="3">英国</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+        </div>
+    </div>
+   
+</div>
+<script type="text/javascript">
+    $(function(){
+        var $tooltips = $('.js_tooltips');
+
+        $('#showTooltips').on('click', function(){
+            if ($tooltips.css('display') != 'none') return;
+
+            // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+            $('.page.cell').removeClass('slideIn');
+
+            $tooltips.css('display', 'block');
+            setTimeout(function () {
+                $tooltips.css('display', 'none');
+            }, 2000);
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

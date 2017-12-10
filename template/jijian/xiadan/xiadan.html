@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>{$title}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+<style type="text/css">
+body{background-color:#efeff4;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none
+}
+.container {
+padding-bottom: 20px
+}
+.weui-cells_checkbox>.weui-cell>* {
+pointer-events: none
+}
+.list__textarea-label_1IUds {
+float: left;
+color: #222;
+margin-bottom: 10px
+}
+.list__no-arrow_1QzDq:after {
+display: none!important
+}
+.list__warn_qnkn9 {
+color: #e64340!important
+}
+a.weui-cell {
+color: #222
+}
+.weui-cell__ft {
+font-size: 0
+}
+.zh_CN .weui-cell__ft,.zh_HK .weui-cell__ft,.zh_TW .weui-cell__ft {
+font-size: 17px}
+.comment__textarea-label_3n9Pv{float:left;color:#222;margin-bottom:10px}
+</style>
+</head>
+<body>
+    <form name="cart2_form" id="cart2_form" method="post" action="{:U('xiadan_add')}">
+  
+<input type="hidden" value="{$type}" name="type" />
+<input type="hidden" value="{$qiang}" name="qiang" />
+ <input type="hidden" value="{$address.address_id}" name="address_id" /> <!--收货地址id-->
+ 
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">{$title}</h2>
+        <p class="weui-msg__desc">
+        1.提交订单，快递员上门取件。<br>
+        2.服务号会发送通知，告知单号与寄件费用。<br>
+        3.点击消息，进行微信在线付款。<br>
+        4.在线寄件，付款1元（上门取件费用）<br>
+推荐中通、顺丰
+        </p>
+    </div>
+    
+     <div class="weui-cells__title">寄件地址：  <a href="__ROOT__/mobile/User/address_list/source/ji/type/{$type}"><font color="red">点这里切换寄件地址</font></a></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">寄件人</label></div>
+                <div class="weui-cell__bd">
+                    <input onclick="javascript:alert('如需更改，请点上方切换地址');" class="weui-input" value="{$address.consignee}" readonly="readonly" />
+                </div>
+         	</div>
+         	 <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">寄件号码</label></div>
+                <div class="weui-cell__bd">
+                    <input onclick="javascript:alert('如需更改，请点上方切换地址');" class="weui-input" value="{$address.mobile}" readonly="readonly" />
+                </div>
+         	</div>
+         	
+         	 <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label"><font color="red">取件宿舍</font></label></div>
+                <div class="weui-cell__bd">
+                    <input onclick="javascript:alert('如需更改，请点上方切换地址');" class="weui-input" value="{$address.sushe}" readonly="readonly" />
+                </div>
+         	</div>
+         	
+         	<div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">寄件地址</label></div>
+                <div class="weui-cell__bd">
+                    <input onclick="javascript:alert('如需更改，请点上方切换地址');" class="weui-input" value="{$address.address}" readonly="readonly" />
+                </div>
+         	</div>
+         	
+       </div>
+   
+    
+    <div class="weui-cells__title">请输入收件地址： </div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">收件人</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="name2" placeholder="输入收件人" />
+                </div>
+         	</div>
+         	 <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">收件人号码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="mobile2" placeholder="输入收件人号码" />
+                </div>
+         	</div>
+         	
+         	 <div class="weui-cells__title"><font color="#000000">收件人地址</font></div>
+	        <div class="weui-cells weui-cells_form">
+	            <div class="weui-cell">
+	                <div class="weui-cell__bd">
+	                    <textarea class="weui-textarea" name="address2" placeholder="输入收件人详细地址"  rows="5"></textarea>
+	                   
+	                </div>
+	            </div>
+	        </div>
+        
+       </div>
+
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:document.cart2_form.submit();" class="weui-btn weui-btn_primary" id="close">提交订单（1元取件费）</a>
+        </p>
+    </div>
+
+	<div class="weui-msg__text-area">
+	 <h2 class="weui-msg__title">在线寄件流程：</h2>
+        <p class="weui-msg__desc">
+        只需把物品交给上门取件的抢单员即可，无需付任何费用<br>
+       寄件完成后， 公众号会发送通知<br>通知中有：单号、寄件费用。<br>
+        点击公众号消息，进行微信在线付款。
+        
+        </p>
+    </div>
+
+</form>
+
+
+</body></html>

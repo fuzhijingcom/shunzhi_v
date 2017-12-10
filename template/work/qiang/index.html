@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>抢单拓展功能</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+     <script type="text/javascript" src="http://yudw.com/ok/example/example.js"></script>
+</head>
+<body>
+ <script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="http://yudw.com/ok/example/weui.min.js" ></script>
+<script type="text/javascript" src="http://yudw.com/ok/example/zepto.min.js" ></script>
+    <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">抢单拓展功能</h2>
+        <p class="weui-msg__desc"></p>
+    </div>
+
+<div class="page">
+<div class="page__bd">
+<form method='get' action="detail">
+        <h1 class="page__title"><center>搜索订单</h1></center>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="">
+                        <option value="1">订单编号</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="id" placeholder="请输入订单ID"/>
+                </div>
+            </div>
+        </div>
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="submit" value="搜索">
+        </div>
+</form>
+
+</div>
+
+
+     <div class="weui-cells" >
+ 
+			<div class="weui-cell weui-cell_access" onclick=" document.location='http://www.yykddn.com/work/qiang/tui';">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">审批退单申请</span>
+                    <span class="weui-badge" style="margin-left: 5px;">未处理  {$tui} 条</span>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </div>
+
+    </div>  
+    
+    <div class="weui-btn-area">
+     <a href="/work/qiang/history" class="weui-btn weui-btn_default">历史退单列表</a>
+    </div>
+    
+</div>
+    
+</div></div></div>
+
+
+</body></html>

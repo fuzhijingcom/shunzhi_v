@@ -1,0 +1,127 @@
+<include file="public/header" title="快送" body="g4"/>
+
+
+<form name="cart2_form" id="cart2_form" method="post" action="{:U('xiadan_add')}">
+	 
+    
+<input type="hidden" name="kuaidi_name" value="{$kuaidi[kuaidi_name]}" >
+<input type="hidden" name="order_amount" value="{$kuaidi[price]}" >
+
+<div class="customer-messa">
+   <div class="maleri30">
+          <p><font size="3"><b>服务要求+服务内容+宿舍号+联系方式</b></font></p>
+      </div>        
+</div>
+
+<!--收件地址-s-->
+    <div class="customer-messa">
+        <div class="maleri30">
+           
+            <textarea class="tapassa"  name="fuwu"  placeholder="服务要求+服务内容+宿舍号+联系方式" ></textarea>
+        </div>
+    </div>
+<!--联系人姓名-e-->
+
+<style type="text/css">
+.box-select{
+	margin-top:5px;
+	width:100%;
+	height:30px;
+	 font-size: 16px;
+}
+.ss-input{
+	margin-top:5px;
+	width:50%;
+	height:30px;
+	font-size: 16px;
+}
+</style>
+
+<div class="customer-messa">
+     <div class="maleri30">
+         <p>取送距离：</p>
+            		<select class="box-select" name="distance">
+		                <option value="4" selected = "selected">4公里以内（宿舍 —— 3号门）</option>
+		                <option value="5">5公里以内（宿舍 —— 教学楼）</option>
+		                <option value="6">6公里以内（宿舍 —— 校门口）</option>
+		                <option value="7">7公里以内（宿舍 —— 阳光）</option>
+		                <option value="10">10公里以内（宿舍 —— 狮山）</option>
+                    </select>
+        </div>
+</div>
+
+
+
+<div class="customer-messa">
+   <div class="maleri30">
+          <p><font size="3"><b>物品信息：</b></font></p>
+      </div>        
+</div>
+
+
+
+
+
+
+<div class="customer-messa">
+     <div class="maleri30">
+         <p>物品重量：</p>
+           <input class="ss-input" type="number" name="weight"> &nbsp;&nbsp;&nbsp;公斤KG
+            		
+        </div>
+</div>
+
+
+
+  
+
+
+<!--订单金额-s-->
+    <div class="information_dr ma-to-20">
+        <div class="maleri30">
+            <div class="xx-list">
+                <p class="p">
+                    <span class="fl">服务协议：</span>
+                    <span class="fr red"><span>提交订单即同意该协议</span></span>
+                   <br>
+                    <span><br>
+                    1.付款后配送员接单。未成功付款订单无效。<br><br>
+                    2.委托闪送的物品价值不超过200元。<br><br>
+                    3.不支持指定闪送员接单，不支持指定交通方式。<br><br>
+                    </span>
+                </p>
+                
+                <p class="p">
+                    <span class="fl">价格标准：</span>
+                    <span class="fr red"><span>为了保证良好的服务体验，会随时调整价格</span></span>
+                   <br>
+                    <span><br>
+                    ①&nbsp;&nbsp;&nbsp;4公里以内，1公斤以下，3元<br><br>
+                    ②&nbsp;&nbsp;&nbsp;每增加1公里加收1元<br><br>
+                    ③&nbsp;&nbsp;&nbsp;每增加1公斤，加收0.5元<br><br>
+                    ④&nbsp;&nbsp;&nbsp;22:00:00至次日07:00:00下单，需支付夜间服务费5元<br><br>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+<!--订单金额-e-->
+
+<!--提交订单-s-->
+   
+    <div class="payit fillpay ma-to-200">
+        <div class="fr">
+            <a href="javascript:document.cart2_form.submit();">提交订单</a>
+        </div>
+        <div class="fl">
+            <p><span class="pmo"></span><span></span><span></span><span></span></p>
+        </div>
+    </div>
+<!--提交订单-e-->
+
+
+</form>
+
+
+</body>
+</html>

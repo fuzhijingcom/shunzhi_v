@@ -1,0 +1,239 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>抢单大厅</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css">
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+<!--  
+<if condition="$is_validated eq 100">
+ <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__icon-area">
+        <i class="weui-icon-warn weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">你还没有成为【抢单】服务者</h2>
+    </div>
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+           <a href="javascript:;" class="weui-btn weui-btn_primary" id="showrenzheng">申请</a>
+        </p>
+    </div>
+</div></div></div>
+</if>
+-->
+<if condition="$is_validated eq 0">
+ <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__icon-area">
+        <i class="weui-icon-warn weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">等待审核</h2>
+        <p class="weui-msg__desc">我们会加快审核</p>
+        
+   </div>
+
+</div></div></div>
+</if>
+
+<if condition="$is_validated eq 3 ">
+ <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__icon-area">
+        <i class="weui-icon-warn weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">审核失败</h2>
+        <p class="weui-msg__desc">感谢你对我们的关注与支持</p>
+    </div>
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:;" class="weui-btn weui-btn_primary" id="showrenzheng">重新申请</a>
+        </p>
+    </div>
+</div></div></div>
+</if>
+<if condition="$is_validated eq 4 ">
+ <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__icon-area">
+        <i class="weui-icon-warn weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">禁止抢单</h2>
+        <p class="weui-msg__desc">感谢你对我们的关注与支持</p>
+    </div>
+   
+</div></div></div>
+</if>
+
+<if condition="$is_validated eq 1 ">
+ <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">你已成功通过实名认证</h2>
+       <p class="weui-msg__desc"></p>
+      
+        <a href="http://www.yykddn.com/article/detail?id=1" class="weui-btn weui-btn_warn" id="showgonglue">抢单说明</a>
+    
+</div>
+    
+   
+    
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:;"  class="weui-btn weui-btn_primary" id="showshangjia">代拿抢单</a>
+        </p>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('qiangdan/order/my_order')}" class="weui-btn weui-btn_disabled weui-btn_default" >我抢的单</a>
+        </p>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('qiangdan/index/tuisong')}" class="weui-btn weui-btn_disabled weui-btn_default" >取消订单提醒</a>
+        </p>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('my/user/school_qiang')}" class="weui-btn weui-btn_disabled weui-btn_default" >抢单员选择学校</a>
+        </p>
+    </div>
+    
+     <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('chat/index/index')}" class="weui-btn weui-btn_plain-primary" >最近联系的人</a>
+        </p>
+    </div>
+    
+    <!-- 
+     <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="__ROOT__/mobile/qiangdan/qiang_order_list" class="weui-btn weui-btn_primary" >奶茶配送抢单</a>
+        </p>
+    </div>
+    
+      <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="__ROOT__/wm/qiangdan/order_list" class="weui-btn weui-btn_primary" >外卖抢单</a>
+        </p>
+    </div>
+     <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:;" class="weui-btn weui-btn_plain-primary" id="showInfo">查看我的认证信息</a>
+        </p>
+    </div>
+    
+     <div class="weui-msg__text-area" id="Info" style="display:none;">
+       <p class="weui-msg__desc">姓名：{$info.name}</p>
+        <p class="weui-msg__desc">性别：{$info.gender}</p>
+        <p class="weui-msg__desc">学号：{$info.xh}</p>
+        <p class="weui-msg__desc">系：{$info.xi}</p>
+        <p class="weui-msg__desc">专业：{$info.zy}</p>
+         <if condition="$info.z neq null"><p class="weui-msg__desc">专业：{$info.z}</p></if>
+        <p class="weui-msg__desc">身份证：{$info.idcard10}</p>
+          <p class="weui-msg__desc">出生地：{$info.address_family}</p>
+           <p class="weui-msg__desc">学校住址：{$info.address}</p>
+         <h4 class="weui-msg__title">请不要恶意抢单，平台有权追究责任</h4>
+         <br>
+         <center><img src="__PUBLIC__/renren/peisong.jpg" width="300px"></center>
+    </div>
+     -->
+<center><h2 class="weui-msg__title">先加群，认识一下小伙伴们</h2></center>
+<div class="weui-msg__icon-area">
+        <center><img src="__PUBLIC__/qun/{$school}.jpg" alt="{$school}"><br>
+        如不能进群，请加微信：13516565558
+        </center>
+</div> 
+     
+</div></div></div>
+</if>
+
+<div class="js_dialog" id="renzheng" style="display: none;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog">
+                <div class="weui-dialog__bd">本公司建立健全用户信息保护制度，对用户信息严格保密。未经用户同意，不向任何人提供个人信息。</div>
+                <div class="weui-dialog__ft">
+                    <a href="__ROOT__/qiangdan/index/join" class="weui-dialog__btn weui-dialog__btn_primary">我接受</a>
+                </div>
+            </div>
+</div>
+   
+ 
+
+        <div class="js_dialog" id="shangjia" style="display: none;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog weui-skin_android">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title"><center>提示</center></strong></div>
+                <div class="weui-dialog__bd">
+                    <div class="weui-cell__bd">
+                   		不进群不允许抢单<br>没进微信群的请扫下面二维码进入
+                	</div>
+                </div>
+                <div class="weui-dialog__ft">
+                  <!-- __ROOT__/mobile/renren/order_list -->
+                    <a href="__ROOT__/qiangdan/order/order_list"  class="weui-dialog__btn weui-dialog__btn_primary" id="closeshangjia">我知道了</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    
+<script type="text/javascript">
+    // toast
+    $(function(){
+        var $Info = $('#Info');
+        $('#showInfo').on('click', function(){
+            if ($Info.css('display') == 'none'){
+            	$("#Info").css('display','block'); 
+            	
+            }else{
+            	$("#Info").css('display','none'); 
+            };
+           
+           
+            
+        });
+    });
+    
+    // toast
+    $(function(){
+        var $renzheng = $('#renzheng');
+        $('#showrenzheng').on('click', function(){
+            if ($renzheng.css('display') == 'none'){
+            	$("#renzheng").css('display','block'); 
+            	
+            }else{
+            	$("#renzheng").css('display','none'); 
+            };
+           
+           
+            
+        });
+    });
+    
+    
+    //我是商家
+    $(function(){
+        var $shangjia = $('#shangjia');
+
+        $('#showshangjia').on('click', function(){
+            $("#shangjia").css('display','block');  
+        });
+        
+        
+        $('#closeshangjia').on('click', function(){
+   			$("#shangjia").css('display','none'); 
+        });
+        
+    });
+    
+  </script>
+</body>
+</html>

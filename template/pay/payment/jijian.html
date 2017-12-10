@@ -1,0 +1,64 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="tpshop" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>支付寄件费用 - {$tpshop_config['shop_info_store_title']}</title>
+<meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+</head>
+<body>
+<div class="page">
+  
+    <form action="{:U('pay/payment/pay')}" method="post" name="cart4_form" id="cart4_form">
+        <input type="hidden" name="order_id" value="{$order['order_id']}" />
+		<input type="hidden" name="type" value="{$type}" />
+		<input type="hidden" name="source" value="ji" />
+    <div class="page__bd">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">付款金额</label>
+                    <em class="weui-form-preview__value">￥{$order['order_amount']}元</em>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd">
+            	
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单编号：</label>
+                    <span class="weui-form-preview__value">{$order['order_id']}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单标题</label>
+                    <span class="weui-form-preview__value">姓名：{$order['consignee']}<br>宿舍：{$order['sushe']}<br>手机：{$order['mobile']}</span>
+                </div>
+               
+            </div>
+            
+             <p class="weui-btn-area">
+                 <a href="javascript:void(0);" onClick="pay()" class="weui-btn weui-btn_primary">去微信支付</a>
+            </p>
+            
+        </div>
+    </div>
+
+    </form>
+   
+   
+<script>
+    function pay(){
+        $('#cart4_form').submit();
+        return;
+        //微信JS支付
+    }
+</script> 
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>推送开关设置</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+
+
+
+
+
+ <form method="post">
+  <div class="weui-cells__title"><center>接受订单提醒开关：<br>有可以抢的单时候，公众号会推送待抢订单通知</center></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">待抢订单提醒开关</div>
+                <div class="weui-cell__ft">
+                    <label for="switchCP" class="weui-switch-cp" id="333">
+                        <input id="switchCP" name="tuisong"  class="weui-switch-cp__input" type="checkbox" <if condition="$tuisong eq 1">checked="checked"</if> />
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            	</div>
+       </div>
+       
+ 	<div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary" id="showToast">提交</button>
+        </p>
+    </div>
+    
+ </form>
+ 
+ 	<div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('qiangdan/order/index')}" class="weui-btn weui-btn_disabled weui-btn_default" >进入抢单大厅</a>
+        </p>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="{:U('qiangdan/order/my_order')}" class="weui-btn weui-btn_disabled weui-btn_default" >我抢的单</a>
+        </p>
+    </div>
+ 
+ <!--修改成功-->
+    <div id="toast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">修改成功</p>
+        </div>
+    </div>
+ <!--end toast-->
+ <script type="text/javascript">
+    // toast
+    $(function(){
+        var $toast = $('#toast');
+        $('#showToast').on('click', function(){
+            if ($toast.css('display') != 'none') return;
+
+            $toast.fadeIn(200);
+            setTimeout(function () {
+                $toast.fadeOut(100);
+            }, 2000);
+        });
+    });
+  </script>
+  <div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

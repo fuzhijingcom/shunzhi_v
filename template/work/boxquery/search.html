@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$searchrealname}搜索结果【快递柜】</title>
+  <meta name="description" content="一元代拿">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="http://cdn.yudw.com/admin/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="http://cdn.yudw.com/admin/assets/css/amazeui.min.css"/>
+
+  <style type="text/css">
+  	.am-table{
+  		width: 100%;
+		overflow-y: auto;
+		_overflow: auto;
+		margin: 0 0 1em;
+word-break: keep-all;white-space:nowrap;
+
+  	}
+  	.am-table>thead{
+  		 border-top:1px solid #ddd ;
+  		 border-right:1px solid #ddd ;
+  	}
+    .am-table>tbody{    	
+  		  border-right:1px solid #ddd ;
+  		  border-bottom:1px solid #ddd ;
+    }
+  	.am-table>tbody>tr>td{border: none;}
+  	.am-table>tbody>tr>td,.am-table>thead>tr>th{
+  		  border-top:1px solid #ddd ;
+  		  border-left:1px solid #ddd ;
+  	}
+  	.input{padding: 0px 12px 4px 12px;}
+  	.tle{margin-bottom: 12px;}
+  </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar admin-header">
+  <div class="am-topbar-brand">
+    <strong>
+    该用户全部订单
+</strong>
+  </div>
+ <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+</header>
+<!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf tle"><strong class="am-text-primary am-text-lg">请填入名字，并提交</strong></div>     
+
+	    <div class="am-g">
+	      <div class="am-u-md-10 am-cf">
+	        <div class="am-fl am-cf">
+	          <div class="am-btn-toolbar am-fl">	
+	          	
+	          	<form method="post">    
+	          	  
+		          <div class="am-input-group am-input-group-sm am-u-md-3 input">
+		            <input type="text" name="searchrealname" class="am-form-field" placeholder="姓名" value="{$searchrealname}">
+		          </div>	   
+		          <br>
+		          
+		        
+		          <div class="am-input-group am-input-group-sm am-u-md-3">		   
+		            	<input type="submit" class="am-btn am-btn-primary am-btn-xs" />
+		           </div>
+		       
+		          </form>
+	          </div>
+	        </div>
+	      </div>
+	    </div>	    
+    </div>
+  
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form" style="width: 100%; overflow: auto;">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+              	<!--
+                <th class="table-check"><input type="checkbox" /></th>
+                <th class="table-id">ID</th>
+                -->
+                <th class="table-date">下单时间</th>
+                 <th class="table-author">快递</th>
+                  <th class="table-author">付款</th>
+                <th class="table-title">姓名</th>
+         
+                 <th class="table-date">签收情况</th>
+       <th class="table-date">签收时间</th>
+        <th class="table-type">宿舍</th>
+     <th class="table-set">短号</th>
+               
+                <th class="table-set">手机号</th>
+           
+                <th class="table-set">备注</th>
+ 
+              </tr>
+          </thead>
+          <tbody>
+<foreach name="read" item="v">
+            <tr>
+               <td>{$v.add_time}</td>
+                  <td>{$v.type|get_name_by_type}</td>
+                   <td>
+                   <if condition=" $v.pay_status  eq 1 ">
+                <font color="green"> 已付{$v.order_amount}</font>
+         <else /> <font color="red">未付款</font>
+             </if> </td>
+              <td><a href="{:U('/Mobile/kefu/detail',array('order_id'=>$v.order_id))}">{$v.consignee}</a></td>
+             
+                <td>
+                <if condition=" $v.order_status  eq '0' ">
+                <font color="red"> {$v.order_status|get_order_status}</font>
+				
+         <else />
+        （{$v.receiver|get_name_by_uid}{$v.receiver}{$v.receiver|get_name_by_uid}）<font color="green">{$v.order_status|get_order_status}</font>	
+         </if>
+         </td>
+       
+         <td>{$v.receivetime}</td>
+      
+          <td>{$v.sushe}</td>
+               <td>{$v.duanhao}</td>
+                  <td>{$v.mobile}</td>
+                   <td>{$v.beizhu}</td>
+                   
+            </tr>
+</foreach>
+          </tbody>
+        </table>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+<footer>
+  <div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div></footer>
+
+<!--[if lt IE 9]>
+<script src="http://cdn.yudw.com/admin/assets/js/jquery1.11.1.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/modernizr.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/polyfill/rem.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/polyfill/respond.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="http://cdn.yudw.com/admin/assets/js/jquery.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="http://cdn.yudw.com/admin/assets/js/app.js"></script>
+<script type="text/javascript">
+function status(content_id)
+{
+ if(confirm("确定将状态改成已拿？"))
+ {
+ 	var url = location.href;
+ 	location.href = url+'?action=setstatus&&content_id='+content_id;
+ }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>2017快递信息系统 New</title>
+    <link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css"/>
+
+</head>
+<body ontouchstart>
+    <div class="weui-toptips weui-toptips_warn js_tooltips">错误提示</div>
+
+    <div class="container" id="container"></div>
+    
+    <div class="page">
+    <div class="page__hd">
+        <h1 class="page__title"><center>快递信息系统</center></h1>
+        <p class="page__desc"><center>你的ID：{$uid}<br>用户名：{$username}</center></p>
+    </div>
+    
+    <div class="page__bd">
+        <div class="weui-cells__title">图标上的数字表示还有几个快递未拿</div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">员工绩效系统</div>
+                <div class="weui-cell__ft" style="font-size: 0">
+                    <span style="vertical-align:middle; font-size: 17px;">（正在开发）</span>
+                    <span class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title">图标上的数字表示还有几个快递未拿</div>
+        <div class="weui-cells">
+        	<div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">当天全部快递名单</span>
+                    <span class="weui-badge" style="margin-left: 5px;">未拿：{$todayCount}</span>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </div>
+        
+        
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=yd')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/yunda.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$ydCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>韵达</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$ydCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=ht')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/huitong.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$htCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>汇通</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$htCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=tt')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/tiantian.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$ttCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>天天</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$ttCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=st')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/shentong.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$stCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>申通</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$stCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=jd')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/jingdong.jpg" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$jdCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>京东</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$jdCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=wph')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/weipinhui.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$wphCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>唯品会</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$wphCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=kj')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/kuaijie.jpg" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$kjCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>快捷</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$kjCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=gt')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/guotong.jpg" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$gtCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>国通</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$gtCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=qf')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/quanfeng.jpg" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$qfCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>全峰</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$qfCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=tm')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/tianmao.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$tmCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>天猫</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$tmCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=ys')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/yousu.jpg" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$ysCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>优速</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$ysCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=rfd')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/rufengda.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$rfdCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>如风达</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$rfdCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=yz')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/youzheng.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$ysCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>邮政</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$ysCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell" onclick=" document.location='{:U('kd/admin/read?kuaidi=ems')}';">
+                <div class="weui-cell__hd" style="position: relative;margin-right: 20px;">
+                    <img src="__PUBLIC__/kdimg/ems.png" style="width: 50px;display: block"/>
+                    <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">{$emsCount}</span>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>EMS</p>
+                    <p style="font-size: 13px;color: #888888;">未拿：{$emsCount}</p>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">投诉订单</span>
+                    <span class="weui-badge" style="margin-left: 5px;">0</span>
+                </div>
+                <div class="weui-cell__ft">请赶快处理</div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">
+                    <span style="vertical-align: middle">客服专用系统</span>
+                    <span class="weui-badge" style="margin-left: 5px;">New</span>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+    <script src="./zepto.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="./weui.min.js"></script>
+    <script src="./example.js"></script>
+</body>
+</html>

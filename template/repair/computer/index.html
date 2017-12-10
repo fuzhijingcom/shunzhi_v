@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>电脑维修下单</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+
+</head>
+<style>
+.black{
+	color:#000000;
+}
+
+</style>
+<body>
+
+<form method="post">
+     <div class="weui-cells__title black">联系号码</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="mobile" value="{$address.mobile}" placeholder="请输入手机号码"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title black">电脑问题</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请简单描述问题" name="problem" rows="3"></textarea>
+                   
+                </div>
+            </div>
+     </div>
+
+
+		<div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" type="submit" >提交</button>
+        </div>
+        
+  </form>
+  <br>
+   <div class="weui-msg__icon-area">
+        <a href="/repair/mobile/huishou"><center><img src="__PUBLIC__/repair/huishou.jpg" width="90%"></center></a>
+   </div>
+  
+        
+</body></html>

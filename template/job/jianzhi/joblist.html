@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>兼职列表</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+</head>
+<body>
+<style>
+.center{
+	text-align:center;
+}
+</style>
+
+<div class="page">
+
+ 		<div class="weui-panel">
+            <div class="weui-panel__hd">列表</div>
+            <div class="weui-panel__bd">
+             <foreach item="v" name="list">
+                <div class="weui-media-box weui-media-box_text" onClick="window.location.href='__ROOT__/job/jianzhi?id={$v.article_id}'">
+                    <h4 class="weui-media-box__title">{$v.title}</h4>
+                    <p class="weui-media-box__desc">{$v.content}</p>
+                    <ul class="weui-media-box__info">
+                        <li class="weui-media-box__info__meta"></li>
+                        <li class="weui-media-box__info__meta">{$v.add_time|friend_date}</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra"></li>
+                    </ul>
+                </div>
+             </foreach>
+            </div>
+        </div>
+
+
+
+
+
+    <div class="weui-cells__title">报名请咨询下面微信</div>
+       
+    
+   <div class="page__ft center">
+        <a href="javascript:;"><img src="__PUBLIC__/job/mengmengda.jpg" width="60%" /></a>
+    </div>
+</div>
+ <include file="jianzhi/wx_share"/>
+</body>
+</html>

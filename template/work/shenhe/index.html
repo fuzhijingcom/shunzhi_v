@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>审核快递员 - {$type|type}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+ <script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+
+<div class="page">
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                
+                <div class="weui-navbar__item <if condition="$type eq '0' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/work/shenhe?type=0' ">
+                    待审核
+                </div>
+                <div class="weui-navbar__item <if condition="$type eq '1' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/work/shenhe/yitongguo' ">
+                    通过
+                </div>
+       			<div class="weui-navbar__item <if condition="$type eq '3' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/work/shenhe?type=3' ">
+                    拒绝
+                </div>
+                <div class="weui-navbar__item <if condition="$type eq '4' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/work/shenhe?type=4' ">
+                    禁止
+                </div>
+            </div>
+            <div class="weui-tab__panel">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page__bd">
+        
+<foreach name="all" item="v">
+
+        <br>
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">状态</label>
+                <em class="weui-form-preview__value">{$v.is_validated|type}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+            	
+            
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">姓名：</label>
+                    <span class="weui-form-preview__value">{$v.name}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">用户ID：</label>
+                    <span class="weui-form-preview__value">{$v.user_id}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机：</label>
+                    <span class="weui-form-preview__value">{$v.mobile}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">短号：</label>
+                    <span class="weui-form-preview__value">{$v.duanhao}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">学号：</label>
+                    <span class="weui-form-preview__value">{$v.xh}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">宿舍：</label>
+                    <span class="weui-form-preview__value">{$v.sushe}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">栋数：</label>
+                    <span class="weui-form-preview__value">{$v.dong}</span>
+                </div>
+                
+            </div>
+            <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="__ROOT__/public/uploads/{$v.imgurl}">查看照片</a>
+                
+                <if condition=" $v.is_validated eq 0 ">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:ok({$v.user_id});">通过该审核</a>
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="/work/shenhe/refuse/id/{$v.user_id}">拒绝通过</a>
+            	</if>
+            	
+            	<if condition=" $v.is_validated eq 1 ">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:stop({$v.user_id});">禁止该用户</a>
+            	</if>
+            	
+            	<if condition=" $v.is_validated eq 4 ">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:ok({$v.user_id});">恢复该用户</a>
+            	</if>
+            	
+            </div>
+        </div>
+ 
+</foreach>
+        
+</div>
+
+
+
+
+<script type="text/javascript">
+function ok(id){
+	if(confirm("通过该审核?")){
+	location.href='/work/shenhe/action/?is_validated=1&id='+id;
+		　　
+	}
+}
+
+
+function stop(id){
+	if(confirm("禁止该用户?")){
+	location.href='/work/shenhe/action/?is_validated=4&id='+id;
+		　　
+	}
+}
+</script>
+</body>
+</html>

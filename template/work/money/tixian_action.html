@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>请转账</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+
+</head>
+<body>
+   <div class="page">
+    <div class="page__hd">
+        <h1 class="page__title"><center><font size="4">提现详情</font></center></h1>
+      
+        <br><br>
+    </div>
+    <div class="page__bd">
+      <form method="post">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">提现金额</label>
+                <em class="weui-form-preview__value">¥{$detail.money}</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">转账</label>
+                <em class="weui-form-preview__value">{$detail.bank_name}</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">名字</label>
+                <em class="weui-form-preview__value">{$detail.account_name}</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">账号</label>
+                <em class="weui-form-preview__value">{$detail.account_bank}</em>
+            </div>
+ 
+        </div>
+    </div>
+    <br>
+    
+        <center><a href="/chat/message/index/id/{$detail.user_id}" class="weui-btn weui-btn_mini weui-btn_primary">联系TA</a></center>
+    
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary">确认已经转账</button>
+        </p>
+    </div>
+    
+    </form>
+    
+</div>
+
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>寄件详情</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+<style type="text/css">
+body{background-color:#efeff4;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none
+}
+.container {
+padding-bottom: 20px
+}
+.weui-cells_checkbox>.weui-cell>* {
+pointer-events: none
+}
+.list__textarea-label_1IUds {
+float: left;
+color: #222;
+margin-bottom: 10px
+}
+.list__no-arrow_1QzDq:after {
+display: none!important
+}
+.list__warn_qnkn9 {
+color: #e64340!important
+}
+a.weui-cell {
+color: #222
+}
+.weui-cell__ft {
+font-size: 0
+}
+.zh_CN .weui-cell__ft,.zh_HK .weui-cell__ft,.zh_TW .weui-cell__ft {
+font-size: 17px}
+.comment__textarea-label_3n9Pv{float:left;color:#222;margin-bottom:10px}
+</style>
+</head>
+<body>
+    
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">寄件详情</h2>
+        <p class="weui-msg__desc"></p>
+    </div>
+    
+    
+     <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd">寄件人信息&nbsp;&nbsp;&nbsp;&nbsp;<a id="jijian"><font color="red">复制信息</font></a></div>
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">{$order.consignee}&nbsp;&nbsp;&nbsp;&nbsp;{$order.mobile}</h4>
+                    <p class="weui-media-box__desc">{$order.address}</p>
+                </div>
+            </div>
+    </div>
+    
+    <div class="weui-cells weui-cells_form" id="jijianinfo" style="display:none;">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" rows="3" id="jiinput">{$order.consignee}{$order.mobile}{$order.address}</textarea>
+                </div>
+            </div>
+   </div>
+        
+    <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd">收件人信息&nbsp;&nbsp;&nbsp;&nbsp;<a id="shoujian"><font color="red">复制信息</font></a></div>
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">{$order_ji.name2}&nbsp;&nbsp;&nbsp;&nbsp;{$order_ji.mobile2}</h4>
+                    <p class="weui-media-box__desc">{$order_ji.address2}</p>
+                </div>
+            </div>
+    </div>
+    
+    <div class="weui-cells weui-cells_form" id="shoujianinfo" style="display:none;">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" rows="3" id="sjinput">{$order_ji.name2}{$order_ji.mobile2}{$order_ji.address2}</textarea>
+                </div>
+            </div>
+   </div>
+   
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:;" class="weui-btn weui-btn_primary" id="open">
+            <if condition="$order_ji.pay_status == 0 ">填写单号、寄件费<else />查看单号、寄件费</if></a>
+        </p>
+    </div>
+
+<div id="more" style="display:none">
+
+
+<form name="cart2_form" id="cart2_form" method="post" action="{:U('send')}">
+ <input type="hidden" name="order_id" value="{$order_id}" > 
+ 		<div class="weui-cells__title">费用</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="order_amount" step="0.01" value="{$order_ji.order_amount}" placeholder="请输入金额"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title">单号</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="admin_note" placeholder="例如：韵达快递，52013145201314" rows="4">{$order_ji.admin_note}</textarea>
+                </div>
+            </div>
+        </div>
+<if condition="$order_ji.pay_status == 0 ">
+	<div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:document.cart2_form.submit();" class="weui-btn weui-btn_primary">发送给客户</a>
+        </p>
+    </div>
+</if>
+</form>
+
+</div>
+
+<script>
+	$( "#open" ).click(function() {
+	  $("#more").css('display','block'); 
+	  $("#open").css('display','none'); 
+	});
+	
+	$( "#jijian" ).click(function() {
+		  $("#jijianinfo").css('display','block');
+		  $("#jiinput").focus();
+	});
+	
+	$( "#shoujian" ).click(function() {
+		  $("#shoujianinfo").css('display','block'); 
+		  $("#sjinput").focus();
+	});
+	
+
+</script>
+
+
+
+</body></html>

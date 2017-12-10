@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="false" name="twcClient" id="twcClient">
+<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="0" http-equiv="expires">
+<!--允许全屏模式-->
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta content="telephone=no" name="format-detection" />
+<title>核对</title>	
+
+ <link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css">
+ 
+ 
+<link rel="stylesheet" type="text/css" href="http://wm.fanwe.net/public/runtime/statics/wap/848c8d276a7ea8e3bf0fa476238dff00.css?v=1.1." />
+<script type="text/javascript" src="http://wm.fanwe.net/public/runtime/statics/wap/7f32bc4a1e785e147e2d5ef770a76599.js?v=1.1."></script>
+
+</head> 
+<body>
+<div class="bg_fe4d3d  h100 pr w_b">
+	
+	
+		<div class="w_b_f_1 tc h100 lh100 f_fff f036 over-flow">
+	 <a href="{:U('index')}">	<span class="pr h100 f_fff">是否正确</span></a>
+	</div>
+
+   </div>		
+
+<form action="{:U('queren')}" method="post" enctype="multipart/form-data" class="form">
+
+        
+            
+               
+         <div class="weui-cells__title">客户姓名</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <div class="weui-input" >{$realname}</div>
+                </div>
+            </div>
+        </div>
+       
+        
+            
+            <div class="weui-cells__title">处理结果</div>
+            
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+               
+                <div class="weui-cell__bd">
+                    <div class="weui-textarea" rows="3">{$result}</div>
+                </div>
+            </div>
+            
+            
+           
+        </div>
+              
+          
+           <input type="hidden"  name="touser" value="{$touser}"/> 
+           <input type="hidden"  name="result" value="{$result}"/> 
+            <input type="hidden"  name="kefuname" value="{$kefuname}"/> 
+          
+       
+          
+        <div class="weui-btn-area">      
+            <button type="submit" name="formsubmit" id="cxpform1btn" value="true" class="weui-btn weui-btn_primary"><strong>发送</strong></button>  
+        </div>
+   
+</div>
+</form>
+
+
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+
+</body>
+</html>

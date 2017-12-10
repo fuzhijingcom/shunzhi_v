@@ -1,0 +1,145 @@
+<include file="public/header" title="填写订单" body="g4"/>
+<include file="public/header_nav" title="填写订单" href="javascript:history.back(-1)"/>
+<form name="cart2_form" id="cart2_form" method="post" action="{:U('xiadan_add')}" enctype="multipart/form-data" >
+		<input type="hidden" name="type" value="{$type}" >
+    <div class="edit_gtfix">
+        <a href="__ROOT__/mobile/User/address_list/source/kd/type/{$type}">
+            <div class="namephone fl">
+                <div class="top">
+                    <div class="le fl">{$address.consignee}</div>
+                    <div class="lr fl">{$address.mobile}</div>
+                </div>
+                <div class="bot">
+                    <i class="dwgp"></i>
+                    <span>宿舍：{$address.sushe}</span>
+                </div>
+                <input type="hidden" value="{$address.address_id}" name="address_id" /> <!--收货地址id-->
+            </div>
+            <div class="fr youjter">
+                <i class="Mright"></i>
+            </div>
+            <div class="ttrebu">
+                <img src="__STATIC__/images/tt.png"/>
+            </div>
+        </a>
+    </div>
+
+    <!--商品信息-s-->
+        <div class="ord_list fill-orderlist p">
+            <div class="maleri30">
+                
+                    <div class="shopprice">
+                        <div class="img_or fl"><img src="{$type|get_img_by_type}"/></div>
+                        <div class="fon_or fl">
+                            <h2 class="similar-product-text">{$kuaidi[kuaidi_name]}</h2>
+                            <div>{$good[spec_key_name]}</div>
+                        </div>
+                        <div class="price_or fr">
+                            <p class="red"><span>￥</span><span>{$kuaidi[price]}</span></p>
+                            <p class="ligfill">x1</p>
+                        </div>
+                    </div>
+                     <input type="hidden" name="kuaidi_name" value="{$kuaidi[kuaidi_name]}" >
+                   <input type="hidden" name="order_amount" value="{$kuaidi[price]}" >
+            </div>
+        </div>
+    <!--商品信息-e-->
+
+<!--卖家留言-s-->
+    <div class="customer-messa">
+        <div class="maleri30">
+            <p>用户备注（可复制短信）</p>
+            <textarea class="tapassa" onkeyup="checkfilltextarea('.tapassa','50')" name="user_note" rows="" cols="" placeholder="选填"></textarea>
+           
+        </div>
+    </div>
+<!--卖家留言-e-->
+<if condition="$type eq 'yt' || $type eq 'yz' ">
+
+    <div class="customer-messa">
+        <div class="maleri30">
+            <p>货号（复制短信）</p>
+            <textarea class="tapassa" name="code" rows="" cols="" placeholder="货号"></textarea>
+           
+        </div>
+    </div>
+
+</if>
+ <style type="text/css">
+.box-select{
+	margin-top:5px;
+	width:100%;
+	height:30px;
+	 font-size: 16px;
+           }
+</style>
+        
+<div class="customer-messa">
+        <div class="maleri30">
+            <p>{$kuaidi_name}快递为抢单模式，如快递超大超重，请加价</p>
+            		<select class="box-select" name="discount">
+            			<option value="0">小费到位，服务当然更到位</option>
+                        <option value="0.5">+0.5</option>
+		                <option value="1">+1元</option>
+		                <option value="2">+1元</option>
+		                <option value="3">+1元</option>
+		                <option value="4">+4元</option>
+		                <option value="5">+5元</option>
+		                <option value="6">+6元</option>
+		                <option value="7">+7元</option>
+		                <option value="8">+8元</option>
+                    </select>
+        </div>
+</div>
+
+<br>
+<div class="customer-messa">
+        <div class="maleri30">
+            <p><b><font color="red">上传截图：</font>快递短信页面截图<br><br>没有截图可能会代拿失败，请尽量截图上传</b></p>	
+             <p> <input name="file" type="file" accept="image/*"  /></p>	
+
+         </div>
+</div>		
+ 		
+ 		
+ 		
+<!--订单金额-s-->
+    <div class="information_dr ma-to-20">
+        <div class="maleri30">
+            <div class="xx-list">
+                <p class="p">
+                    <span class="fl">服务协议：</span>
+                    <span class="fr red"><span>提交订单即统同意该协议</span></span>
+                   <br>
+                    <span><br>
+                    1.付款后代拿。未成功付款订单无效。<br>
+                    2.委托代拿的物品价值不超过200元。<br>
+                    3.最高赔偿不超过200元。<br>
+                    4.超过一个月的问题件不再处理，如有问题请及时联系我们<br>
+                    </span>
+                </p>
+                
+               
+            </div>
+        </div>
+    </div>
+<!--订单金额-e-->
+
+<!--提交订单-s-->
+   
+    <div class="payit fillpay ma-to-200">
+        <div class="fr">
+            <a href="javascript:document.cart2_form.submit();">提交订单</a>
+        </div>
+        <div class="fl">
+            <p><span class="pmo">应付金额：</span><span>￥</span><span>{$kuaidi[price]}</span>元<span></span></p>
+        </div>
+    </div>
+<!--提交订单-e-->
+
+
+</form>
+
+
+</body>
+</html>

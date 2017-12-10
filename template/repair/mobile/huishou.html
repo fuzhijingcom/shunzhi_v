@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>手机回收</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+
+</head>
+<style>
+.black{
+	color:#000000;
+}
+
+</style>
+<body>
+<div class="weui-msg__text-area">
+<center>
+        <h2 class="weui-msg__title">提交，会收到报价</h2>
+        <p class="weui-msg__desc">目前只回收（苹果5）以上</p>
+</center>
+</div>
+    
+    
+<form method="post">
+     <div class="weui-cells__title black">联系号码</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="mobile" value="{$address.mobile}" placeholder="请输入手机号码"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells__title black">手机型号、描述手基本情况</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="什么手机？几成新、有什么问题？" name="problem" rows="3"></textarea>
+                   
+                </div>
+            </div>
+     </div>
+
+
+		<div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" type="submit" >提交</button>
+        </div>
+        
+  </form>
+  <br>
+   <div class="weui-msg__icon-area">
+        <a href="/repair/computer"><center><img src="__PUBLIC__/repair/computer.jpg" width="90%"></center></a>
+   </div>
+  
+        
+</body></html>

@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>快递开关、调整</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="http://cdn.yudw.com/admin/assets/css/amazeui.min.css"/>
+
+  <style type="text/css">
+  	.am-table{
+  		width: 100%;
+		overflow-y: auto;
+		_overflow: auto;
+		margin: 0 0 1em;
+word-break: keep-all;white-space:nowrap;
+
+  	}
+  	.am-table>thead{
+  		 border-top:1px solid #ddd ;
+  		 border-right:1px solid #ddd ;
+  	}
+    .am-table>tbody{    	
+  		  border-right:1px solid #ddd ;
+  		  border-bottom:1px solid #ddd ;
+    }
+  	.am-table>tbody>tr>td{border: none;}
+  	.am-table>tbody>tr>td,.am-table>thead>tr>th{
+  		  border-top:1px solid #ddd ;
+  		  border-left:1px solid #ddd ;
+  	}
+  	.input{padding: 0px 12px 4px 12px;}
+  	.tle{margin-bottom: 12px;}
+  </style>
+</head>
+<body>
+
+
+
+<!-- content start -->
+  <div class="admin-content">
+
+ 
+   
+	<div class="am-fl am-cf tle"><strong class="am-text-primary am-text-lg"><center>快递开关、调整</center></strong></div> 
+	   
+   
+  
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form" style="width: 100%; overflow: auto;">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr> <th class="table-title">顺序</th>
+                 <th class="table-title">名称</th>
+                 <th class="table-title">状态</th>
+                <th class="table-title">扣除</th>
+                  <th class="table-title">价格</th>
+                 <th class="table-title">操作</th>
+              </tr>
+          </thead>
+          <tbody>
+<foreach name="kuaidi" item="v">
+
+  <tr>
+   <td>{$v.shunxu}</td>
+                <td>{$v.kuaidi_name}</td>
+                <td><if condition="$v.status eq 0">
+                <button type="button" class="am-btn am-btn-danger am-round">关</button>
+                <else if>
+                  <button type="button" class="am-btn am-btn-success am-round">开</button>
+                </if>
+                </td>
+              <td>{$v.money}</td>
+                  <td>{$v.price}</td>
+               <td><a href="/work/kaiguan/kd_change/id/{$v.id}" class="am-btn am-btn-success am-radius">更改</a></td>
+            </tr>
+
+
+          
+</foreach>
+          </tbody>
+        </table>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+<footer>
+  <div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div></footer>
+
+<!--[if lt IE 9]>
+<script src="http://cdn.yudw.com/admin/assets/js/jquery1.11.1.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/modernizr.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/polyfill/rem.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/polyfill/respond.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="http://cdn.yudw.com/admin/assets/js/jquery.min.js"></script>
+<script src="http://cdn.yudw.com/admin/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+
+</body>
+</html>

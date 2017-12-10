@@ -1,0 +1,179 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>商家外卖订单下单</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css">
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+
+
+<div class="page">
+
+ <div class="page__bd">
+        <article class="weui-article">
+            <h1><b><center>商家下外卖，等待被抢</center></b></h1>
+        </article>
+    </div>
+
+
+    <form method="post" action="xiadan_add" enctype="multipart/form-data" onsubmit="return sb1();">
+     <input type="hidden" name="name" value=""/>
+     
+    <div class="page__bd">
+       
+
+        <div class="weui-cells__title">商家信息 &nbsp; &nbsp; &nbsp;<a href="{:U('shangjia/index/info')}"><font color="red">修改默认信息</font></a></div>
+        
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">商家名</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="name" type="text" placeholder="姓名" name="name" value="{$shangjia.name}"/>
+                </div>
+            </div>
+           
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
+                <div class="weui-cell__bd">
+            <input type="text" class="weui-input" type="number"  id="mobile" name="mobile" onpaste="this.value=this.value.replace(/[^\d-]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d-]/g,'')" maxlength="15" placeholder="手机号码" value="{$shangjia.mobile}"/>
+                </div>
+            </div>
+            
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">短号</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" type="number"  id="duanhao" name="duanhao" onpaste="this.value=this.value.replace(/[^\d-]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d-]/g,'')" placeholder="短号" value="{$shangjia.duanhao}"/>
+                </div>
+            </div>
+           
+        </div>
+        <div class="weui-cells__title">外卖信息</div>
+        <div class="weui-cells weui-cells_form">
+        
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">宿舍区域</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" id="sushe" name="sushe" placeholder="如：1-8,动物园 等等"/>
+                </div>
+            </div>
+            
+             <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">几份</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" type="number"  id="fen" name="fen" onpaste="this.value=this.value.replace(/[^\d-]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d-]/g,'')" placeholder="几份"/>
+                </div>
+            </div>
+            
+            
+        </div>
+  <!--  
+        <div class="weui-cells__title">详细宿舍选择</div>
+        <div class="weui-cells">
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" id="quyu" name="quyu">
+                        <option value="1">1-8</option>
+                        <option value="2">9-12</option>
+                        <option value="3">13-16</option>
+                        <option value="4">17-20</option>
+                        <option value="5">21-24</option>
+                        <option value="6">25-30</option>
+                        <option value="7">31-34</option>
+                        <option value="8">35-40</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="dong" name="dong" type="number" pattern="[0-9]*" placeholder="请输入栋数"/>
+                </div>
+            </div>
+        </div>
+        
+       --> 
+        <div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" type="submit" >提交订单</button>
+        </div>
+    </div>
+   </form>
+</div>
+
+<div class="weui-btn-area">
+       <a href="{:U('kuaidi/order/order_list')}" class="weui-btn weui-btn_plain-primary" >查看订单列表(可取消订单)</a>
+</div>
+
+<script>
+
+function sb1(){
+	 
+	 
+    var name = document.getElementById("name");
+    var mobile = document.getElementById("mobile");
+    var sushe = document.getElementById("sushe");
+    var fen = document.getElementById("fen");
+	if(trim(name.value)==null || trim(name.value)==""){
+	            alert("请输入姓名");
+	            name.focus();
+	            return false;
+	}
+	if(trim(mobile.value)==null || trim(mobile.value)==""){
+	      alert("请输入手机号码");
+	       mobile.focus();
+	       return false;
+	 }
+	if(trim(sushe.value)==null || trim(sushe.value)==""){
+        alert("请输入宿舍");
+        sushe.focus();
+        return false;
+	}
+	
+	if(trim(fen.value)==null || trim(fen.value)==""){
+        alert("份数至少填：1");
+        fen.focus();
+        return false;
+	}
+	
+
+	return true;
+}
+
+
+function trim(str){ 
+　　     return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function ling(str){
+	 return str.substring(0,1);
+	
+}
+
+function checkquyu(quyu,dong){
+	var dong = parseInt(dong);
+	var quyu = parseInt(quyu);
+	
+	if(quyu == 1 && dong >= 1  && dong <= 8 ){
+		return true;
+	}else if(quyu == 2 && dong >= 9  && dong <= 12 ){
+		return true;
+	}else if(quyu == 3 && dong >= 13  && dong <= 16 ){
+		return true;
+	}else if(quyu == 4 && dong >= 17  && dong <= 20 ){
+		return true;
+	}else if(quyu == 5 && dong >= 21  && dong <= 24 ){
+		return true;
+	}else if(quyu == 6 && dong >= 25  && dong <= 30 ){
+		return true;
+	}else if(quyu == 7 && dong >= 31  && dong <= 34 ){
+		return true;
+	}else if(quyu == 8 && dong >= 35  && dong <= 40 ){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script> 
+</body>
+</html>

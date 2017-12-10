@@ -1,0 +1,149 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>我抢的单</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+ <script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="page">
+    <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                 <div class="weui-navbar__item" onclick="javascript:location.href='__ROOT__/qiangdan/order/order_list' ">
+                    待抢单
+                </div>
+                <div class="weui-navbar__item <if condition="$type eq '6' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/qiangdan/order/my_order?type=6' ">
+                    已抢单
+                </div>
+                <div class="weui-navbar__item <if condition="$type eq '7' ">weui-bar__item_on</if>"  onclick="javascript:location.href='__ROOT__/qiangdan/order/my_order?type=7' ">
+                   已完成
+                </div>
+       			
+            </div>
+            <div class="weui-tab__panel">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page__bd">
+       <if condition="$type eq '7' "><center>只显示已送达的最近5个订单</center></if>
+<foreach name="list" item="v">
+
+        <br>
+        <div class="weui-form-preview">
+        
+         <div class="weui-form-preview__hd">
+		     	<center>
+		         	<a href="{$v.order_id|jietu}"><img src="{$v.order_id|jietu}" alt="{$v.order_id|jietu}" width="100%"/></a>
+		    	</center>
+		     </div>
+	
+	
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">快递信息</label>
+                <em class="weui-form-preview__value">{$v.consignee}（{$v.kuaidi_name}）</em>
+            </div>
+	<if condition=" $v.type eq 'box'  ">
+		     <div class="weui-form-preview__hd">
+		     	<center>
+		       		<h2 class="weui-msg__title"><font color="red">{$v.order_id|box_num}号柜。密码：{$v.order_id|box_code}</font></h2>
+		         	<img src="{$v.order_id|box_code_img}" width="150px"/>
+		    	</center>
+		     </div>
+	</if>
+
+		    
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">手机号码</label>
+                <em class="weui-form-preview__value">{$v.mobile}</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">宿舍</label>
+                <em class="weui-form-preview__value">{$v.sushe}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单编号：</label>
+                    <span class="weui-form-preview__value">{$v.order_id}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">佣金</label>
+                    <span class="weui-form-preview__value"><font color="red">{$v.order_id|yongjin}元</font></span>
+                </div>
+                
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">下单时间：</label>
+                    <span class="weui-form-preview__value">{$v.add_time}</span>
+                </div>
+            
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">姓名：</label>
+                    <span class="weui-form-preview__value">{$v.consignee}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机：</label>
+                    <span class="weui-form-preview__value">{$v.mobile}</span>
+                </div>
+               <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">短号：</label>
+                    <span class="weui-form-preview__value">{$v.duanhao}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$v.sushe}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$v.address}</span>
+                </div>
+                 <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">备注：</label>
+                    <span class="weui-form-preview__value">{$v.user_note}</span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="__ROOT__/chat/index/send/receive/{$v.user_id}/send/{$user['user_id']}/order_id/{$v.order_id}/send_role/抢单员">联系客户</a>
+                
+                <if condition="$v.order_status eq '6' ">
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:tui({$v.order_id});">申请取消</a>
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:songda({$v.order_id});">送达？佣金{$v.order_id|yongjin}元</a>
+
+            	</if>
+            </div>
+        </div>
+ 
+</foreach>
+        
+</div>
+
+
+
+
+<script type="text/javascript">
+function songda(id){
+	if(confirm("确定已送达?")){
+		 　　location.href='/qiangdan/order/songda/?id='+id;
+		　　
+		}
+}
+
+function tui(id){
+	if(confirm("申请取消订单?")){
+		 　　location.href='/qiangdan/handle/tui/?id='+id;
+		　　
+		}
+}
+</script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<include file="public/header" title="收货地址管理" body="pore_add"/>
+<include file="public/header_nav" title="收货地址管理" href="javascript:history.back(-1)"/>
+    <!--地址-s-->
+    <volist name="lists" id="list">
+        <div class="jd_listaddless p">
+            <div class="maleri30">
+            
+                <if condition="$Request.param.source eq 'cart2'">
+                <!--从确认订单页进来-->
+               <a href="{:U('/Mobile/Cart/cart2',array('address_id'=>$list['address_id']))}">
+                    <div class="name fl">
+                        <h1>{$list[consignee]}</h1>
+                        <if condition="$list[is_default] eq 1">
+                            <span>默认</span>
+                        </if>
+                    </div>
+                    <div class="numberaddress fl">
+                        <span class="number">电话：{$list[mobile]}</span>
+                        <span class="similars">{$region_list[$list['province']]},{$region_list[$list['city']]},{$region_list[$list['district']]},{$region_list[$list['twon']]}{$list['address']}</span>
+                    </div>
+                </a>
+                <!--从确认订单页进来-->
+                <elseif condition="$Request.param.source eq 'ji'">
+                <!--从确认订单页进来-->
+               <a href="{:U('/jijian/xiadan/xiadan',array('address_id'=>$list['address_id'],'type'=>$type ))}">
+                    <div class="name fl">
+                        <h1>{$list[consignee]}</h1>
+                        <if condition="$list[is_default] eq 1">
+                            <span>默认</span>
+                        </if>
+                    </div>
+                    <div class="numberaddress fl">
+                        <span class="number">电话：{$list[mobile]}</span>
+                        <span class="similars">{$region_list[$list['province']]},{$region_list[$list['city']]},{$region_list[$list['district']]},{$region_list[$list['twon']]}{$list['address']}</span>
+                    </div>
+                </a>
+                <!--从确认订单页进来-->
+                <elseif condition="$Request.param.source eq 'kd'">
+                 <!--从快递订单页进来-->
+                <a href="{:U('/kuaidi/xiadan/xiadan',array('address_id'=>$list['address_id'],'type'=>$type ))}">
+                    <div class="name fl">
+                        <h1>{$list[consignee]}</h1>
+                        <if condition="$list[is_default] eq 1">
+                            <span>默认</span>
+                        </if>
+                    </div>
+                    <div class="numberaddress fl">
+                        <span class="number">电话：{$list[mobile]}</span>
+                        <span class="similars">{$region_list[$list['province']]},{$region_list[$list['city']]},{$region_list[$list['district']]},{$region_list[$list['twon']]}{$list['address']}</span>
+                    </div>
+                </a>
+                <!--从快递订单页进来-->
+                
+                
+                <else />
+                
+                
+                    <div class="name fl">
+                        <h1>{$list[consignee]}</h1>
+                        <if condition="$list[is_default] eq 1">
+                            <span>默认</span>
+                        </if>
+                    </div>
+                    <div class="numberaddress fl">
+                        <span class="number">电话：{$list[mobile]}</span>
+                        <span class="similars">{$region_list[$list['province']]},{$region_list[$list['city']]},{$region_list[$list['district']]},{$region_list[$list['twon']]}{$list['address']}</span>
+                    </div>
+                </if>
+                <div class="editdiv fl">
+                    <a href="{:U('/Mobile/User/edit_address',array('id'=>$list[address_id],'source'=>$Request.param.source,'type'=>$type))}">
+                        <i class="eedit"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </volist>
+<!--地址-e-->
+<style>
+.weui-btn {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14px;
+  padding-right: 14px;
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: #FFFFFF;
+  line-height: 2.55555556;
+  border-radius: 5px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+}
+.weui-btn:after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.weui-btn_inline {
+  display: inline-block;
+}
+.weui-btn_default {
+  color: #000000;
+  background-color: #F8F8F8;
+}
+.weui-btn_default:not(.weui-btn_disabled):visited {
+  color: #000000;
+}
+.weui-btn_default:not(.weui-btn_disabled):active {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #DEDEDE;
+}
+.weui-btn_primary {
+  background-color: #1AAD19;
+}
+.weui-btn_primary:not(.weui-btn_disabled):visited {
+  color: #FFFFFF;
+}
+.weui-btn_primary:not(.weui-btn_disabled):active {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: #179B16;
+}
+.weui-btn_warn {
+  background-color: #E64340;
+}
+.weui-btn_warn:not(.weui-btn_disabled):visited {
+  color: #FFFFFF;
+}
+.weui-btn_warn:not(.weui-btn_disabled):active {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: #CE3C39;
+}
+.weui-btn_disabled {
+  color: rgba(255, 255, 255, 0.6);
+}
+.weui-btn_disabled.weui-btn_default {
+  color: rgba(0, 0, 0, 0.3);
+  background-color: #F7F7F7;
+}
+.weui-btn_disabled.weui-btn_primary {
+  background-color: #9ED99D;
+}
+.weui-btn_disabled.weui-btn_warn {
+  background-color: #EC8B89;
+}
+.weui-btn_plain-primary {
+  color: #1aad19;
+  border: 1px solid #1aad19;
+}
+.weui-btn_plain-primary:not(.weui-btn_plain-disabled):active {
+  color: rgba(26, 173, 25, 0.6);
+  border-color: rgba(26, 173, 25, 0.6);
+}
+.weui-btn_plain-primary:after {
+  border-width: 0;
+}
+.weui-btn_plain-default {
+  color: #353535;
+  border: 1px solid #353535;
+}
+.weui-btn_plain-default:not(.weui-btn_plain-disabled):active {
+  color: rgba(53, 53, 53, 0.6);
+  border-color: rgba(53, 53, 53, 0.6);
+}
+.weui-btn_plain-default:after {
+  border-width: 0;
+}
+.weui-btn_plain-disabled {
+  color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+button.weui-btn,
+input.weui-btn {
+  width: 100%;
+  border-width: 0;
+  outline: 0;
+  -webkit-appearance: none;
+}
+button.weui-btn:focus,
+input.weui-btn:focus {
+  outline: 0;
+}
+button.weui-btn_inline,
+input.weui-btn_inline,
+button.weui-btn_mini,
+input.weui-btn_mini {
+  width: auto;
+}
+button.weui-btn_plain-primary,
+input.weui-btn_plain-primary,
+button.weui-btn_plain-default,
+input.weui-btn_plain-default {
+  border-width: 1px;
+  background-color: transparent;
+}
+.weui-btn_mini {
+  display: inline-block;
+  padding: 0 1.32em;
+  line-height: 2.3;
+  font-size: 13px;
+}
+
+</style>
+ 
+<a href="{:U('/Mobile/User/add_address',array('source'=>$Request.param.source,'type'=>I('type')))}" class="weui-btn weui-btn_primary">+新建地址</a>
+        
+  
+</body>
+</html>

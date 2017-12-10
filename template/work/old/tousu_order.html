@@ -1,0 +1,85 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>投诉订单</title>
+  <meta name="description" content="一元代拿">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" type="image/png" href="http://cdn.yudw.com/admin/assets/i/favicon.png">
+<link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+</head>
+<body>
+<if condition="$is_show eq 1">
+  <!--我是商家-->
+  <form name="form1" method="post">
+        <div class="js_dialog" id="shangjia" style="display: block;">
+            <div class="weui-mask"></div>
+            <div class="weui-dialog weui-skin_android">
+                <div class="weui-dialog__hd"><strong class="weui-dialog__title">请输入投诉理由</strong></div>
+                <div class="weui-dialog__bd">
+                    <div class="weui-cell__bd">
+                   		<input class="weui-input" type="text" placeholder="请输入文本" id="desc" name="desc"/>
+                   		<div id="kong" style="display: none;"><font color="red">不能为空</font></div>
+                	</div>
+                </div>
+                <div class="weui-dialog__ft">
+                   <a href="javascript:document.form1.submit();" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+                </div>
+            </div>
+        </div>
+    <!--END 我是商家-->
+    </form>
+   </if> 
+   
+  <if condition="$is_show eq 0">
+   <div id="container" class="container" style="display:block;"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__icon-area">
+        <i class="weui-icon-success weui-icon_msg"></i>
+    </div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">投诉已提交</h2>
+        <p class="weui-msg__desc">感谢你对我们的关注与支持，我们会认真处理你的投诉。</p>
+    </div>
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="javascript:;" class="weui-btn weui-btn_primary" id="show">查看</a>
+        </p>
+    </div>
+</div></div></div>
+  
+  </if> 
+   
+   <div id="showhuifu" style="display:none;">
+   
+   暂未处理
+   
+   </div>
+   
+   
+    
+<script type="text/javascript">
+ //我是商家
+ $(function(){
+ 
+
+     $('#showshangjia').on('click', function(){
+         $("#shangjia").css('display','block');  
+     });
+     
+     
+     $('#show').on('click', function(){
+         $("#showhuifu").css('display','block'); 
+         $("#container").css('display','none');  
+     });
+     
+ });
+ 
+ 
+
+ </script>
+</body>
+
+ </html>

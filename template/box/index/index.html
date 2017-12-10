@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>快递柜代拿</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" href="__PUBLIC__/ydui/css/ydui.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/ydui/index.css"/>
+    <script src="__PUBLIC__/ydui/js/ydui.flexible.js"></script>
+</head>
+<body>
+<style>
+.img{
+	width:60px;
+	height:60px;
+}
+.grids-icon-kuaidi {
+    height: -0.32rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.mar{
+	margin-bottom:49.03px;
+}
+</style>
+
+<section class="g-flexview">
+
+    <div class="g-scrollview mar">
+
+        <h1 class="demo-pagetitle">快递柜代拿</h1>
+        <h2 class="demo-detail-title">请复制取件【短信</h2>
+
+        <div class="m-grids-4" >
+        <foreach item="v" name="kuaidi">
+            <a class="grids-item" href="/kuaidi/xiadan/xiadan?type={$v.type}">
+                <div class="grids-icon-kuaidi">
+                    <img class="demo-icons-button" alt="{$v.kuaidi_name}" src="{$v.kuaidi_img}" />
+                </div>
+                <div class="grids-txt">{$v.kuaidi_name}</div>
+            </a>
+        </foreach> 
+        </div>
+
+    </div>
+
+</section>
+
+
+  
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="__STATIC__/js/ydui.js"></script>
+
+<script>
+    function () {
+        var dialog = win.YDUI.dialog;
+
+        //普通确认框
+       
+            dialog.confirm('亲，现在是放假时间', '我们下学期见哦！', function () {
+                dialog.toast('真乖', 'none', 1000);
+            });
+       
+
+    }(window, jQuery);
+</script>
+
+
+<!--底部-start-->
+    <include file="public/footer"/>
+    <!--底部-end-->
+
+
+
+</body>
+</html>

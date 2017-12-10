@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>{$receive|get_name_by_uid}</title>
+    <link rel="stylesheet" href="http://www.yudw.com/css/weui.min.css"/>
+      <link rel="stylesheet" href="http://www.yudw.com/css/assets/css/amazeui.min.css"/>
+</head>
+<body>
+
+ 
+  
+<div style="padding-top:5px">
+<div class="page">
+
+    <center> <a href="#send" class="weui-btn weui-btn_mini weui-btn_primary">给TA发送消息</a>  </center>
+     
+    <foreach name="jieguo" item="v">
+   
+    <div class="weui-form-preview">
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">发送者</label>
+                    <span class="weui-form-preview__value">{$v.send}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">接收者</label>
+                    <span class="weui-form-preview__value">{$v.receive}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">内容</label>
+                    <span class="weui-form-preview__value"><font color="red">{$v.content}</font></span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">时间</label>
+                    <span class="weui-form-preview__value">{$v.send_time}</span>
+                </div>
+               
+                
+            </div>
+  </div>
+    
+ </foreach>
+    
+</div>
+<!-- 聊天 -->
+
+
+<!-- Navbar -->
+
+<form action="{:U('chat/index/send')}" method="post" id="subform">
+  <input type="hidden" name="receive" value="{$receive}">
+   <input type="hidden" name="send" value="{$send}">
+    <input type="hidden" name="order_id" value="0">
+    
+    
+<div class="weui-cells__title"><center>聊天对话框</center></div>
+
+        <div class="weui-cells weui-cells_form" id="send">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="content" placeholder="请输入内容" rows="6"></textarea>
+                    <div class="weui-textarea-counter">
+                        
+                       <a href="javascript:;" name="submit" onclick="document.getElementById('subform').submit();return false"  class="weui-btn weui-btn_mini weui-btn_primary">发送</a>
+                        
+                    </div>
+                </div>
+            </div>
+		</div>
+		
+</div>
+</form>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        var $tooltips = $('.js_tooltips');
+
+        $('#showTooltips').on('click', function(){
+            if ($tooltips.css('display') != 'none') return;
+
+            // toptips的fixed, 如果有`animation`, `position: fixed`不生效
+            $('.page.cell').removeClass('slideIn');
+
+            $tooltips.css('display', 'block');
+            setTimeout(function () {
+                $tooltips.css('display', 'none');
+            }, 2000);
+        });
+    });
+</script>
+

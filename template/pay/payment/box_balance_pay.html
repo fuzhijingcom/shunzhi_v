@@ -1,0 +1,67 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="Generator" content="tpshop" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>用余额支付</title>
+<meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+<script type="text/javascript" src="__STATIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+</head>
+<body>
+<div class="page">
+  
+    <form action="{:U('pay/payment/box_balance_pay_action')}" method="post" name="cart4_form" id="cart4_form">
+        <input type="hidden" name="order_id" value="{$order['order_id']}" />
+		<input type="hidden" name="type" value="{$type}" />
+		<input type="hidden" name="source" value="kuaidi" />
+    <div class="page__bd">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">付款金额</label>
+                    <em class="weui-form-preview__value">￥{$order['order_amount']}元</em>
+                </div>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单号：</label>
+                    <span class="weui-form-preview__value">{$order['order_sn']}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单标题</label>
+                    <span class="weui-form-preview__value">姓名：{$order['consignee']}<br>宿舍：{$order['sushe']}<br>手机：{$order['mobile']}<br>快递：{$order['kuaidi_name']}</span>
+                </div>
+               
+            </div>
+            
+            <center>您的可用账户余额 {$user['user_money']} 元</center>
+            
+             <p class="weui-btn-area">
+                 <a href="javascript:void(0);" onClick="pay()" class="weui-btn weui-btn_primary">确认余额支付￥{$order['order_amount']}元</a>
+            </p>
+             
+            
+          
+        </div>
+    </div>
+
+    </form>
+   
+   
+<script>
+    function pay(){
+        $('#cart4_form').submit();
+        return;
+        //余额支付
+    }
+</script> 
+
+</div>
+
+</body>
+</html>

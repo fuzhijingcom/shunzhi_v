@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>更换群二维码</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+<style type="text/css">
+body{background-color:#efeff4;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none
+}
+.container {
+padding-bottom: 20px
+}
+.weui-cells_checkbox>.weui-cell>* {
+pointer-events: none
+}
+.list__textarea-label_1IUds {
+float: left;
+color: #222;
+margin-bottom: 10px
+}
+.list__no-arrow_1QzDq:after {
+display: none!important
+}
+.list__warn_qnkn9 {
+color: #e64340!important
+}
+a.weui-cell {
+color: #222
+}
+.weui-cell__ft {
+font-size: 0
+}
+.zh_CN .weui-cell__ft,.zh_HK .weui-cell__ft,.zh_TW .weui-cell__ft {
+font-size: 17px}
+.comment__textarea-label_3n9Pv{float:left;color:#222;margin-bottom:10px}
+</style>
+</head>
+<body>
+   
+    <form method="post">
+    	<div class="weui-cells__title">过期时间：{$school.expire}</div>
+ 		<div class="weui-cells__title">{$school.name}的群聊二维码</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入群二维码链接" rows="3" name="qrcode"></textarea>
+                   
+                </div>
+            </div>
+        </div>
+        
+	
+
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary" >提交</button>
+        </p>
+    </div>
+
+	</form>
+	
+</body></html>

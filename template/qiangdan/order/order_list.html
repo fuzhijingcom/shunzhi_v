@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>抢单大厅</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+
+</head>
+<body>
+   <div class="page">
+   
+   
+     <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                
+                <div class="weui-navbar__item weui-bar__item_on">
+                   待抢单
+                </div>
+                <div class="weui-navbar__item" onclick="javascript:location.href='__ROOT__/qiangdan/order/my_order?type=6' ">
+                   已抢单
+                </div>
+                 <div class="weui-navbar__item" onclick="javascript:location.href='__ROOT__/qiangdan/order/my_order?type=7' ">
+                   已完成
+                </div>
+       			
+            </div>
+            <div class="weui-tab__panel">
+
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div class="page__hd"><center>
+        <h1 class="page__title"><font size="4">抢单中心（共  {$list_count} 个）</font></h1>
+      <div class="page__desc">客服权限以上，名字可见</div>
+      </center>
+       
+    </div>
+    
+    
+<volist name="list" id="v">
+
+    	<div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="__ROOT__/qiangdan/order/order_detail/order_id/{$v.order_id}" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="{$v.type|get_img_by_type}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">{$v.kuaidi_name}（{$v.sushe}）<if condition=" $grade gt 7 ">{$v.consignee}</if></h4>
+                        <p class="weui-media-box__desc">下单时间：{$v.add_time}{$v.user_note}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="weui-panel__ft">
+                <a href="__ROOT__/qiangdan/order/order_detail/order_id/{$v.order_id}" class="weui-cell weui-cell_access weui-cell_link">
+                    <div class="weui-cell__bd">查看详情（佣金{$v.order_id|yongjin}）</div>
+                    <span class="weui-cell__ft"><font color="red">订单编号:{$v.order_id}</font> 抢单</span>
+                </a>    
+            </div>
+        </div>
+
+</volist>           
+            
+            
+</div>
+    
+   
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div> 
+
+
+</body></html>

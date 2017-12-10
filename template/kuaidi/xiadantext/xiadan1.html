@@ -1,0 +1,129 @@
+<include file="public/header" title="快递代拿" body="g4"/>
+<include file="public/header_nav" title="快递代拿" href="javascript:history.back(-1)"/>
+<form name="cart2_form" id="cart2_form" method="post" action="{:U('xiadan_add')}">
+		
+    <div class="edit_gtfix">
+        <a href="__ROOT__/mobile/User/address_list/source/kd/type/{$type}">
+            <div class="namephone fl">
+                <div class="top">
+                    <div class="le fl">{$address.consignee}</div>
+                    <div class="lr fl">{$address.mobile}</div>
+                </div>
+                <div class="bot">
+                    <i class="dwgp"></i>
+                    <span>宿舍：{$address.sushe}</span>
+                </div>
+                <input type="hidden" value="{$address.address_id}" name="address_id" /> <!--收货地址id-->
+            </div>
+            <div class="fr youjter">
+                <i class="Mright"></i>
+            </div>
+            <div class="ttrebu">
+                <img src="__STATIC__/images/tt.png"/>
+            </div>
+        </a>
+    </div>
+
+    <!--商品信息-s-->
+        <div class="ord_list fill-orderlist p">
+            <div class="maleri30">
+                
+                    <div class="shopprice">
+                        <div class="img_or fl"><img src="{$type|get_img_by_type}"/></div>
+                        <div class="fon_or fl">
+                            <h2 class="similar-product-text">{$kuaidi[kuaidi_name]}</h2>
+                            <div>{$good[spec_key_name]}</div>
+                        </div>
+                        <div class="price_or fr">
+                            <p class="red"><span>￥</span><span>{$kuaidi[price]}</span></p>
+                            <p class="ligfill">x1</p>
+                        </div>
+                    </div>
+                     <input type="hidden" name="kuaidi_name" value="{$kuaidi[kuaidi_name]}" >
+                   <input type="hidden" name="order_amount" value="{$kuaidi[price]}" >
+            </div>
+        </div>
+    <!--商品信息-e-->
+
+<!--卖家留言-s-->
+    <div class="customer-messa">
+        <div class="maleri30">
+            <p>6位 取件码（递易公众号发送的通知里有）</p>
+            <textarea class="tapassa" onkeyup="checkfilltextarea('.tapassa','6')" name="code" rows="" cols="" placeholder="只需把取件密码(6位字母数字)复制到这里，不需要其他文字"></textarea>
+            <span class="xianzd"><em id="zero">6</em>/6</span>
+        </div>
+    </div>
+<!--卖家留言-e-->
+
+ <style type="text/css">
+.box-select{
+	margin-top:5px;
+	width:100%;
+	height:30px;
+	 font-size: 16px;
+           }
+</style>
+        
+         <div class="customer-messa">
+        <div class="maleri30">
+            <p>请选择快递柜</p>
+            		<select class="box-select" name="box">
+            		<option value="">请选择快递柜 </option>
+                        <option value="1">1号柜</option>
+		                <option value="2">2号柜</option>
+		                <option value="3">3号柜</option>
+		                <option value="4">4号柜</option>
+		                <option value="5">5号柜</option>
+		                <option value="6">6号柜</option>
+		                <option value="7">7号柜</option>
+		                <option value="8">8号柜</option>
+                    </select>
+        </div>
+    </div>
+ 		
+  
+
+  
+
+
+<!--订单金额-s-->
+    <div class="information_dr ma-to-20">
+        <div class="maleri30">
+            <div class="xx-list">
+                <p class="p">
+                    <span class="fl">服务协议：</span>
+                    <span class="fr red"><span>提交订单即统同意该协议</span></span>
+                   <br>
+                    <span><br>
+                    1.付款后代拿。未成功付款订单无效。<br>
+                    2.委托代拿的物品价值不超过200元。<br>
+                    3.最高赔偿不超过200元。<br>
+                    </span>
+                </p>
+                
+               
+            </div>
+        </div>
+    </div>
+<!--订单金额-e-->
+
+<!--提交订单-s-->
+   
+    <div class="payit fillpay ma-to-200">
+        <div class="fr">
+            <a href="javascript:document.cart2_form.submit();">提交订单</a>
+        </div>
+        <div class="fl">
+            <p><span class="pmo">应付金额：</span><span>￥</span><span>{$kuaidi[price]}</span>元<span></span></p>
+        </div>
+    </div>
+<!--提交订单-e-->
+
+
+</form>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

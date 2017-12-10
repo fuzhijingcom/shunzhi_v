@@ -1,0 +1,280 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>申请加入</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css">
+<script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+
+
+<div class="page">
+
+ <div class="page__bd">
+        <article class="weui-article">
+            <h1><b><center>代拿新模式</center></b></h1>
+            <section>
+
+                    <p>
+                        注册成为自由快递员，在空暇时间赚取佣金
+                    </p>
+ 
+            </section>
+        </article>
+    </div>
+
+
+
+    <form method="post" enctype="multipart/form-data" onsubmit="return sb1();">
+    
+    <div class="page__bd">
+       
+
+        <div class="weui-cells__title">配送员信息</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">真实姓名</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="name" type="text" placeholder="请输入姓名" name="name" value="{$address.consignee}"/>
+                </div>
+            </div>
+           
+           <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">学号</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" id="xh" name="xh" placeholder="请输入学号"  maxlength="13" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')"/>
+                </div>
+            </div>
+            
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">手机号码</label></div>
+                <div class="weui-cell__bd">
+            <input type="text" class="weui-input" id="mobile" name="mobile" value="{$address.mobile}" onpaste="this.value=this.value.replace(/[^\d-]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d-]/g,'')" maxlength="15" placeholder="手机号码"/>
+                </div>
+            </div>
+            
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">短号</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" id="duanhao" name="duanhao" value="{$address.duanhao}"  placeholder="短号"/>
+                </div>
+            </div>
+           
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">宿舍</label></div>
+                <div class="weui-cell__bd">
+                <input type="text" class="weui-input" id="sushe" name="sushe" value="{$address.sushe}"  placeholder="宿舍"/>
+                </div>
+            </div>
+        </div>
+  
+
+        <div class="weui-cells__title">推送开关</div>
+        <div class="weui-cells weui-cells_form">
+            
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">有订单时提醒我</div>
+                <div class="weui-cell__ft">
+                    <label for="switchCP" class="weui-switch-cp">
+                        <input id="switchCP" class="weui-switch-cp__input" name="tuisong" type="checkbox" checked="checked" />
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+       
+
+
+
+        
+
+        <div class="weui-cells__title">详细宿舍选择（具体推送范围在推送中设置）</div>
+        <div class="weui-cells">
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" id="quyu" name="quyu">
+                        <option value="1">1-8</option>
+                        <option value="2">9-12</option>
+                        <option value="3">13-16</option>
+                        <option value="4">17-20</option>
+                        <option value="5">21-24</option>
+                        <option value="6">25-30</option>
+                        <option value="7">31-34</option>
+                        <option value="8">35-40</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" id="dong" name="dong" type="number" pattern="[0-9]*" placeholder="请输入栋数"/>
+                </div>
+            </div>
+        </div>
+        
+         <div class="page__bd">
+        <div class="weui-gallery" id="gallery">
+            <span class="weui-gallery__img" id="galleryImg"></span>
+            <div class="weui-gallery__opr">
+                <a href="javascript:" class="weui-gallery__del">
+                    <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <div class="weui-uploader">
+                        <div class="weui-uploader__hd">
+                            <p class="weui-uploader__title">校园卡照片</p>
+                            <div class="weui-uploader__info">拍摄正面，看清名字、学号</div>
+                        </div>
+                        <div class="weui-uploader__bd">
+                            <ul class="weui-uploader__files" id="uploaderFiles">
+                              
+                               
+                            </ul>
+                            <div class="weui-uploader__input-box">
+                                <input id="uploaderInput" class="weui-uploader__input" name="file" type="file" accept="image/*"  />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" type="submit" >提交审核</button>
+        </div>
+    </div>
+   </form>
+</div>
+	
+<script type="text/javascript">
+    $(function(){
+        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+            $uploaderInput = $("#uploaderInput"),
+            $uploaderFiles = $("#uploaderFiles")
+            ;
+
+        $uploaderInput.on("change", function(e){
+            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+            for (var i = 0, len = files.length; i < len; ++i) {
+                var file = files[i];
+
+                if (url) {
+                    src = url.createObjectURL(file);
+                } else {
+                    src = e.target.result;
+                }
+
+                $uploaderFiles.append($(tmpl.replace('#url#', src)));
+            }
+        });
+        $uploaderFiles.on("click", "li", function(){
+            $galleryImg.attr("style", this.getAttribute("style"));
+            $gallery.fadeIn(100);
+        });
+        $gallery.on("click", function(){
+            $gallery.fadeOut(100);
+        });
+    });
+</script>
+
+<script>
+
+function sb1(){
+	 
+	 
+    var name = document.getElementById("name");
+    var mobile = document.getElementById("mobile");
+    var xh = document.getElementById("xh");
+    var dong = document.getElementById("dong");
+	if(trim(name.value)==null || trim(name.value)==""){
+	            alert("请输入姓名");
+	            name.focus();
+	            return false;
+	}
+	if(trim(mobile.value)==null || trim(mobile.value)==""){
+	            alert("请输入手机号码");
+	            mobile.focus();
+	       return false;
+	 }
+	if(trim(xh.value)==null || trim(xh.value)==""){
+        alert("请输入学号");
+        xh.focus();
+        return false;
+	}
+	
+	if(trim(dong.value)==null || trim(dong.value)==""){
+        alert("请输入栋数");
+        dong.focus();
+        return false;
+	}
+	
+	if(ling(trim(dong.value))== 0 ){
+        alert("栋数前不能加0");
+        dong.focus();
+        return false;
+	}
+	
+	 var quyu = document.getElementById("quyu").value;
+	
+	 var d = dong.value;
+	 
+	 if(checkquyu(quyu,d) == false ){
+	        alert("区域与栋数不对应");
+	        dong.focus();
+	        return false;
+	}
+	
+	return true;
+}
+
+
+function trim(str){ 
+　　     return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function ling(str){
+	 return str.substring(0,1);
+	
+}
+
+function checkquyu(quyu,dong){
+	var dong = parseInt(dong);
+	var quyu = parseInt(quyu);
+	
+	if(quyu == 1 && dong >= 1  && dong <= 8 ){
+		return true;
+	}else if(quyu == 2 && dong >= 9  && dong <= 12 ){
+		return true;
+	}else if(quyu == 3 && dong >= 13  && dong <= 16 ){
+		return true;
+	}else if(quyu == 4 && dong >= 17  && dong <= 20 ){
+		return true;
+	}else if(quyu == 5 && dong >= 21  && dong <= 24 ){
+		return true;
+	}else if(quyu == 6 && dong >= 25  && dong <= 30 ){
+		return true;
+	}else if(quyu == 7 && dong >= 31  && dong <= 34 ){
+		return true;
+	}else if(quyu == 8 && dong >= 35  && dong <= 40 ){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script> 
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+
+</html>

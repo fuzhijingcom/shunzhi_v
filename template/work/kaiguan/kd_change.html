@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>更改快递</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+</head>
+<body>
+ <div class="page__bd">
+        <form method="post">
+        <div class="weui-cells__title">佣金   = 下单价格 - 平台扣除</div>
+        <div class="weui-cells weui-cells_form">
+        	<div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">快递名称</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" value="{$kuaidi.kuaidi_name}" readonly/>
+                </div>
+            </div>
+            
+            
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">下单价格</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="price" placeholder="价格" value="{$kuaidi.price}"/>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">平台扣除</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="money" placeholder="平台扣除" value="{$kuaidi.money}"/>
+                </div>
+            </div>
+        </div>
+ 		<div class="weui-cells__title">佣金   = 下单价格 - 平台扣除。佣金不能为0</div>
+ 
+ 
+  
+        <div class="weui-cells__title"><font color="red">排序越小越在前面</font></div>
+        <div class="weui-cells weui-cells_form">
+  			<div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">排序</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="shunxu" placeholder="排序" value="{$kuaidi.shunxu}"/>
+                </div>
+            </div>
+ 		</div>
+ 
+ 
+ 
+        <div class="weui-cells__title">开关</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd">是否启用</div>
+                <div class="weui-cell__ft">
+                    <label for="switchCP" class="weui-switch-cp">
+                        <input id="switchCP" class="weui-switch-cp__input" type="checkbox" name="status" <if condition="$kuaidi.status eq 1"> checked="checked"</if> />
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="weui-btn-area">
+            <button class="weui-btn weui-btn_primary" type="submit" >确认更改</button>
+        </div>
+        
+        </form>
+        
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_default" href="/work/kaiguan/kd" >返回列表</a>
+        </div>
+        
+    </div>
+
+</body></html>

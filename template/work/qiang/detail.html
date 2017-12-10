@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>待操作</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+     <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+     <script type="text/javascript" src="http://yudw.com/ok/example/example.js"></script>
+</head>
+<body>
+ <script src="__PUBLIC__/js/jquery-1.8.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="http://yudw.com/ok/example/weui.min.js" ></script>
+<script type="text/javascript" src="http://yudw.com/ok/example/zepto.min.js" ></script>
+   
+  <form method="post" action="{:U('change')}">
+    <input type="hidden" name="id" value="{$order_info.order_id}">
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">快递信息</label>
+                <em class="weui-form-preview__value">{$order_info.consignee}（{$order_info.kuaidi_name}）</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">手机号码</label>
+                <em class="weui-form-preview__value">{$order_info.mobile}</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">宿舍</label>
+                <em class="weui-form-preview__value">{$order_info.sushe}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单号：</label>
+                    <span class="weui-form-preview__value">{$order_info.order_id}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">抢单员：</label>
+                    <span class="weui-form-preview__value">{$order_info.receiver|get_name_by_uid}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">抢单时间：</label>
+                    <span class="weui-form-preview__value">{$order_info.receivetime}</span>
+                </div>
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">下单时间：</label>
+                    <span class="weui-form-preview__value">{$order_info.add_time}</span>
+                </div>
+            	<div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">姓名：</label>
+                    <span class="weui-form-preview__value">{$order_info.consignee}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机：</label>
+                    <span class="weui-form-preview__value">{$order_info.mobile}</span>
+                </div>
+               <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">短号：</label>
+                    <span class="weui-form-preview__value">{$order_info.duanhao}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$order_info.sushe}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$order_info.address}</span>
+                </div>
+            </div>
+            
+             <div class="weui-cell weui-cell_switch">
+                <div class="weui-cell__bd left">是否扣分</div>
+                <div class="weui-cell__ft">
+                    <label for="kou" class="weui-switch-cp">
+                        <input id="kou" class="weui-switch-cp__input" name="kou" value="1" type="checkbox" checked="checked" />
+                        <div class="weui-switch-cp__box"></div>
+                    </label>
+                </div>
+            </div>
+            
+             <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">订单状态</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="order_status">
+                     ·  <option value="0">未拿（可取消订单）</option>
+                        <option value="1">已拿（不可取消）</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">取消原因</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="action">
+                     ·  <option value="yn">已拿</option>
+                        <option value="sf">释放</option>
+                        <option value="hh">缺货号</option>
+                         <option value="zbd">找不到</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">可不可抢</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="qiang">
+                     ·  <option value="0">可抢</option>
+                        <option value="1">不可抢</option>
+                       
+                    </select>
+                </div>
+            </div>
+            
+           <!--  <div class="weui-form-preview__ft">
+                <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status({$order_info.order_id});">改成未拿，可抢</a>
+            	<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status_bu({$order_info.order_id});">改成未拿，不可抢</a>
+            	<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status_yy({$order_info.order_id});">改成已拿，晚上送</a>
+            	<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status_sf({$order_info.order_id});">释放订单，重新抢</a>
+            	<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status_zbd({$order_info.order_id});">找不到，不可抢</a>
+            	<a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:status_hh({$order_info.order_id});">缺货号，未拿不可抢</a>
+            	
+            </div> -->
+        </div> 
+        <br>
+        
+         <div class="weui-msg__opr-area">
+	        <p class="weui-btn-area">
+	          
+	             <button href="submit"" class="weui-btn weui-btn_primary">确定操作</button>
+	             
+	             <br>
+	             <center>
+        <a href="javascript:status_buyongle({$order_info.order_id});"" class="weui-btn weui-btn_mini weui-btn_warn">不用取消这个订单了</a>
+        </center>
+	        </p>
+    	</div>
+        
+        
+     </form>   
+   
+
+<!-- function status(id){
+	if(confirm("改成未拿(可抢)状态?")){
+		 　　location.href='/work/qiang/change?order_status=0&qiang=1&id='+id;　
+		}
+}
+
+function status_bu(id){
+	if(confirm("改成未拿(不可抢)状态?")){
+		 　　location.href='/work/qiang/change?order_status=0&qiang=0&id='+id;　
+		}
+}
+
+function status_yy(id){
+	if(confirm("改成已拿(晚上送)状态?")){
+		 　　location.href='/work/qiang/change?action=yn&order_status=1&qiang=0&id='+id;　
+		}
+}
+
+function status_sf(id){
+	if(confirm("释放订单(重新抢)状态?")){
+		 　　location.href='/work/qiang/change?action=sf&order_status=0&qiang=1&id='+id;　
+		}
+}
+
+function status_zbd(id){
+	if(confirm("找不到(不可抢)状态?")){
+		 　　location.href='/work/qiang/change?action=zbd&order_status=0&qiang=0&id='+id;　
+		}
+}
+
+function status_hh(id){
+	if(confirm("缺货号(不可抢)状态?")){
+		 　　location.href='/work/qiang/change?action=hh&order_status=0&qiang=0&id='+id;　
+		}
+} -->
+
+<script type="text/javascript">
+
+function status_buyongle(id){
+	if(confirm("不用了？(删除该记录)")){
+		 　　location.href='/work/qiang/delete_shenqing?id='+id;　
+		}
+}
+</script>
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+    <script src="__STATIC__/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+   <div class="page">
+    <div class="page__hd">
+    <center>
+        <h1 class="page__title"><font size="4">订单详情</font></h1>
+
+</center>
+        <br><br>
+    </div>
+    <div class="page__bd">
+      
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">订单佣金</label>
+                <em class="weui-form-preview__value">¥{$order_info.order_id|yongjin}元</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">快递种类</label>
+                <em class="weui-form-preview__value">{$order_info.kuaidi_name}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">宿舍</label>
+                    <span class="weui-form-preview__value">{$order_info.sushe}</span>
+                </div>
+                
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">下单时间</label>
+                    <span class="weui-form-preview__value">{$order_info.add_time}</span>
+                </div>
+                
+                <if condition=" $order_info.user_note neq ''  ">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">服务要求</label>
+                    <span class="weui-form-preview__value">{$order_info.user_note}</span>
+                </div>
+                </if>
+                
+            </div>
+           
+    
+    
+        </div>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="__ROOT__/qiangdan/order/qiang?order_id={$order_info.order_id}" class="weui-btn weui-btn_primary">我要抢单</a>
+        </p>
+    </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="__ROOT__/qiangdan/order/order_list" class="weui-btn weui-btn_disabled weui-btn_default">返回抢单大厅</a>
+        </p>
+    </div>
+    
+     <if condition=" $grade gt  7  ">
+      <div class="weui-msg__opr-area">
+      <center>
+        <p class="weui-btn-area">
+          <a class="weui-btn weui-btn_mini weui-btn_warn" href="__ROOT__/chat/index/send/receive/{$order_info.user_id}/send/{$user['user_id']}/order_id/{$order_info.order_id}/send_role/客服">客服功能：联系客户（{$order_info.consignee}）</a>
+        </p>
+        
+         <p class="weui-btn-area">
+          <a class="weui-btn weui-btn_mini weui-btn_default" href="__ROOT__/work/qiang/update_order_note/order_id/{$order_info.order_id}">客服功能：修改订单备注</a>
+        </p>
+         <p class="weui-btn-area">
+          <a class="weui-btn weui-btn_mini weui-btn_primary" id="showToast" onclick="send_all_second({$order_info.order_id})">客服功能：二次推送</a>
+        </p>
+        
+     </center>
+    </div>
+     </if>
+
+         
+</div>
+
+<script type="text/javascript">
+   
+
+    /**
+     * 二次推送订单
+     */
+    function send_all_second(id){
+       
+        $.ajax({
+            type: 'GET',
+            dataType:'JSON',
+            url:"/kuaidi/send/send_all_second?order_id="+id,
+            success:function(data){
+                if(data.code == 1){
+                    layer.open({content:data.msg,time:2});
+                    //location.href = "/index.php?m=kuaidi&c=order&a=order_list";
+                }else{
+                    layer.open({content:data.msg,time:2});
+                    //location.href = "/index.php?m=kuaidi&c=order&a=order_list";
+                    return false;
+                }
+            },
+            error:function(){
+                layer.open({content:'网络失败，请刷新页面后重试',time:3});
+            },
+        });
+    }
+
+   
+</script>
+
+<!--修改成功-->
+    <div id="toast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">推送成功</p>
+        </div>
+    </div>
+ <!--end toast-->
+ <script type="text/javascript">
+    // toast
+    $(function(){
+        var $toast = $('#toast');
+        $('#showToast').on('click', function(){
+            if ($toast.css('display') != 'none') return;
+
+            $toast.fadeIn(200);
+            setTimeout(function () {
+                $toast.fadeOut(100);
+            }, 2000);
+        });
+    });
+  </script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body></html>

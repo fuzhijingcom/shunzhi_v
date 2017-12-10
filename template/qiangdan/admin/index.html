@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+
+</head>
+<body>
+   <div class="page">
+    <div class="page__hd">
+    <center>
+        <h1 class="page__title"><font size="4">订单详情</font></h1>
+
+
+        <br>（此页面，仅管理权限可见）<br>
+        
+        </center>
+    </div>
+    <div class="page__bd">
+      
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">订单佣金</label>
+                <em class="weui-form-preview__value">¥{$order_info.order_id|yongjin}元</em>
+            </div>
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">抢单员</label>
+                <em class="weui-form-preview__value">{$order_info.receiver|get_name_by_uid}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">宿舍</label>
+                    <span class="weui-form-preview__value">{$order_info.sushe}</span>
+                </div>
+                
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">下单时间</label>
+                    <span class="weui-form-preview__value">{$order_info.add_time}</span>
+                </div>
+                
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">抢单时间</label>
+                    <span class="weui-form-preview__value">{$order_info.receivetime}</span>
+                </div>
+                
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">姓名：</label>
+                    <span class="weui-form-preview__value">{$order_info.consignee}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">手机：</label>
+                    <span class="weui-form-preview__value">{$order_info.mobile}</span>
+                </div>
+                 <if condition=" $order_info.duanhao neq ''  ">
+               <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">短号：</label>
+                    <span class="weui-form-preview__value">{$order_info.duanhao}</span>
+                </div>
+                </if>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$order_info.sushe}</span>
+                </div>
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">地址：</label>
+                    <span class="weui-form-preview__value">{$order_info.address}</span>
+                </div>
+                
+                <if condition=" $order_info.user_note neq ''  ">
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">服务要求</label>
+                    <span class="weui-form-preview__value">{$order_info.user_note}</span>
+                </div>
+                </if>
+                
+            </div>
+           
+    
+    
+        </div>
+    </div>
+    
+  
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <a href="__ROOT__/qiangdan/order/order_list" class="weui-btn weui-btn_disabled weui-btn_default">返回抢单大厅</a>
+        </p>
+    </div>
+    
+</div>
+
+</body></html>

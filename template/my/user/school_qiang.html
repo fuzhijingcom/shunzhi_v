@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>抢单员选择学校</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+</head>
+<body>
+    <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    
+    <form method="post">
+    
+    <div class="weui-cells__title">选择哪个学校，就接收哪个学校的订单推送通知。<br>未选择无订单推送。</div>
+        <div class="weui-cells weui-cells_checkbox">
+            
+         <foreach item="v" name="school_list">   
+            <label class="weui-cell weui-check__label" for="s{$v.value}">
+                <div class="weui-cell__hd">
+                    <input type="radio" class="weui-check" name="school" value="{$v.value}" id="s{$v.value}" <if condition="$school eq $v.value "> checked="checked"</if>>
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                    <p>{$v.name}</p>
+                </div>
+            </label>
+         </foreach> 
+          
+            <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5OTMyMjc3MQ==#wechat_redirect" class="weui-cell weui-cell_link">
+                <div class="weui-cell__bd">找不到？添加更多</div>
+            </a>
+        </div>
+    
+    <div class="weui-msg__opr-area">
+        <p class="weui-btn-area">
+            <button type="submit" class="weui-btn weui-btn_primary" >保存</button>
+        </p>
+    </div>
+    
+    
+    
+    </form>
+    
+    
+</div></div></div>
+
+</body></html>

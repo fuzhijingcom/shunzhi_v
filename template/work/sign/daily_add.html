@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>写工作日志</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui.min.css"/>
+</head>
+<body ontouchstart>
+
+<div class="page">
+    <div class="page__hd">
+        <h1 class="page__title"><center>日志</center></h1>
+    </div>
+    <form method="post">
+    <div class="page__bd">
+
+
+        <div class="weui-cells__title"><font color="#000000">请填写今日工作总结</font></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="daily" placeholder="请填写今日工作总结" rows="4"></textarea>
+                   
+                </div>
+            </div>
+        </div>
+
+		<div class="weui-cells__title"><font color="#000000">请填写工作心得体会</font></div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="learn" placeholder="请填写工作心得体会" rows="4"></textarea>
+                   
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="weui-cells__title">选择点评人</div>
+        <div class="weui-cells">
+          
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">上班主管</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="zhuguan">
+                    <foreach  name="zhuguan" item="v">
+                        <option value="{$v.yid}">{$v.name}</option>
+                        
+                    </foreach>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="submit">
+        </div>
+    </div>
+   
+   
+   </form>
+   
+</div>

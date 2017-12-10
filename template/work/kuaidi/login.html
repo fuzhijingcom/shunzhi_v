@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>登录中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="__PUBLIC__/i/favicon.png">
+  <link rel="stylesheet" href="__PUBLIC__/css/amazeui.min.css"/>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="am-g">
+    <h1>会员中心</h1>
+    <p>一个账号，畅享所有服务</p>
+  </div>
+  <hr />
+</div>
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <h3><center>为确保安全，内部员工必须手动登录</center></h3>
+    <hr>
+    
+   
+    <form method="post" class="am-form">
+      <label for="text">手机号：<a href="http://www.yudw.com/user/profile.php?referer=http://yykddn.yudw.com/kd/admin/index">点击这里设置手机号码</a></label>
+      <input type="text" name="mobile" id="mobile" value="{$m}">
+      <br>
+      <label for="password">密码：<a href="http://www.yudw.com/kd/pw.php">点击这里设置密码</a></label>
+      <input type="password" name="password" id="password" >
+      <br>
+      <label for="remember-me">
+        <input id="remember-me" type="checkbox">
+        记住密码
+      </label>
+      <br />
+      <div class="am-cf">
+        <input type="submit" name="" value=" 登   录  " class="am-btn am-btn-primary am-btn-sm am-fl">
+        <!--  
+        <a href="http://www.yudw.com/kd/id.php" class="am-btn am-btn-default am-btn-sm am-fr">查询ID ^_^?</a>
+        -->
+      </div>
+    </form>
+    <hr>
+    <p>© 有问题？请微信联系精精精精哥哥</p>
+  </div>
+</div>
+</body>
+</html>

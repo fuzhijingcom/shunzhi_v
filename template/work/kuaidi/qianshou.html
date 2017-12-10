@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>不要返回，点下面确认签收</title>
+    <link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css"/>
+<style type="text/css">
+body{background-color:#efeff4;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none
+}
+
+.container {
+padding-bottom: 20px
+}
+
+.weui-cells_checkbox>.weui-cell>* {
+pointer-events: none
+}
+
+.list__textarea-label_1IUds {
+float: left;
+color: #222;
+margin-bottom: 10px
+}
+
+.list__no-arrow_1QzDq:after {
+display: none!important
+}
+
+.list__warn_qnkn9 {
+color: #e64340!important
+}
+
+a.weui-cell {
+color: #222
+}
+
+.weui-cell__ft {
+font-size: 0
+}
+
+.zh_CN .weui-cell__ft,.zh_HK .weui-cell__ft,.zh_TW .weui-cell__ft {
+font-size: 17px}
+
+.comment__textarea-label_3n9Pv{float:left;color:#222;margin-bottom:10px}
+
+</style>
+</head>
+<body>
+    <div id="container" class="container"><div class="zh_CN"><div class="weui-msg">
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">{$yuangongname}，请点下面确认签收</h2>
+        <p class="weui-msg__desc">不要返回，点下面确认签收</p>
+    </div>
+
+<form class="form-horizontal templatemo-contact-form-1" role="form" method="post">
+
+        <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+                <label class="weui-form-preview__label">订单编号：{$order.order_id}</label>
+                <em class="weui-form-preview__value">{$order.consignee}</em>
+                <em class="weui-form-preview__value">{$order.sushe}</em>
+                <em class="weui-form-preview__value">{$order.duanhao}</em>
+            </div>
+            <div class="weui-form-preview__bd">
+            
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">订单时间</label>
+                    <span class="weui-form-preview__value">{$order.add_time}</span>
+                </div>
+               
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">长号</label>
+                    <span class="weui-form-preview__value">{$order.mobile}</span>
+                </div>
+               
+                <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">备注</label>
+                    <span class="weui-form-preview__value">{$order.user_note}</span>
+                </div>
+            </div>
+            <div class="weui-form-preview__ft">
+              <input type="hidden"  name="state" value="已拿" >
+     <input type="hidden"  name="kuaidi" value="{$order.kuaidi}">
+		  <input type="hidden"  name="id" value="{$order.id}">
+		   <input type="hidden"  name="time" value="{$order.time}">
+		    <input type="hidden"  name="realname" value="{$order.realname}">
+		     <input type="hidden"  name="mobile" value="{$order.mobile}">
+		      <input type="hidden"  name="duanhao" value="{$order.duanhao}">
+		       <input type="hidden"  name="sushe" value="{$order.sushe}">   
+		       <input type="hidden"  name="beizhu" value="{$order.beizhu}">  
+		       <input type="hidden"  name="receiver" value="{$uid}">     
+		       <input type="hidden"  name="receivetime" value="{$receivetime}">    
+          
+               
+<div class="weui-msg__opr-area">
+<p class="weui-btn-area" style="padding-left:100px;">
+ <button type="submit" class="weui-btn weui-btn_primary" >确认签收</button>
+</p>
+</div>
+               
+               
+            </div>
+        </div>
+
+ </form>
+    
+
+
+
+</div></div></div>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body></html>

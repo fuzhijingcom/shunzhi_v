@@ -1,0 +1,131 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>权限更改</title>
+  <meta name="description" content="一元代拿">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="http://cdn.yudw.com/admin/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="http://cdn.yudw.com/admin/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css"/>
+  <style type="text/css">
+  	.am-table{
+  		width: 100%;
+		overflow-y: auto;
+		_overflow: auto;
+		margin: 0 0 1em;
+word-break: keep-all;white-space:nowrap;
+
+  	}
+  	.am-table>thead{
+  		 border-top:1px solid #ddd ;
+  		 border-right:1px solid #ddd ;
+  	}
+    .am-table>tbody{    	
+  		  border-right:1px solid #ddd ;
+  		  border-bottom:1px solid #ddd ;
+    }
+  	.am-table>tbody>tr>td{border: none;}
+  	.am-table>tbody>tr>td,.am-table>thead>tr>th{
+  		  border-top:1px solid #ddd ;
+  		  border-left:1px solid #ddd ;
+  	}
+  	.input{padding: 0px 12px 4px 12px;}
+  	.tle{margin-bottom: 12px;}
+  </style>
+</head>
+<body>
+
+
+<header class="am-topbar admin-header">
+  <div class="am-topbar-brand">
+    <strong>
+员工权限设置
+</strong>
+  </div>
+ 
+</header>
+
+
+<div class="page">
+   
+    <div class="page__bd">
+        
+       
+       <form method='post'>
+						
+       
+
+        <h1 class="page__title"><center>更改员工权限</h1></center>
+        <div class="weui-cells">
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="">
+                        <option value="1">姓名</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="txet" name="name" placeholder="姓名" value="{$name}"/>
+                </div>
+            </div>
+            
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="">
+                        <option value="1">ID</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="txet" name="yid" placeholder="ID" value="{$yid}"/>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="weui-cells__title">请重新选择级别</div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select">
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="grade">
+                     	<option value="" selected="">请选择</option>
+                        <option  value="0">离职</option>
+                        <option value="1" >试用期</option>
+                        <option value="2">正式员工</option>
+                        <option value="3">优秀员工</option>
+                        <option value="4">派件员</option>
+                        <option value="6">外卖主管</option>
+						<option value="7">快递主管</option>
+                        <option value="8">客服权限</option>
+                        <option value="9">管理权限</option>
+                    </select>
+                </div>
+            </div>       
+        </div>
+
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="submit" value="确定修改">
+        </div>
+
+			</form>
+    </div>
+    
+</div>
+
+
+
+
+<footer>
+  <div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</footer>
+
+</body>
+</html>

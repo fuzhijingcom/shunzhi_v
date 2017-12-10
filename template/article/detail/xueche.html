@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>安信通</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" href="__PUBLIC__/css/weui/weui.min.css"/>
+</head>
+<body>
+<style>
+.center{
+	text-align:center;
+	 line-height:35px;
+}
+.line{
+	text-align:left;
+	 line-height:30px;
+}
+.red{
+	text-align:center;
+	color:red;
+	font-size:25px;
+}
+</style>
+
+<div class="page">
+    
+    <div class="page__bd">
+        <article class="weui-article">
+           
+            <section>
+                <h2 class="title">学车啦</h2>
+                 <p>
+                        <img src="__PUBLIC__/article/xueche.jpg" width="100%" alt="学车">
+                       
+                  </p>
+                  
+                <section>
+                    
+                    <p class="center">
+                 安信通学车，3990，20个名额。<br>
+驿源携手合作，值得信赖
+<br>
+招聘该项目合伙人，有意者撩我<br>
+微信：15813439851<br>
+
+名额一到便恢复原价：<br>
+安信通驾校学费4380元，中途不加任何费用（除补考费用外），学生可分两期付款。<br>
+包含：办居住证回执、拍照、体检。
+                 
+                    </p>
+                </section>
+                
+                
+        </article>
+    </div>
+   
+   <p class="red">已咨询的同学：<br>
+   </p>
+        <div class="icon">
+        <foreach item="v" name="all">
+            <img src="{$v.uid|get_img_by_uid}" width="38px"></i>
+         </foreach>
+        </div>
+        
+        
+        
+        
+</div>
+
+
+        
+        
+        
+ <include file="public/wx_share"/>
+</body>
+</html>

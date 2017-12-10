@@ -1,0 +1,96 @@
+<include file="public/header" title="账户余额" body="g4"/>
+    <div class="myhearder bankhearder">
+        <div class="hh">
+            <h2>可用余额</h2>
+            <h1>{$user['user_money']}</h1>
+          
+        </div>
+        
+       
+        
+        <div class="scgz">
+            <ul>
+                <li>
+                    <a href="{:U('Mobile/User/recharge')}">
+                        <img src="__STATIC__/images/cz.png"/>
+                        <p>充值</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{:U('Mobile/User/withdrawals')}">
+                        <img src="__STATIC__/images/tx.png"/>
+                        <p>提现到支付宝</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+         
+    </div>
+    <div class="floor my p">
+        <div class="content">
+            <div class="floor w3">
+               <ul>
+                    <li>
+                        <a href="">
+                            <p>用户ID</p>
+                            <h2>{$user.user_id}</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('qiangdan/index/index')}">
+                            <p>抢单积分</p>
+                            <h2>{$credit}</h2>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{:U('Mobile/User/points')}">
+                            <p>当前积分</p>
+                            <h2>{$user.pay_points}</h2>
+                        </a>
+                    </li>
+                </ul>
+           </div>
+            <div class="floor list7 ma-to-20">
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/points')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>账户明细</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/User/withdrawals_list')}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>申请记录</span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+   
+    <p style="text-align:center;font-size:20px;">提现仅支持提现到支付宝</p>
+    <br>
+    <p style="text-align:center;font-size:15px;">处理时间：3个工作日</p>
+    
+    <!--底部导航-start--
+    include file="public/footer_nav" 
+    底部导航-end-->
+</body>
+</html>

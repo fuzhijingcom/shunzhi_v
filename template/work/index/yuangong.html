@@ -1,0 +1,191 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>权限设置</title>
+  <meta name="description" content="一元代拿">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="http://cdn.yudw.com/admin/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="http://cdn.yudw.com/admin/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="http://cdn.yudw.com/weui/weui.css"/>
+  <style type="text/css">
+  	.am-table{
+  		width: 100%;
+		overflow-y: auto;
+		_overflow: auto;
+		margin: 0 0 1em;
+word-break: keep-all;white-space:nowrap;
+
+  	}
+  	.am-table>thead{
+  		 border-top:1px solid #ddd ;
+  		 border-right:1px solid #ddd ;
+  	}
+    .am-table>tbody{    	
+  		  border-right:1px solid #ddd ;
+  		  border-bottom:1px solid #ddd ;
+    }
+  	.am-table>tbody>tr>td{border: none;}
+  	.am-table>tbody>tr>td,.am-table>thead>tr>th{
+  		  border-top:1px solid #ddd ;
+  		  border-left:1px solid #ddd ;
+  	}
+  	.input{padding: 0px 12px 4px 12px;}
+  	.tle{margin-bottom: 12px;}
+  </style>
+</head>
+<body>
+
+
+<center>
+<strong>
+员工权限设置<font color="red"> &nbsp;&nbsp;你的ID是：{$sessionuid}</font>
+</strong>
+</center>
+ 
+
+<!-- content start -->
+  <div class="admin-content">
+
+  
+  
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form" style="width: 100%; overflow: auto;">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+              
+                <th class="table-date">UID</th>
+                <th class="table-date">名字</th>
+                 <th class="table-author">权限级别</th>
+              <th class="table-author">变更级别</th>
+          </thead>
+          <tbody>
+          
+          
+        
+          
+<foreach name="yuangong" item="v">
+            <tr>
+              <td>{$v.yid}</td>
+              <td>{$v.name}</td>
+                <td>
+                <switch name="v.grade" >
+				<case value="0">离职</case>
+				<case value="1">试用期</case>
+				<case value="2">正式员工</case>
+				<case value="3">优秀员工</case>
+				<case value="4">派件员</case>
+				<case value="6">外卖主管</case>
+				<case value="7">快递主管</case>
+				<case value="8"><font color="green">客服</font></case>
+				<case value="9">管理</case>
+				<default />没有设置权限
+				</switch>
+         		</td>
+				<td><a href="__ROOT__/work/index/yuangongedit/id/{$v.id}">更改级别</a></td>
+            </tr>
+</foreach>
+          </tbody>
+        </table>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+
+
+						
+<div class="weui-btn-area">
+     <a class="weui-btn weui-btn_primary" href="/work/index/lizhi" >查看离职人员</a>
+</div>
+
+
+
+<div class="page">
+   
+    <div class="page__bd">
+        
+       
+       <form method='post'>
+						
+       
+
+        <h1 class="page__title"><center>增加员工</h1></center>
+        <div class="weui-cells">
+
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="">
+                        <option value="1">姓名</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="txet" name="name" placeholder="姓名"/>
+                </div>
+            </div>
+            
+            <div class="weui-cell weui-cell_select weui-cell_select-before">
+                <div class="weui-cell__hd">
+                    <select class="weui-select" name="">
+                        <option value="1">ID</option>
+                    </select>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="number" name="yid" placeholder="请输入ID"/>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="weui-cells__title">请选择级别</div>
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_select">
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="grade">
+                    	<option value="" selected="">请选择</option>
+                        <option  value="0">离职</option>
+                        <option value="1">试用期</option>
+                        <option value="2">正式员工</option>
+                        <option value="3">优秀员工</option>
+                        <option value="4">派件员</option>
+                        <option value="6">外卖主管</option>
+						<option value="7">快递主管</option>
+                        <option value="8">客服</option>
+                        <option value="9">管理</option>
+                    </select>
+                </div>
+            </div>       
+        </div>
+
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="submit" value="增加新员工">
+        </div>
+
+			</form>
+    </div>
+    
+</div>
+
+
+
+
+<footer>
+  <div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</footer>
+
+</body>
+</html>

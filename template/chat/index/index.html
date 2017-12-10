@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>客户沟通系统</title>
+    <link rel="stylesheet" href="http://www.yudw.com/css/weui.min.css"/>
+    <link rel="stylesheet" href="http://www.yudw.com/css/assets/css/amazeui.min.css"/>
+</head>
+<body>
+
+<header data-am-widget="header" class="am-header am-header-default">
+
+<h1 class="am-header-title">
+<a href="index.html">驿信 &nbsp;<span class="am-header-title111">（驿源专用通讯）</span></a>
+</h1>
+
+</header>
+<div style="padding:49px 0px 49px 0px">
+
+<div class="page">
+    <div class="page__hd">
+        <div class="page__title"><center>我的 ID：{$user['user_id']}</center></div>
+        <div class="page__desc"><center>{$user['nick_name']}</center></div>
+    </div>
+    
+   
+    <div class="page__bd">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd">好友列表&nbsp;&nbsp;&nbsp;共8888位联系人</div>
+            <div class="weui-panel__bd">
+            
+            
+         <foreach item="v" name="a">
+           
+                <a href="http://www.yykddn.com/chat/message/index/id/{$v.receive}" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="{$v.receive|get_heading_by_id}">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <div class="weui-media-box__title">{$v.receive|get_name_by_uid}</div>
+                        <div class="weui-media-box__desc">上次在线：{$v.receive|get_last_login_by_uid}</div>
+                    </div>
+                </a>
+                 
+		</foreach>	
+		
+		<foreach item="v" name="b">
+           
+                <a href='http://www.yykddn.com/chat/message/index/id/{$v.send}' class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="{$v.send|get_heading_by_id}">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <div class="weui-media-box__title">{$v.send|get_name_by_uid}</div>
+                        <div class="weui-media-box__desc">上次在线：{$v.send|get_last_login_by_uid}</div>
+                    </div>
+                </a>
+                 
+		</foreach>				
+               
+            </div>
+            <div class="weui-panel__ft">
+                <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
+                    <div class="weui-cell__bd">联系人可能会出现多次，都是同一个人（BUG）</div>
+                    <span class="weui-cell__ft"></span>
+                </a>    
+            </div>
+        </div>
+    
+    </div>
+    
+</div>
+
+<!-- Navbar 
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default" id="">
+  <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    <li>
+      <a href="index.php">
+        <span class="am-icon-home"></span>
+        <span class="am-navbar-label">一信</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.php">
+        <span class="am-icon-share-square-o"></span>
+        <span class="am-navbar-label">好友</span>
+      </a>
+    </li>
+    <li>
+      <a href="moments.php">
+       <span class="am-icon-qq"></span>
+        <span class="am-navbar-label">朋友圈</span>
+      </a>
+    </li>
+    <li>
+      <a href="publish.php">
+       <span class="am-icon-github"></span>
+        <span class="am-navbar-label">发布</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+
+-->
+</div>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<include file="public/header" title="我的订单" body="g4"/>
+<include file="public/header_nav" title="我的订单" href="{:U('/kuaidi/order/order_list')}"/>
+<div class="tit-flash-sale p mytit_flash">
+    <div class="maleri30">
+        <ul class="">
+            <li <if condition="$Request.param.order_status eq ''">class="red"</if>>
+                <a href="{:U('/kuaidi/order/order_list')}" class="tab_head">全部订单</a>
+            </li>
+            <li id="WAITPAY" <if condition="$Request.param.order_status eq '0'">class="red"</if>">
+                <a href="{:U('/kuaidi/order/order_list',array('order_status'=>'0'))}" class="tab_head" >未拿</a>
+            </li>
+            <li id="WAITSEND" <if condition="$Request.param.order_status eq '1'">class="red"</if>>
+                <a href="{:U('/kuaidi/order/order_list',array('order_status'=>'1'))}"  class="tab_head">已拿</a>
+            </li>
+            
+            <!--<li id="WAITRECEIVE"><a href="{:U('/kuaidi/order/order_list',array('order_status'=>'WAITRECEIVE'))}" 
+             class="tab_head <if condition="$Request.param.order_status eq 'WAITRECEIVE'">on</if>">待收货</a></li>
+            <li id="WAITCCOMMENT"  <if condition="$Request.param.order_status eq 'WAITCCOMMENT'">class="red"</if>>
+                <a href="{:U('/kuaidi/order/order_list',array('order_status'=>'WAITCCOMMENT'))}" class="tab_head">已完成</a>
+            </li>
+            
+            
+            -->
+        </ul>
+    </div>
+</div>
+
+    <!--订单列表-s-->
+    <div class="ajax_return">
+	   <volist name="lists" id="list">
+       <div class="order_list">
+          <h2>
+              <a href="javascript:void(0);">
+                  <img src="__STATIC__/images/dianpu.png"><span>订单号:{$list.order_sn}</span>
+                  <strong><if condition="$list[order_status] eq 5"><b>已作废</b></if>
+                  <img src="__STATIC__/images/icojiantou1.png"></strong>
+              </a>
+          </h2>
+         	<a href="{:U('/Mobile/kuaidi/order_detail',array('id'=>$list['order_id']))}">
+	         
+		          <dl style="position: relative">  
+		          <dt><img src="{$list.type|get_img_by_type}"></dt>
+		          <dd class="name"><strong>{$list.kuaidi_name}</strong>
+		          <span style="position: absolute;">下单时间：{$list.add_time}</span></dd>
+		          <dd class="name"></dd>
+				  <dd class="pice" style="width:80%">                  
+                  	<em>
+                        <if condition="($list[return_btn] eq 1) and ($good[is_send] lt 2)">
+                          	<a href="{:U('Mobile/User/return_goods',array('order_id'=>$list[order_id],'order_sn'=>$list[order_sn],'goods_id'=>$good[goods_id],'spec_key'=>$good['spec_key']))}" style="color:#999;">申请售后</a>
+                          </if>
+                    </em>
+                  </dd>                  
+                  
+		          </dl>
+	          
+          	</a>
+         <if condition="$list.pay_status eq 1">
+          <div class="pic">
+         <img src="__PUBLIC__/renren/wxpay.jpg">已付款：<strong>{$list.order_amount}元</strong><br>
+        </div>
+        </if>
+        
+          <div class="pic"> 
+          
+          <if condition="$list.order_status eq 1">签收时间：{$list.receivetime}</if>
+          
+          <span> &nbsp;&nbsp;状态：</span><strong>{$list.order_status|get_order_status}</strong></div>
+          <div class="anniu" style="width:95%">
+                <if condition="$list.order_status eq 0"><a onClick="cancel_order({$list.order_id})">取消订单</a></if>
+                  <!--  <if condition="$list.order_status eq 1"><a href="{:U('/Mobile/kuaidi/comment')}">评价</a></if>-->
+                  <if condition="$list.order_status eq 1">
+                  <span>已拿</span>
+                  </if>
+                  <if condition="$list.order_status eq 1 || $list.order_status eq 7">
+                 <a onClick="tousu_order({$list.order_id})">投诉</a>
+                  </if>
+                   <if condition="$list.order_status eq 12">  <a onClick="tousu_order({$list.order_id})">查看投诉</a></if>
+                     <if condition="$list.order_status eq 5"><span>已删除</span></if>
+                   <if condition="$list.order_status eq 8"><a onClick="queren_order({$list.order_id})">确认收货</a></if>
+         <if condition="$list.order_status eq 7 && $list.type eq 'ji' && $list.pay_status eq 0  "><a onClick="pay_order({$list.order_id})">确认已付款</a></if>
+          <if condition="$list.order_status eq 7 && $list.type eq 'ji' && $list.pay_status eq 1  "><span>已付款</span></if>
+         
+          </div>
+       </div>
+		</volist>  
+		
+		<if condition="count($lists) eq 0">
+            <!--没有内容时-s--->
+            <div class="comment_con p">
+                <div class="none">
+                    <img src="__STATIC__/images/none2.png">
+                    <br><br>
+                    抱歉未查到数据！
+                    <div class="paiton">
+                        <div class="maleri30">
+                            <a class="soon" href="/"><span>去逛逛</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--没有内容时-e--->
+        </if>
+		
+    </div>
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+   
+    <!--订单列表-e-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+    /**
+     * 加载订单*/
+    ajax_sourch_submit();
+
+    /**
+     * 取消订单
+     */
+    function cancel_order(id){
+        if(!confirm("确定取消订单?"))
+            return false;
+        $.ajax({
+            type: 'GET',
+            dataType:'JSON',
+            url:"/index.php?m=Mobile&c=User&a=cancel_order&id="+id,
+            success:function(data){
+                if(data.code == 1){
+                    layer.open({content:data.msg,time:2});
+                    location.href = "/index.php?m=Mobile&c=order&a=order_list";
+                }else{
+                    layer.open({content:data.msg,time:2});
+                    location.href = "/index.php?m=kuaidi&c=order&a=order_list";
+                    return false;
+                }
+            },
+            error:function(){
+                layer.open({content:'网络失败，请刷新页面后重试',time:3});
+            },
+        });
+    }
+
+    /**
+     * 确定收货
+     */
+    function orderConfirm(id){
+        if(!confirm("确定收到该订单商品吗?"))
+            return false;
+        location.href = "/index.php?m=kuaidi&c=order&a=order_list&id="+id;
+    }
+
+    var  page = 1;
+    /**
+     *加载更多
+     */
+    function ajax_sourch_submit()
+    {
+        page += 1;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=kuaidi&c=order&a=order_list&order_status={$Request.param.order_status}&is_ajax=1&p="+page,//+tab,
+//			url:"{:U('kuaidi/order/order_list',array('type'=>$_GET['type']),'')}/is_ajax/1/p/"+page,//+tab,
+            //data : $('#filter_form').serialize(),
+            success: function(data)
+            {
+                if(data == '')
+                    $('#getmore').hide();
+                else
+                {
+                    $(".ajax_return").append(data);
+                    $(".m_loading").hide();
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
