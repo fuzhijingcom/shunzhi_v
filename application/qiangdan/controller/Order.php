@@ -46,7 +46,7 @@ class Order extends MobileBase {
     
     public function order_list()
     {
-        $condition['order_id'] = array('gt',14450);
+        //$condition['order_id'] = array('gt',14450);
         $condition['qiang'] = array('eq', 1 );
         $condition['pay_status'] = array('eq', 1 );
         $condition['order_status'] = array('eq', 0 );
