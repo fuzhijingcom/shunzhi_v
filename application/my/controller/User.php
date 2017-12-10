@@ -33,11 +33,29 @@ class User extends MobileBase
         $this->assign('order_status_coment', $order_status_coment);
     }
 
+   
+    
     /*
      * 用户中心首页
      */
     public function index()
     {
+    	$openid_yy = session('user.opemid_yy');
+    	//去获取一下openid_yy
+    	if($openid_yy == NULL &&  I('openid') == NULL){
+    		$url  = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    		$url = urlencode($url);
+    		$url = 'http://www.yykddn.com/api/login?url='.$url;
+    		header("Location:".$url);
+    		exit;
+    	}else{
+    		$openid_yy = I("openid");
+    		session('user.openid_yy',$openid_yy);
+    		$user_id= session('user.user_id');
+    		M('users')->where('user_id',$user_id)->save(array('openid_yy'=>$openid_yy));
+    	}
+    	//获取结束
+    	
     	
     	$this->redirect("mobile/user/index");
     	
