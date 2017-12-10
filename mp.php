@@ -79,11 +79,20 @@ class wechatCallbackapiTest
         switch ($object->Event)
         {
             case "subscribe":
-                $content = "欢迎关注【驿源】
-
-<a href='http://www.yykddn.com/kuaidi'>点这里【我要代拿】</a>
- 
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里咨询客服</a>
+                $content = "感谢您关注顺职实V
+实V是校园综合服务平台
+ 
+有校园活动通知、校园趣事
+免VIP在线观影、二手市场
+数码维修业务、综合服务功能
+ 
+独立系统众包模式满足您的需求
+PS：
+1. 如遇问题请及时咨询或投诉
+2. 二手交易最好面交，外链平台需收手续费
+3. 校内其他需求可直接提问，客服时时解答（例如：相片打印）
+4. 首条推文前三名留言者有惊喜
+5. 其他功能等待您反馈建议开发
 ";
                 $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
                 break;
@@ -100,109 +109,7 @@ class wechatCallbackapiTest
                         $content = array();
                         $content[] = array("Title"=>"多图文1标题", "Description"=>"", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");
                         break;
-                        
-                        case "KEFU":
-                            $shijian = date('H');
-                           switch ($shijian) {
-                               case 11:
-                               $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-
-QQ：45035744
-                                
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                            break;
-                            case 12:
-                                $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                            
-QQ：45035744
-                            
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                break;
-                                case 13:
-                                    $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                                
-QQ：45035744
-                                
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                    break;
-                                    case 18:
-                                        $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                                    
-QQ：45035744
-                                    
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                        break;
-                                        case 19:
-                                            $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                                        
-QQ：45035744
-                                        
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                            break;
-                                            case 20:
-                                                $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                                            
-QQ：45035744
-                                            
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                                break;
-                                                case 21:
-                                                    $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                                                
-QQ：45035744
-                                                
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
-                                                    break;
-                                                    
-                               default:
-                                    $content = "（当前非上班时间，请先QQ咨询）
-
-QQ：45035744                               
-                                        
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里咨询</a>";
-                               break;
-                           }
-                           
-                            break;
-                            
-                           
-                                case "TUIKUAN":
-                                    $content = "退款说明：
-下错订单，取消订单后，退款会退回平台账号余额
-        
-<a href='http://www.yykddn.com/Mobile/User/account.html'>点此查询余额</a>
-                                
-余额低于20元，不能进行提现（不能提现到微信或支付宝）
-只能留着下次快递代拿
-
-<a href='http://www.yykddn.com/Mobile/User/withdrawals.html'>抢单员满20元可申请提现</a>
-                                
-有问题请联系客服/:rose";
-                                break;
-                        
-                        case "CISHU":
-                        
-                            $openid = $object->FromUserName;//获取微信号
-                            $cishu = $this->get_cishu_by_openid($openid);
-                            $access_token = $this->getToken();
-                             
-                            $openid_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid;
-                            $res = file_get_contents($openid_url); //获内容
-                            $r = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
-                            $nickname = $r['nickname'];
-                        
-                            $content = "签到成功！
-亲爱的（".$nickname."）
-已坚持签到".$cishu."天。";
-                            break;
-                       
+                   
                             
                     default:
                         $content = "点击菜单：".$object->EventKey;
@@ -234,11 +141,6 @@ QQ：45035744
         return $result;
     }
 
-
-
-
-
-
     //接收文本消息
     private function receiveText($object)
     {
@@ -249,70 +151,12 @@ QQ：45035744
         }
         else {
             //自动回复模式
-             if(strstr(strtolower($keyword), "ss")  )
-            {
-                $key = $object->Content;
-                $key = substr($key, 2);
-                $msgid = $object->MsgId;//消息ID
-                $openid = $object->FromUserName;//获取微信号
-                
-                
-                $url="http://www.yykddn.com/api/userdata/getsushe/key/".$key."/msgid/".$msgid."/openid/".$openid;
-                 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                    $out = curl_exec($ch);
-                    curl_close($ch);
-                
-                
-                $content = $key."的宿舍是：".$out;
-            }elseif(strstr(strtolower($keyword), "hm")  )
-            {
-                $key = $object->Content;
-                $key = substr($key, 2);
-                $msgid = $object->MsgId;//消息ID
-                $openid = $object->FromUserName;//获取微信号
-                
-                $url="http://www.yykddn.com/api/userdata/getmobile/key/".$key."/msgid/".$msgid."/openid/".$openid;
-                 
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                    $out = curl_exec($ch);
-                    curl_close($ch);
-                
-                
-                $content = $key."的号码是：".$out;
-            }
-            elseif(strstr(strtolower($keyword), "dh")  )
-            {
-                $key = $object->Content;
-                $key = substr($key, 2);
-                $msgid = $object->MsgId;//消息ID
-                $openid = $object->FromUserName;//获取微信号
-            
-                $url="http://www.yykddn.com/api/userdata/getduanhao/key/".$key."/msgid/".$msgid."/openid/".$openid;
-                 
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                $out = curl_exec($ch);
-                curl_close($ch);
-            
-            
-                $content = $key."的短号是：".$out;
-            }
-            elseif (strstr($keyword, "符智精") ||strstr($keyword, "精") ||strstr($keyword, "精精") || strstr(strtolower($keyword), "superman"))
+          
+            if (strstr($keyword, "符智精") ||strstr($keyword, "精") ||strstr($keyword, "精精") || strstr(strtolower($keyword), "superman"))
             {
                 $content = "/:heart符智精/:heart
 /:<O>是一个很帅的小伙子";
             }
-
-
 
             else if (strstr(strtolower($keyword), "一卡通") || strstr($keyword, "饭卡"))
             {
@@ -322,7 +166,6 @@ QQ：45035744
                 $content[] = array("Title"=>"【点我】进行网上校园卡挂失，转账，网上充值", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://ecard.gdqy.edu.cn/homeLogin.action");
                 $content[] = array("Title"=>"一卡通充值的方式、时间说明", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://www.yudw.com/forum.php?mod=viewthread&tid=8822");
                 $content[] = array("Title"=>"支付宝充值广轻一卡通教程 ", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://www.yudw.com/forum.php?mod=viewthread&tid=8823");
-
 
             }
 
@@ -337,30 +180,19 @@ QQ：45035744
             
 1.查询你的钱包：
            
-<a href='http://www.yykddn.com/Mobile/User/account.html'>我的钱包</a>
+<a href='http://v.yykddn.com/Mobile/User/account.html'>我的钱包</a>
            
 2.进行提现操作：
            
-<a href='http://www.yykddn.com/Mobile/User/withdrawals.html'>申请提现</a>
+<a href='http://v.yykddn.com/Mobile/User/withdrawals.html'>申请提现</a>
            
-（仅支持提现到支付宝）24小时处理完毕。
-           
-<a href='http://wpa.qq.com/msgrd?v=3&uin=670799251&site=qq&menu=yes'>点这里咨询客服（仅限于退款处理）</a>";
+（仅支持提现到支付宝）24小时处理完毕。";
             }
            
             else if (strstr(strtolower($keyword), "图") || strstr($keyword, "图片"))
             {
                 $content = array();
                 $content[] = array("Title"=>"全站工程师首页",  "Description"=>"全端工程师首页---这是主人设计的网站", "PicUrl"=>"http://121.42.196.145/weixin/xxn.jpg", "Url" =>"http://www.yuyuhu.com/show/m/index.php");
-            }else if (strstr(strtolower($keyword), "外卖") || strstr($keyword, "订餐"))
-            {
-                $content = array();
-                $content[] = array("Title"=>"土耳其烤肉饭", "Description"=>"", "PicUrl"=>"http://www.yykddn.com/public/wm/images/15.jpg", "Url" =>"http://www.yykddn.com/waimai2/index.php");
-                $content[] = array("Title"=>"老广州烧腊饭", "Description"=>"", "PicUrl"=>"http://www.yykddn.com/public/wm/images/sj-shaola.jpg", "Url" =>"http://www.yykddn.com/waimai/index.php?m=index&a=flist&id=19");
-                $content[] = array("Title"=>"原味砂锅菜", "Description"=>"", "PicUrl"=>"http://www.yykddn.com/public/wm/images/sj-shaguo.jpg", "Url" =>"http://www.yykddn.com/waimai/index.php?m=index&a=flist&id=20");
-                $content[] = array("Title"=>"老广州蒸菜", "Description"=>"", "PicUrl"=>"http://www.yykddn.com/public/wm/images/sj-zheng.jpg", "Url" =>"http://www.yykddn.com/waimai/index.php?m=index&a=flist&id=21");
-                $content[] = array("Title"=>"老广州美味扒饭", "Description"=>"", "PicUrl"=>"http://www.yykddn.com/public/wm/images/sj-pafan.jpg", "Url" =>"http://www.yykddn.com/waimai/index.php?m=index&a=flist&id=22");
-                
             }else if (strstr(strtolower($keyword), "平凡之路"))
             {
                 $content = array();
@@ -387,67 +219,21 @@ QQ：45035744
 加油
 加油
 加油";
-            }else if(strstr($keyword, "书籍"))
-            {
-                $content = "回复【开发】获取《微信公众平台开发实战》
-回复【运营】获取《21本互联网运营书籍》
-发送 【更多】 可以获得更多服务。";
             }
-
-
-             
-
-            else if(strstr($keyword, "下载"))
+else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
             {
-                $content = "【不要停下来！八分音符酱！】（电脑版，无需安装，解压就能玩）
-
- 下载链接：
-http://pan.baidu.com/s/1gfIDJlL
-
-密码：eqkb
-                    ";
-            }
-
-
-
-            else if(strstr($keyword, "开发"))
-            {
-                $content = "《微信公众平台开发实战》   下载地址：
-http://yunpan.cn/cLLbUjXBKYwCI  访问密码 e77f   （建议把地址复制到电脑上下载）
-发送 【更多】 可以获得更多服务。
-";
-            }else if(strstr($keyword, "运营"))
-            {
-                $content = "21本互联网运营书籍，一次性送给你。
-下载地址：
-http://yunpan.cn/cF5MaWcVEZiLU
-访问密码 43ed
-（建议把地址复制到电脑上下载）
-发送 【更多】 可以获得更多服务。
-";
-            }
-
-            else if(strstr($keyword, "建议"))
-            {
-                $content = "
-您的建议,我会虚心接受的,当然不接受,您也不能打我.
-";
-            }else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
-            {
-                $content = "Tel：15813439851
-（如无人接听，请QQ咨询）
-                            
-QQ：45035744
-                            
-<a href='http://wpa.qq.com/msgrd?v=3&uin=45035744&site=qq&menu=yes'>点这里QQ咨询</a>";
+                $content = "感谢您支持实V
+在您遇到权益问题时
+请您不要隐忍
+请在第一时间通知我们
+实V团队一定在3小时内为您维权
+客服微信：XXD562
+客服电话：17329860373                    ";
             }else if(strstr($keyword, "/:"))
             {
                 $content = "
 您发送的是表情吗？我不理解人类的表情...您可以输入 【帮助】 来获取与我沟通的技巧.
 ";
-            }else if(strstr($keyword, "微信") || strstr(strtolower($keyword), "qq"))
-            {
-                $content = "微信和QQ是一种聊天工具.";
             }else if(strstr($keyword, "笨") || strstr($keyword, "傻") || strstr($keyword, "呆") )
             {
                 $content = "我是小仙女/:heart.人类才是笨蛋,傻瓜,呆子";
@@ -456,32 +242,7 @@ QQ：45035744
                 $content = "好孩子都是不说脏话的,您应该向我学习.";
             }
             
-            else if(strstr(strtolower($keyword), "name")){
-
-                $openid = $object->FromUserName;//获取微信号
-
-                $url = 'http://yy.yudw.com/home/conf';
-                $access_token = file_get_contents($url,true);
-                $openid_url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid=".$openid;
-                $res = file_get_contents($openid_url); //获内容
-                $r = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
-                $nickname = $r['nickname'];
-
-                $headimgurl = $r['headimgurl'];
-
-                $key=$object->Content;
-                $key = substr($key, 4);
-                $msgid = $object->MsgId;//消息ID
-                $time = date('Y-m-d');
-
-                $verify = md5(md5($openid).$msgid.$time);
-
-
-                //  $OpenID = $object->FromUserName;
-                //OPENID
-                $content = array();
-                $content[] = array("Title"=> "亲爱的：".$nickname."，你需要的信息已找到",  "Description"=>"亲爱的" .$nickname."，仅供参考。", "PicUrl"=>"$headimgurl", "Url" =>"http://heart.net.cn/qy/app.php?key=".$key."&verify=".$verify."&msgid=".$msgid."&time=".$time."&openid=".$openid );
-            }else{
+          else{
                  $content = "这里是系统自动回复，（如您要回复抢单员，请点击消息下方的链接进入回复，抢单员才能收到。）
 
 关键字列表：快递、代拿、退款、提现、客服
