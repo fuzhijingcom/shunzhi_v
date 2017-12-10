@@ -367,15 +367,7 @@ class Payment extends MobileBase {
             $this->error('此订单，已完成支付!');
         }
         
-        
-        
-        
-        
         $payresult = accountLog($user_id,-$order['order_amount'],-$order['order_amount'],"余额支付{$order['order_amount']}元,扣除{$order['order_amount']}积分");
-     
-       
-        
-        
         
         if($payresult == true){
             update_pay_status_diy($order['order_sn'],'kuaidi',array('transaction_id'=>$data["transaction_id"])); // 修改订单支付状态
@@ -384,7 +376,6 @@ class Payment extends MobileBase {
         }else{
             $this->error('服务器开小差了，支付失败!要不换个支付方式吧');
         }
-        
        
     
     }
@@ -424,10 +415,22 @@ class Payment extends MobileBase {
             $this->assign('order_id', $order_id); 
             return $this->fetch('payment');  // 分跳转 和不 跳转
     }
-
-    //统一支付类
- public function pay(){     
     
+public function order(){
+	$order_sn = I('order_sn/d');
+	
+	$order = M('kd_order')->where("order_sn",$order_sn)->find();
+	
+	$json = json_encode($order);
+	
+	echo $json;
+	
+}
+    
+
+    
+ /*    //统一支付类
+ public function pay(){     
            //C('TOKEN_ON',false); // 关闭 TOKEN_ON
             header("Content-type:text/html;charset=utf-8");    
             $order_id = I('order_id/d'); // 订单id
@@ -464,8 +467,8 @@ class Payment extends MobileBase {
            }
             $this->assign('code_str', $code_str); 
             $this->assign('order_id', $order_id); 
-            return $this->fetch('payment');  // 分跳转 和不 跳转
-    }
+            return $this->fetch('payment');  // 分跳转 和不 跳转 
+    } */
     
     // 服务器点对点 // http://www.tp-shop.cn/index.php/Home/Payment/notifyUrl
     public function notifyUrl(){
