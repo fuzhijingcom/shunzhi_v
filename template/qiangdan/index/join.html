@@ -57,16 +57,16 @@
             </div>
             
             <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">短号</label></div>
+                <div class="weui-cell__hd"><label class="weui-label">班级全程</label></div>
                 <div class="weui-cell__bd">
-                <input type="text" class="weui-input" id="duanhao" name="duanhao" value="{$address.duanhao}"  placeholder="短号"/>
+                <input type="text" class="weui-input" id="zy" name="zy" placeholder="班级全程"/>
                 </div>
             </div>
            
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">宿舍</label></div>
                 <div class="weui-cell__bd">
-                <input type="text" class="weui-input" id="sushe" name="sushe" value="{$address.sushe}"  placeholder="宿舍"/>
+                <input type="text" class="weui-input" id="sushe" name="sushe" value="{$address.sushe}"  placeholder="如：1栋101"/>
                 </div>
             </div>
         </div>
@@ -86,33 +86,7 @@
             </div>
         </div>
 
-       
 
-
-
-        
-
-        <div class="weui-cells__title">详细宿舍选择（具体推送范围在推送中设置）</div>
-        <div class="weui-cells">
-
-            <div class="weui-cell weui-cell_select weui-cell_select-before">
-                <div class="weui-cell__hd">
-                    <select class="weui-select" id="quyu" name="quyu">
-                        <option value="1">1-8</option>
-                        <option value="2">9-12</option>
-                        <option value="3">13-16</option>
-                        <option value="4">17-20</option>
-                        <option value="5">21-24</option>
-                        <option value="6">25-30</option>
-                        <option value="7">31-34</option>
-                        <option value="8">35-40</option>
-                    </select>
-                </div>
-                <div class="weui-cell__bd">
-                    <input class="weui-input" id="dong" name="dong" type="number" pattern="[0-9]*" placeholder="请输入栋数"/>
-                </div>
-            </div>
-        </div>
         
          <div class="page__bd">
         <div class="weui-gallery" id="gallery">
@@ -223,15 +197,7 @@ function sb1(){
         return false;
 	}
 	
-	 var quyu = document.getElementById("quyu").value;
 	
-	 var d = dong.value;
-	 
-	 if(checkquyu(quyu,d) == false ){
-	        alert("区域与栋数不对应");
-	        dong.focus();
-	        return false;
-	}
 	
 	return true;
 }
@@ -246,30 +212,6 @@ function ling(str){
 	
 }
 
-function checkquyu(quyu,dong){
-	var dong = parseInt(dong);
-	var quyu = parseInt(quyu);
-	
-	if(quyu == 1 && dong >= 1  && dong <= 8 ){
-		return true;
-	}else if(quyu == 2 && dong >= 9  && dong <= 12 ){
-		return true;
-	}else if(quyu == 3 && dong >= 13  && dong <= 16 ){
-		return true;
-	}else if(quyu == 4 && dong >= 17  && dong <= 20 ){
-		return true;
-	}else if(quyu == 5 && dong >= 21  && dong <= 24 ){
-		return true;
-	}else if(quyu == 6 && dong >= 25  && dong <= 30 ){
-		return true;
-	}else if(quyu == 7 && dong >= 31  && dong <= 34 ){
-		return true;
-	}else if(quyu == 8 && dong >= 35  && dong <= 40 ){
-		return true;
-	}else{
-		return false;
-	}
-}
 </script> 
 
 <div style="display:none">
