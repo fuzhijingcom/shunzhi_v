@@ -127,6 +127,7 @@ class Index extends MobileBase {
                 'tuisong' => $tuisong,
                 'openid' => session('user.openid'),
                'imgurl'=> $imgurl,
+           		'school'=> 10831,
             ) + $post;
              
             
