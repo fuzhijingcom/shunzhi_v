@@ -90,8 +90,8 @@ class KuaidiLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"h8pFtPbiiwmLm78F1SL6YkOkoE97SLANGRDjlHJynm4",
-            'url'=>"http://www.yykddn.com/kuaidi/order/detail/order_id/".$order_id.".html",
+            'template_id'=>"Ox9KeFiYoBHP4lsWyjkfv5QXAffosGd-0-eAsO83hFU",
+            'url'=>"http://v.yykddn.com/kuaidi/order/detail/order_id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=>"订单已取消，支付金额已退款到账户余额（不是微信钱包），可下次代拿使用

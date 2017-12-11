@@ -48,8 +48,8 @@ class JijianLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"dkcYDaTDQ2pxkEHZGseQ0k3IedBb1gOPVbdW2JlaRD0",
-            'url'=>"http://www.yykddn.com/qiangdan/jijian/order_list",
+            'template_id'=>"8W-0DmjvPFg7uvG9i1JQkYj26vtIeOLC-4AKsu0uh2w",
+            'url'=>"http://v.yykddn.com/qiangdan/jijian/order_list",
             'data'=>array(
                 'first'=>array(
                     'value'=>"上门收件 —— 新订单来了
@@ -121,8 +121,8 @@ class JijianLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"ZEzM0XgAbMZ8dGEIgNHl4J5vhJhGEFxj2OBwT2430PA",
-            'url'=>"http://www.yykddn.com/mobile/kuaidi/order_detail/id/".$order_id.".html",
+            'template_id'=>"CaIGqg6fbDWoD81oo1rNQAXcruqMpF_HpRj5KVKWLME",
+            'url'=>"http://v.yykddn.com/mobile/kuaidi/order_detail/id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=> "你好，快递员已接单
@@ -181,8 +181,8 @@ class JijianLogic extends Model
        $access_token = access_token();
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
-            'touser'=> 'oEORvxOGO3tCtI2U8lLpAEGJCGC8',
-            'template_id'=>"mIANehC7zvgIQggPsvReFoPqrct-TpHz-kHnE-ERL3M",
+            'touser'=> 'o3qSH0neB7UBLY86U9OqYllOmxSo',
+            'template_id'=>"7G52hEgmtNyaGc6Lww4vEv7gaP09B8ZFex9L_TaBN0k",
             'url'=>"http://www.yykddn.com/mobile/shangjia/jijian_order_detail/id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
@@ -243,7 +243,7 @@ class JijianLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"NIrAwBY0e1Jn9F5Gc2hwWw-MIGRrpvanvlbNP4UlU6U",
+            'template_id'=>"iXF5OBUR8bF3ylERJNFYnWjdaiaYoKsXVaVoFnP_DfM",
             'url'=>"http://www.yykddn.com/mobile/kuaidi/cart4/order_id/".$order_id."/type/ji/",
             'data'=>array(
                 'first'=>array(

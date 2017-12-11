@@ -20,8 +20,8 @@ class WorkjijianLogic extends Model
 		$url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
 		$json = array(
 				'touser'=> $openid,
-				'template_id'=>"NIrAwBY0e1Jn9F5Gc2hwWw-MIGRrpvanvlbNP4UlU6U",
-				'url'=>"http://www.yykddn.com/pay/payment/jijian/order_id/".$order_id."/type/ji/",
+				'template_id'=>"iXF5OBUR8bF3ylERJNFYnWjdaiaYoKsXVaVoFnP_DfM",
+				'url'=>"http://v.yykddn.com/pay/payment/jijian/order_id/".$order_id."/type/ji/",
 				'data'=>array(
 						'first'=>array(
 								'value'=> "快递面单填写完成，

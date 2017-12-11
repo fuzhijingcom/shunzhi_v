@@ -24,8 +24,8 @@ class SendLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"LLpsGBMTwEPggn28-IQ-OnhqSineiJp_sBpTCJMSOtU",
-            'url'=>"http://www.yykddn.com/kuaidi/order/detail/order_id/".$order_id.".html",
+            'template_id'=>"DGM1fbMYhq0VtaCXHj1JzgdUNtGUzy_dx9XwCTV0PEI",
+            'url'=>"http://v.yykddn.com/kuaidi/order/detail/order_id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=>"（".$kuaidi_name."快递），一个订单对应一个快递
@@ -95,8 +95,8 @@ class SendLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"BhY_P6CT2ZFgf7QL5OiCH5UKbzznfTgiZtRJEThfTAQ",
-            'url'=>"http://www.yykddn.com/qiangdan/order/order_detail?order_id=".$order_id,
+            'template_id'=>"Mr_NnSLqTkhJFL06hJJXE1zFi0XgXQI5kDaChk8ayio",
+            'url'=>"http://v.yykddn.com/qiangdan/order/order_detail?order_id=".$order_id,
             'data'=>array(
                 'first'=>array(
                     'value'=>$first,

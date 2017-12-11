@@ -25,8 +25,8 @@ class SendLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"LLpsGBMTwEPggn28-IQ-OnhqSineiJp_sBpTCJMSOtU",
-            'url'=>"http://www.yykddn.com/box/order/detail/order_id/".$order_id.".html",
+            'template_id'=>"DGM1fbMYhq0VtaCXHj1JzgdUNtGUzy_dx9XwCTV0PEI",
+            'url'=>"http://v.yykddn.com/box/order/detail/order_id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=>"（".$kuaidi_name."快递），一个订单对应一个快递

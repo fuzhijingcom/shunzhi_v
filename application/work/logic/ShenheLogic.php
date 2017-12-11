@@ -30,8 +30,8 @@ class ShenheLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"Nactu2OQ0SoYwSJf21u3D5d4m04y-_osYrWXU0bcaf8",
-            'url'=>"http://www.yykddn.com/qiangdan/index/",
+            'template_id'=>"O1iDMEi57SmjqksxC-2CV7CQMvT4ZObPuGsiMYozx6c",
+            'url'=>"http://v.yykddn.com/qiangdan/index/",
             'data'=>array(
                 'first'=>array(
                     'value'=> $beizhu."

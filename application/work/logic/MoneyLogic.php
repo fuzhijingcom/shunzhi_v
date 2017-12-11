@@ -15,8 +15,8 @@ class MoneyLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"d4QWkryD4pE2JEf-nX8fcYNCB-gpDRXVLX8kB5FLC8c",
-            'url'=>"http://www.yykddn.com/my/user/account/",
+            'template_id'=>"7qTSQ-i0-JBnoGPDz2Nx0P239BQM72uoHM6KgTkyjMU",
+            'url'=>"http://v.yykddn.com/my/user/account/",
             'data'=>array(
                 'first'=>array(
                     'value'=> "您的提现问题已经有了新的处理

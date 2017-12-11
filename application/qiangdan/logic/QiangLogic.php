@@ -12,7 +12,7 @@ class QiangLogic extends Model
 ";
         $order_model = M('kd_order');
  
-        $order_detail_url = "http://www.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html";
+        $order_detail_url = "http://v.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html";
 
         $order = $order_model ->where('order_id',$order_id)->find();
     
@@ -28,7 +28,7 @@ class QiangLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"FX23BNsQMAQbCRVqGlsA7jwguAEl-A7JM1_FoaAXpHQ",
+            'template_id'=>"wZeg9LlyZZbGHOc1TORwHDn0_EmO0VAaHvNQNX0QNiI",
             'url'=>$order_detail_url,
             'data'=>array(
                 'first'=>array(
@@ -75,7 +75,7 @@ class QiangLogic extends Model
     public function push_msg_songda($order_id){
      
          
-      $order_detail_url = "http://www.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html";
+      $order_detail_url = "http://v.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html";
       $order = M('kd_order') ->where('order_id',$order_id)->find();
       
       $type_name = $order['kuaidi_name'];
@@ -95,7 +95,7 @@ class QiangLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"Ez_8dbzeqOTnTYKgZfgAutu_uRpNH-uIV9kof744YhA",
+            'template_id'=>"zrmJgx1HUi2eXlT-PKX_JzyvCvXokOt9fSaR7ZTxS5c",
             'url'=>$order_detail_url,
             'data'=>array(
                 'first'=>array(

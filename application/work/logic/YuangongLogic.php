@@ -16,8 +16,8 @@ class YuangongLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"ls0mSHZE7plAjUQncVDWBUcpQazq2o8knGZzlriH7wc",
-            'url'=>"http://www.yykddn.com/work/sign/index",
+            'template_id'=>"kqgFt4MjgV1l4cXIbEViwxR5qMESNpo2incyvO3F5Oc",
+            'url'=>"http://v.yykddn.com/work/sign/index",
             'data'=>array(
                 'first'=>array(
                     'value'=>"你在（".$time."）的签收状况

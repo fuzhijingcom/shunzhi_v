@@ -83,8 +83,8 @@ class WorkLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"h8pFtPbiiwmLm78F1SL6YkOkoE97SLANGRDjlHJynm4",
-            'url'=>"http://www.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html",
+            'template_id'=>"Ox9KeFiYoBHP4lsWyjkfv5QXAffosGd-0-eAsO83hFU",
+            'url'=>"http://v.yykddn.com/kuaidi/order/order_detail/id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=> "亲爱的".$consignee."
@@ -141,8 +141,8 @@ class WorkLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"h8pFtPbiiwmLm78F1SL6YkOkoE97SLANGRDjlHJynm4",
-            'url'=>"http://www.yykddn.com/box/order/order_detail/id/".$order_id.".html",
+            'template_id'=>"Ox9KeFiYoBHP4lsWyjkfv5QXAffosGd-0-eAsO83hFU",
+            'url'=>"http://v.yykddn.com/box/order/order_detail/id/".$order_id.".html",
             'data'=>array(
                 'first'=>array(
                     'value'=> "亲爱的".$consignee."

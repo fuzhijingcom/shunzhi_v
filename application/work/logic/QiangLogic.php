@@ -10,8 +10,8 @@ class QiangLogic extends Model
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
         $json = array(
             'touser'=> $openid,
-            'template_id'=>"d4QWkryD4pE2JEf-nX8fcYNCB-gpDRXVLX8kB5FLC8c",
-            'url'=>"http://www.yykddn.com/kuaidi/order/order_detail/id/".$id,
+            'template_id'=>"7qTSQ-i0-JBnoGPDz2Nx0P239BQM72uoHM6KgTkyjMU",
+            'url'=>"http://v.yykddn.com/kuaidi/order/order_detail/id/".$id,
             'data'=>array(
                 'first'=>array(
                     'value'=> $beizhu."
@@ -58,7 +58,7 @@ class QiangLogic extends Model
     	$url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
     	$json = array(
     			'touser'=> $openid,
-    			'template_id'=>"d4QWkryD4pE2JEf-nX8fcYNCB-gpDRXVLX8kB5FLC8c",
+    			'template_id'=>"7qTSQ-i0-JBnoGPDz2Nx0P239BQM72uoHM6KgTkyjMU",
     			'url'=>"",
     			'data'=>array(
     					'first'=>array(
