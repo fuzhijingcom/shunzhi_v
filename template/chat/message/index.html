@@ -1,97 +1,221 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>{$receive|get_name_by_uid}</title>
-    <link rel="stylesheet" href="http://www.yudw.com/css/weui.min.css"/>
-      <link rel="stylesheet" href="http://www.yudw.com/css/assets/css/amazeui.min.css"/>
-</head>
-<body>
+<html style="overflow: hidden;">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ </head>
+ <body style="overflow: hidden;">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
+  <link rel="stylesheet" href="__PUBLIC__/chat_detail_files/boot.css" /> 
+  <link rel="stylesheet" href="__PUBLIC__/chat_detail_files/chat_detail.css" /> 
+  <title>{$receive|get_name_by_uid}</title>  
+  <div> 
+   <style>
+.pin-spinner-2 {
+    display: none;
+    position: fixed;
+    width: 66px;
+    height: 66px;
+    top: 35%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 999999999;
+}
+.ps-inner-box {
+    width: 100%;
+    height: 100%;
+}
+.ps-rotate-img {
+    width:  25px;
+    height: 25px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    animation: rotateImg 2.5s linear infinite;
+    -webkit-animation: rotateImg 2.5s linear infinite;
+    z-index: 9999999999;
+    position: absolute;
+}
 
- 
-  
-<div style="padding-top:5px">
-<div class="page">
+.ps-rotate-msg {
+    width: 100%;
+    font-size: 11px;
+    text-align: center;
+    height: 11px;
+    color: #ccc;
+    position: relative;
+    bottom: 24px;
+}
 
-    <center> <a href="#send" class="weui-btn weui-btn_mini weui-btn_primary">给TA发送消息</a>  </center>
-     
-    <foreach name="jieguo" item="v">
-   
-    <div class="weui-form-preview">
-            <div class="weui-form-preview__bd">
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">发送者</label>
-                    <span class="weui-form-preview__value">{$v.send}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">接收者</label>
-                    <span class="weui-form-preview__value">{$v.receive}</span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">内容</label>
-                    <span class="weui-form-preview__value"><font color="red">{$v.content}</font></span>
-                </div>
-                <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">时间</label>
-                    <span class="weui-form-preview__value">{$v.send_time}</span>
-                </div>
-               
-                
-            </div>
+#ps-background {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    background-color: #000;
+    border-radius: 9px;
+}
+
+@keyframes rotateImg {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(180deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+@-webkit-keyframes rotateImg {
+    0% {
+        -webkit-transform: rotateZ(0deg);
+    }
+    50% {
+        -webkit-transform: rotateZ(180deg);
+    }
+    100% {
+        -webkit-transform: rotateZ(360deg);
+    }
+}
+</style> 
+   <div id="pin-spinner" class="pin-spinner-2" style="display: none; width: 66px;"> 
+    <div id="ps-background" style="display: block;"></div> 
+    <div class="ps-inner-box"> 
+     <img id="imgInit" class="ps-rotate-img" src="" style="bottom: 0px;" /> 
+    </div> 
+    <div id="msgInit" class="ps-rotate-msg" style="display: none;"></div> 
+   </div> 
   </div>
+  
+ <!--  <div class="pin-toast-container"> 
+   <div class="pin-toast" style="display: none; opacity: 0;">
+    您在该店铺内暂无订单
+   </div> 
+  </div>  -->
+  
+  <div id="chat-detail-container" avalonctrl="root"> 
+   <div id="list-container" style="OVERFLOW-y:auto;"  > 
+   
+   
+    <ul id="chat-detail-list" >
+     
+   
+     
+      
+     <li class="chat-detail-item" id="msg-1512563849605" avalonctrl="msg-1512563849605"> 
+      
+      
+      <foreach name="jieguo" item="v">
+      
+      <if condition="$send == $v.send ">
+	      	<div class="chat-item-box role-customer"> 
+	    <else />
+	    	<div class="chat-item-box role-mall">
+	  </if>
+	     <!--  <div class="chat-item-box role-mall">  -->
+	       <img class="chat-avatar" src="{$v.send|get_heading_by_id}" /> 
+	       <div class="chat-msg"> 
+	        <text-content> 
+	         <!--ms-if--> 
+	         <pre>{$v.content}</pre> 
+	        </text-content> 
+	       </div> 
+	      </div> 
+      
+      
+      </foreach>
+      
+      
+      
+     
+      
+      </li>
+      
+      <a name="anchor" id="anchor"></a>
+      
+    </ul> 
+   </div> 
+   
+   
+   
+   <div id="send-box" style="height: auto; bottom: 0px;"> 
+   
+   
+  <!--   <div class="bottom-buttons-container"> 
+     <ul id="chat-order-list-bottom-buttons"> 
+      repeat980321776557
+      <div class="chat-order-list-bottom-button" click-action="{&quot;name&quot;:&quot;navigate&quot;,&quot;params&quot;:{&quot;direction&quot;:&quot;forward&quot;,&quot;native_key&quot;:&quot;pdd_mall&quot;,&quot;search&quot;:&quot;mall_id=373684&amp;category_type=0&amp;sort_type=2&amp;jump_to_goods=1&quot;,&quot;web_key&quot;:&quot;mall_page&quot;}}">
+        店铺上新 
+      </div>
+      repeat980321776557
+      <div class="chat-order-list-bottom-button" click-action="{&quot;name&quot;:&quot;batch_action&quot;,&quot;params&quot;:{&quot;action_list&quot;:[{&quot;name&quot;:&quot;tracking_record&quot;,&quot;params&quot;:{&quot;op&quot;:&quot;click&quot;,&quot;event&quot;:&quot;op_btn_clk&quot;,&quot;page_name&quot;:&quot;talk&quot;,&quot;page_section&quot;:&quot;btn_list&quot;}},{&quot;name&quot;:&quot;find_order&quot;,&quot;params&quot;:{&quot;hint&quot;:&quot;订单查询&quot;,&quot;mall_id&quot;:&quot;373684&quot;,&quot;range&quot;:&quot;all&quot;}}]}}">
+        订单查询 
+      </div>
+      repeat980321776557
+      repeat980321776557:end 
+     </ul> 
+    </div>  -->
     
- </foreach>
     
+    
+    <!-- 这是未发送 
+
+<div id="chat-order-list-text-container">
+<textarea rows="1" id="message-input" class="input-content" type="text" placeholder="" style="height: 38px;"></textarea>
+<div id="extra-button"> </div>
+<div id="extra-button-fold" style="display: none;"> </div>
+<div class="send-button" style="display: none;">发送</div>
 </div>
-<!-- 聊天 -->
-
-
-<!-- Navbar -->
-
-<form action="{:U('chat/index/send')}" method="post" id="subform">
-  <input type="hidden" name="receive" value="{$receive}">
-   <input type="hidden" name="send" value="{$send}">
-    <input type="hidden" name="order_id" value="0">
+--> 
+    <!-- 这是发送 --> 
+    <form action="{:U('chat/index/send')}" method="post" id="subform">
+	     <input type="hidden" name="receive" value="{$receive}">
+	   <input type="hidden" name="send" value="{$send}">
+	    <input type="hidden" name="order_id" value="0">
     
-    
-<div class="weui-cells__title"><center>聊天对话框</center></div>
-
-        <div class="weui-cells weui-cells_form" id="send">
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <textarea class="weui-textarea" name="content" placeholder="请输入内容" rows="6"></textarea>
-                    <div class="weui-textarea-counter">
-                        
-                       <a href="javascript:;" name="submit" onclick="document.getElementById('subform').submit();return false"  class="weui-btn weui-btn_mini weui-btn_primary">发送</a>
-                        
-                    </div>
-                </div>
-            </div>
-		</div>
-		
-</div>
-</form>
-<div style="display:none">
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_3790269'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D3790269%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
-</div>
-</body>
+    <div id="chat-order-list-text-container"> 
+     <textarea rows="1" id="message-input" name="content" class="input-content typing" type="text" placeholder="" style="height: 38px;"></textarea> 
+     <div id="extra-button" style="display: none;"> 
+     </div> 
+     <div id="extra-button-fold" style="display: none;"> 
+     </div> 
+     <div class="send-button" style="" onclick="document.getElementById('subform').submit();return false" >
+      发送
+     </div> 
+    </div> 
+    </form>
+    <div id="extra-panel" style="display: none;"> 
+     <div class="panel-btn"> 
+      <div class="panel-btn-image" id="find-order"></div> 
+      <div class="panel-btn-text">
+       我的订单
+      </div> 
+     </div> 
+     <div class="panel-btn"> 
+      <div class="panel-btn-image" id="send-pic"></div> 
+      <input accept="image/*" type="file" class="send-icon" id="send-icon-id" value="" /> 
+      <div class="panel-btn-text">
+       图片
+      </div> 
+     </div> 
+     <!--ms-if--> 
+    </div> 
+    <div id="iphone-x-fix"></div> 
+   </div> 
+   <!--ms-if-->
+   <div id="order-list-positioner" style="display:none"></div> 
+  </div> 
+  <!-- 
+    目测无用
+    <script src="__PUBLIC__/chat_detail_files/vender_c96930d17911e8faa7ea.js"></script>
+    <script src="__PUBLIC__/chat_detail_files/common_7ff89eb49f4366b4ad81.js"></script>
+    <script src="__PUBLIC__/chat_detail_files/chat_detail_v3_e5af4e077e16bdc70890.js"></script> -->
+    <script type="text/javascript">
+    	window.location.hash="anchor";
+    </script> 
+ </body>
 </html>
-<script type="text/javascript">
-    $(function(){
-        var $tooltips = $('.js_tooltips');
-
-        $('#showTooltips').on('click', function(){
-            if ($tooltips.css('display') != 'none') return;
-
-            // toptips的fixed, 如果有`animation`, `position: fixed`不生效
-            $('.page.cell').removeClass('slideIn');
-
-            $tooltips.css('display', 'block');
-            setTimeout(function () {
-                $tooltips.css('display', 'none');
-            }, 2000);
-        });
-    });
-</script>
-
