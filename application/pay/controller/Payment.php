@@ -400,7 +400,14 @@ class Payment extends MobileBase {
             $pay_radio = $_REQUEST['pay_radio'];
             $config_value = parse_url_param($pay_radio); // 类似于 pay_code=alipay&bank_code=CCB-DEBIT 参数
             //微信JS支付
-          if($this->pay_code == 'weixin' && session('user.openid') && strstr($_SERVER['HTTP_USER_AGENT'],'MicroMessenger')){
+            
+            if(is_weixin() == false){
+            	$this->error('请在微信中打开');
+            	exit;
+            }
+            
+            
+          if($this->pay_code == 'weixin' && session('user.openid')){
                $code_str = $this->payment->getJSAPI($order);
               
              
@@ -408,7 +415,10 @@ class Payment extends MobileBase {
                
               exit($code_str);
            }else{
-           	$code_str = $this->payment->get_code($order,$config_value);
+           	//$code_str = $this->payment->get_code($order,$config_value);
+           	
+           	$this->error('出错');
+           	exit;
            	
            }
             $this->assign('code_str', $code_str); 
