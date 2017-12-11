@@ -185,7 +185,7 @@ class Index extends MobileBase {
          * 向用户推送消息
          */
     public function msg($receive,$send,$send_role,$content,$order_id){
-            $url = 'http://www.yykddn.com/chat/index/reply/receive/'.$send.'/send/'.$receive.'/order_id/'.$order_id.'/send_role/用户';
+            $url = 'http://v.yykddn.com/chat/index/reply/receive/'.$send.'/send/'.$receive.'/order_id/'.$order_id.'/send_role/用户';
             $content2 = '<a href="'.$url.'">点这里回复此消息</a>';
             
             if(!$send_role){
