@@ -152,26 +152,9 @@ PS：
         else {
             //自动回复模式
           
-            if (strstr($keyword, "符智精") ||strstr($keyword, "精") ||strstr($keyword, "精精") || strstr(strtolower($keyword), "superman"))
+           if (strstr(strtolower($keyword), "下单") || strstr($keyword, "代拿"))
             {
-                $content = "/:heart符智精/:heart
-/:<O>是一个很帅的小伙子";
-            }
-
-            else if (strstr(strtolower($keyword), "一卡通") || strstr($keyword, "饭卡"))
-            {
-                $content = array();
-                $content[] = array("Title"=>"一卡通百科", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://www.yudw.com/forum.php?mod=viewthread&tid=8821");
-                $content[] = array("Title"=>"现金充值机操作指南", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://mp.weixin.qq.com/s?__biz=MjM5MTcyNzU3Ng==&mid=200954850&idx=6&sn=442329eb4e9cd2daef6143ce85319ca2#wechat_redirect");
-                $content[] = array("Title"=>"【点我】进行网上校园卡挂失，转账，网上充值", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://ecard.gdqy.edu.cn/homeLogin.action");
-                $content[] = array("Title"=>"一卡通充值的方式、时间说明", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://www.yudw.com/forum.php?mod=viewthread&tid=8822");
-                $content[] = array("Title"=>"支付宝充值广轻一卡通教程 ", "Description"=>"", "PicUrl"=>"http://www.yudw.com/data/attachment/forum/201610/12/125354f9roopr2pp782r9p.jpg", "Url" =>"http://www.yudw.com/forum.php?mod=viewthread&tid=8823");
-
-            }
-
-            else if (strstr(strtolower($keyword), "下单") || strstr($keyword, "代拿"))
-            {
-                $content ="<a href='http://www.yykddn.com/kuaidi'>点这里【我要代拿】</a>";
+                $content ="<a href='http://v.yykddn.com/kuaidi'>点这里【我要代拿】</a>";
            }
 
             else if (strstr(strtolower($keyword), "提现") || strstr($keyword, "退款"))
@@ -228,7 +211,7 @@ else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
 请在第一时间通知我们
 实V团队一定在3小时内为您维权
 客服微信：XXD562
-客服电话：17329860373                    ";
+客服电话：17329860373";
             }else if(strstr($keyword, "/:"))
             {
                 $content = "
@@ -243,11 +226,8 @@ else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
             }
             
           else{
-                 $content = "这里是系统自动回复，（如您要回复抢单员，请点击消息下方的链接进入回复，抢单员才能收到。）
-
-关键字列表：快递、代拿、退款、提现、客服
-<a href='http://v.yykddn.com/kuaidi'>点这里【我要代拿】</a>
-";         }
+                 $content = '123';         
+          }
 
             if(is_array($content)){
                 if (isset($content[0]['PicUrl'])){
@@ -255,8 +235,8 @@ else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
                 }else if (isset($content['MusicUrl'])){
                     $result = $this->transmitMusic($object, $content);
                 }
-            }else{
-                $result = $this->transmitText($object, $content);
+            }elseif($content !== '123'){
+            	$result = $this->transmitText($object, $content);
             }
         }
         return $result;
