@@ -7,7 +7,37 @@ class Send extends MobileBase {
     //根据传来的order_sn，判断是否支付成功
     public function check(){
         $order_id = I('order_id');
-        $order = M('kd_order')->where("order_id", $order_id)->find();
+        
+        //去获取
+        $pay_status= M("kd_order")->where("order_id",$order_id)->getField('pay_status');
+        //只有当未付款时，才去获取订单数据
+        if($pay_status == 0){
+		        $url = "http://www.yykddn.com/pay/payment/payresult?order_id=".$order_id;
+		        $ch = curl_init();
+		        curl_setopt($ch, CURLOPT_URL, $url);
+		        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+		        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		        $out = curl_exec($ch);
+		        curl_close($ch);
+		        
+		        $order = json_decode($out,true);
+		        
+		        if(!$order){
+		        	$this->error("支付出错");
+		        	exit;
+		        }
+		        
+		        $order_id = $order['order_id'];
+		        
+		        $cunzai = M("kd_order")->where("order_id",$order_id)->find();
+		        if(!$cunzai){
+		        	M("kd_order")->data($order)->save();
+		        }else {
+		        	M("kd_order")->where(array("order_id"=>$order_id))->data($order)->save();
+		        }
+        
+        }      
+		
         if($order['pay_status']==1){
            $this->redirect('chenggong', array('order_id' => $order_id), 1, '支付成功...');
         }
@@ -31,7 +61,7 @@ class Send extends MobileBase {
         
         $qiang = $order['qiang'];
         if($qiang==1){
-            $qiangurl =  "http://www.yykddn.com/kuaidi/send/send_all?order_id=".$order_id;
+            $qiangurl =  "http://v.yykddn.com/kuaidi/send/send_all?order_id=".$order_id;
             $ch=curl_init();
             curl_setopt($ch, CURLOPT_URL, $qiangurl);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
