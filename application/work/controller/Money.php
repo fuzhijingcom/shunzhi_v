@@ -122,7 +122,7 @@ class Money extends MobileBase {
     }
     
     private function money_list(){
-        $condition['user_id'] = array('gt',1);
+       
         $condition['user_money'] = array('egt',0.01);
         $user = M('users')->field('user_id,user_money')->where($condition)->order('user_money desc')->select();
         
