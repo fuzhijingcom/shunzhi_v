@@ -62,7 +62,7 @@ class Index extends MobileBase
     {
        
         $user_id = session('user.user_id');
-        $url = "http://www.yykddn.com/chat/index/send/receive/9687/send/".$user_id."/content/".$content;
+        $url = "http://v.yykddn.com/chat/index/send/receive/1/send/".$user_id."/content/".$content;
         $json = array(
         );
         
@@ -85,7 +85,7 @@ class Index extends MobileBase
     {
     	
     	$user_id = session('user.user_id');
-    	$url = "http://www.yykddn.com/chat/index/send/receive/1/send/".$user_id."/content/".$content;
+    	$url = "http://v.yykddn.com/chat/index/send/receive/4/send/".$user_id."/content/".$content;
     	$json = array(
     	);
     	
