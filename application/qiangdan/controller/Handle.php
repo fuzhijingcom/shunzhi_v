@@ -91,7 +91,11 @@ class Handle extends MobileBase {
             	M('kd_order_handle')->where(array('order_id'=>$order_id))->save(array('reason'=> $reason,'receiver'=>$user_id,'status'=>0));
             }
             
-            $this->success('等待审批','qiangdan/order/my_order');
+            $logic = new QiangLogic();
+            $data = $logic->change_weina($order_id,$reason);
+            
+            $this->success('取消成功','qiangdan/order/my_order');
+            
         }
         
         
@@ -99,7 +103,6 @@ class Handle extends MobileBase {
         
     }
     
-     
    
   
 }
