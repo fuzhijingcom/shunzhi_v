@@ -279,6 +279,8 @@ class Payment extends MobileBase {
         $this->assign('order',$order);
         $this->assign('type',$type);
 
+        $openid = session('user.openid_yy');
+        $this->assign('openid',$openid);
         return $this->fetch();
     }
     
