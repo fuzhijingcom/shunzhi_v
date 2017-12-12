@@ -55,9 +55,9 @@ class Handle extends MobileBase {
     
         $order_id = I('get.id/d');
         $condition['order_id'] = $order_id ;
-       // $condition['qiang'] = 1 ;
+        $condition['qiang'] = 1 ;
         $condition['pay_status'] = 1;
-       // $condition['receiver'] = $user_id;
+       $condition['receiver'] = $user_id;
         
         $order = M('kd_order')->where($condition)->find();
 
@@ -68,8 +68,8 @@ class Handle extends MobileBase {
         }
         //检查是否未支付的订单
         if( $order['order_status'] !== 6 ){
-           // $this->error('订单状态出错，不能退单');
-           // exit;
+           $this->error('订单状态出错，不能退单');
+            exit;
         }
          
         $handle = M('kd_order_handle')->where(array('order_id'=>$order_id))->find();
