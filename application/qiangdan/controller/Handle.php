@@ -55,9 +55,9 @@ class Handle extends MobileBase {
     
         $order_id = I('get.id/d');
         $condition['order_id'] = $order_id ;
-        $condition['qiang'] = 1 ;
+       // $condition['qiang'] = 1 ;
         $condition['pay_status'] = 1;
-        $condition['receiver'] = $user_id;
+       // $condition['receiver'] = $user_id;
         
         $order = M('kd_order')->where($condition)->find();
 
@@ -68,8 +68,8 @@ class Handle extends MobileBase {
         }
         //检查是否未支付的订单
         if( $order['order_status'] !== 6 ){
-            $this->error('订单状态出错，不能退单');
-            exit;
+           // $this->error('订单状态出错，不能退单');
+           // exit;
         }
          
         $handle = M('kd_order_handle')->where(array('order_id'=>$order_id))->find();
@@ -82,7 +82,10 @@ class Handle extends MobileBase {
                 $this->error('原因不能为空');
                 exit;
             }
+            $reason = "抢单员：".$order['receiver']."。理由：".$reason;
             
+            M('kd_order')->where(array('order_id'=>$order_id))->save(array('order_status'=>0,'receiver'=>null,'qiang'=> 1));
+            //增加抢单后的操作，取消状态
             
             $extra = M('kd_order_handle')->where(array('order_id'=>$order_id))->find();
             if(!$extra){
