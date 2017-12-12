@@ -90,6 +90,17 @@ class Xiadan extends MobileBase {
         if($address['sushe']==null){
             $this->error('宿舍不能为空，请重新编辑地址');
         }
+        $lou = (int)I('lou');
+        if($lou == 0){
+        	$jia = "不送上楼，放舍务。";
+        }
+        if($lou == 1){
+        	$jia = "1-4楼，送到宿舍";
+        }
+        if($lou == 2){
+        	$jia = "5楼以上，送到宿舍";
+        }
+        
         
         $code = I('code');//货号
         if($type == 'yt' && $code == null){
@@ -98,9 +109,10 @@ class Xiadan extends MobileBase {
         if($type == 'yz' && $code == null){
             $this->error('货号不能为空，请复制通知短信');
         }
+       
         if($qiang == 1){
             $discount = I("discount");
-            $order_amount = (float)$order_amount + (float)$discount;//调整价格
+            $order_amount = (float)$order_amount + (float)$discount + (float)$lou;//调整价格
         }
         $data = array(
             'order_sn'         => date('YmdHis').rand(1000,9999), // 订单编号
@@ -120,8 +132,9 @@ class Xiadan extends MobileBase {
             'kuaidi_name'    =>    $kuaidi_name, //'快递名称',                为照顾新手开发者们能看懂代码，此处每个字段加于详细注释
             'order_amount'     => $order_amount,
             'add_time'         =>date('Y-m-d H:i:s'), // 下单时间
-            'user_note'        => $code.$user_note, // 用户下单备注，加上货号
+        	'user_note'        => $jia.$code.$user_note, // 用户下单备注，加上货号
             'qiang'        =>   $qiang, // 是否抢单
+        	'lou'        =>$lou, // 送上楼
             'discount'        =>$discount, // 加价多少
             'school'        =>$school, // 哪个学校的
             

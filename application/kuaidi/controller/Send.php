@@ -88,6 +88,7 @@ class Send extends MobileBase {
         $kuaidi_name = $order['kuaidi_name'];
         $discount = $order['discount'];
         $school = $order['school'];
+        $lou = $order['lou'];
         
         
             $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->order('credit desc')->field('openid')->select();
@@ -101,7 +102,7 @@ class Send extends MobileBase {
             
                 $errcode = M('msg_qiang')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
                 if($errcode !== 0){
-                    $data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount);
+                	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou);
                     $data = json_decode($data,true);
                     $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                     M('msg_qiang')->add($data);
@@ -132,7 +133,7 @@ class Send extends MobileBase {
     
             $errcode = M('msg_qiang2')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
             if($errcode !== 0){
-                $data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount);
+            	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou);
                 $data = json_decode($data,true);
                 $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                 M('msg_qiang2')->add($data);

@@ -79,7 +79,7 @@ class SendLogic extends Model
 
     }
     
-    public function push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount){
+    public function push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou){
         $str = mb_substr($name, 0, 1,'utf-8');
         $name = $str.'**';
         
@@ -88,6 +88,14 @@ class SendLogic extends Model
 ";
         }else{
             $first = "新订单来了。
+";
+        }
+        
+        if($lou > 0 ){
+        	$first = $first."送上楼。加价费用（".$lou."元）
+";
+        }else{
+        	$first = $first."不送上楼，放舍务。
 ";
         }
         
