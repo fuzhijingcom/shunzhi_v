@@ -3,9 +3,9 @@
 function jietu($order_id){
 	$img = M('kd_order_extra')->where('order_id',$order_id)->getField('img');
 	if($img == NULL){
-		return "http://www.yykddn.com/public/jietu/no.png";
+		return "http://v.yykddn.com/public/jietu/no.png";
 	}else {
-		return  "http://www.yykddn.com/public/jietu/".$img;
+		return  "http://v.yykddn.com/public/jietu/".$img;
 	}
 }
 
