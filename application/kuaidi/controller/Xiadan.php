@@ -101,6 +101,7 @@ class Xiadan extends MobileBase {
         	$jia = "5楼以上，送到宿舍";
         }
         
+        $sex = I('sex');
         
         $code = I('code');//货号
         if($type == 'yt' && $code == null){
@@ -137,6 +138,7 @@ class Xiadan extends MobileBase {
         	'lou'        =>$lou, // 送上楼
             'discount'        =>$discount, // 加价多少
             'school'        =>$school, // 哪个学校的
+        	'sex'        =>$sex, // 哪个学校的
             
         );
     

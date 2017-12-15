@@ -89,6 +89,10 @@ class Send extends MobileBase {
         $discount = $order['discount'];
         $school = $order['school'];
         $lou = $order['lou'];
+        $sex = $order['sex'];
+        if($sex == 'sex'){
+        	$sex = "不限男女";
+        }
         
         
             $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->order('credit desc')->field('openid')->select();
@@ -102,7 +106,7 @@ class Send extends MobileBase {
             
                 $errcode = M('msg_qiang')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
                 if($errcode !== 0){
-                	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou);
+                	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex);
                     $data = json_decode($data,true);
                     $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                     M('msg_qiang')->add($data);

@@ -79,7 +79,7 @@ class SendLogic extends Model
 
     }
     
-    public function push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou){
+    public function push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex){
         $str = mb_substr($name, 0, 1,'utf-8');
         $name = $str.'**';
         
@@ -98,6 +98,10 @@ class SendLogic extends Model
         	$first = $first."不送上楼，放舍务。
 ";
         }
+    
+        	$first = $first."不送上楼，放舍务。
+接单员性别指定：".$sex;
+
         
         $access_token = access_token();
         $url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
