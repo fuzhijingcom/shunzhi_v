@@ -31,7 +31,7 @@ class Kuaidi extends MobileBase {
     
     
     public function index(){
-    	$openid_yy = session('user.opemid_yy');
+    	$openid_yy = session('user.openid_yy');
     	//去获取一下openid_yy
     	if($openid_yy == NULL &&  I('openid') == NULL){
     		$url  = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
