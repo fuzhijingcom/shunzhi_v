@@ -7,9 +7,10 @@ class Send extends MobileBase {
     //根据传来的order_sn，判断是否支付成功
     public function check(){
         $order_id = I('order_id');
-        
+       
         //去获取
         $pay_status= M("kd_order")->where("order_id",$order_id)->getField('pay_status');
+        
         //只有当未付款时，才去获取订单数据
         if($pay_status == 0){
 		        $url = "http://www.yykddn.com/pay/payment/payresult?order_id=".$order_id;
@@ -38,7 +39,7 @@ class Send extends MobileBase {
         
         }      
 		
-        if($order['pay_status']==1){
+        if($pay_status == 1){
            $this->redirect('chenggong', array('order_id' => $order_id), 1, '支付成功...');
         }
         
