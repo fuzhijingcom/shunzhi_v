@@ -94,7 +94,7 @@ class Send extends MobileBase {
         if($sex == 'sex'){
         	$sex = "不限男女";
         }
-        
+        $type = $order['type'];
         
             $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->order('credit desc')->field('openid')->select();
             $c = count($user);
@@ -107,7 +107,7 @@ class Send extends MobileBase {
             
                 $errcode = M('msg_qiang')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
                 if($errcode !== 0){
-                	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex);
+                	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex,$type);
                     $data = json_decode($data,true);
                     $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                     M('msg_qiang')->add($data);
@@ -125,7 +125,7 @@ class Send extends MobileBase {
         $kuaidi_name = $order['kuaidi_name'];
         $discount = $order['discount'];
         $school = $order['school'];
-    
+        $type = $order['type'];
     
         $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->field('openid')->select();
         $c = count($user);
@@ -138,7 +138,7 @@ class Send extends MobileBase {
     
             $errcode = M('msg_qiang2')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
             if($errcode !== 0){
-            	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou);
+            	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$type);
                 $data = json_decode($data,true);
                 $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                 M('msg_qiang2')->add($data);
