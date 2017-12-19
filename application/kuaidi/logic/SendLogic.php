@@ -92,17 +92,21 @@ class SendLogic extends Model
         }
         
         
-if($type != 'ss'){
-        if($lou > 0 ){
-        	$first = $first."送上楼。加价费用（".$lou."元）
+if($type == 'ss' || $type == 'ji' ){
+
+}else {
+	
+	if($lou > 0 ){
+		$first = $first."送上楼。加价费用（".$lou."元）
 ";
-        }else{
-        	$first = $first."不送上楼，放舍务。
+	}else{
+		$first = $first."不送上楼，放舍务。
 ";
-        }
-    
-        	$first = $first."不送上楼，放舍务。
+	}
+	
+	$first = $first."不送上楼，放舍务。
 接单员性别指定：".$sex;
+	
 }
         	
         	
