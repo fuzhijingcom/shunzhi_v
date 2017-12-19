@@ -105,7 +105,8 @@ class Xiadan extends MobileBase {
             'name2'    =>   I('name2'), //'收件人名称',                为照顾新手开发者们能看懂代码，此处每个字段加于详细注释
             'mobile2'    =>   I('mobile2'), //'收件人手机',
             'address2'    =>   I('address2'), //'地址',
-        	'qiang'    =>   I('qiang'), //抢,
+        	'qiang'    =>   1, //抢,
+        	'kuaidi_name'     => '寄件',
             'order_amount'     => $order_amount,
             'add_time'         =>date('Y-m-d H:i:s'), // 下单时间
             'user_note'        =>$user_note, // 用户下单备注
