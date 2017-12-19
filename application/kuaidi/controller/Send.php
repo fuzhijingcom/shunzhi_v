@@ -95,10 +95,22 @@ class Send extends MobileBase {
         	$sex = "不限男女";
         }
         $type = $order['type'];
+        //,'school'=>$school 
         
-            $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->order('credit desc')->field('openid')->select();
-            $c = count($user);
-            
+        if($type == 'ji'){
+        	
+        	$join = [
+        			['yuangong w','a.user_id=w.yid'],
+        	];
+        	$user = Db::table('tp_users')->alias('a')->join($join)->field('a.openid')->select();
+        }else{
+            $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1))->order('credit desc')->field('openid')->select();
+        }
+        $c = count($user);
+           
+       // dump($user);
+        
+        dump($c);
             
             $logic = new SendLogic();
  
