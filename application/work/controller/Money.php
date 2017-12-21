@@ -55,6 +55,16 @@ class Money extends MobileBase {
     	return $this->fetch();
     }
    
+    public function allwater(){
+    	$condition['pay_status'] = array('eq',1);
+    	
+    	$list = M('kd_order')->field('order_id,consignee,order_amount,pay_name,transaction_id')->order('order_id desc')->where($condition)->select();
+    	$this->assign('list',$list);
+    	
+    	return $this->fetch();
+    }
+    
+    
     public function index(){
         $all = $this->all();
         $this->assign('all', $all);
