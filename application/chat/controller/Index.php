@@ -107,17 +107,35 @@ class Index extends MobileBase {
             $send_role = I('send_role');
             
             $content = I('content');
+            if ($content == '' || $content == NULL){
+            	$this->error('不能发送空消息');
+            	exit;
+            }
             $return = $this->msg($receive,$send,$send_role,$content,$order_id);
             $obj = json_decode($return);
             
             $errcode = $obj->{"errcode"};//int 0
             $errmsg = $obj->{"errmsg"};//string 2    ok
             
-            $this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
-            
             if($errcode==0){
-                $this->success('发送成功','index');
+            	$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            	//发送成功，保存
+            	
+            	$this->redirect('/chat/message?id='.$receive);
+               // $this->success('发送成功','index');
             }else{
+            	
+            	$res = $this->msg_super($receive,$send,$send_role,$content,$order_id);
+            	$res = json_decode($res);
+            	$errcode = $res->{"errcode"};//int 0
+            	$errmsg = $res->{"errmsg"};//string 2    ok
+            	
+            	if($errcode==0){
+            		$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            		$this->redirect('/chat/message?id='.$receive);
+            		exit;
+            	}
+            	
                 $this->error('发送失败'.$errmsg,'index');
             }
             
@@ -144,17 +162,37 @@ class Index extends MobileBase {
             $send_role = I('send_role');
            
             $content = I('content');
+            if ($content == '' || $content == NULL){
+            	$this->error('不能发送空消息');
+            	exit;
+            }
             $return = $this->msg($receive,$send,$send_role,$content,$order_id);
             $obj = json_decode($return);
             
             $errcode = $obj->{"errcode"};//int 0
             $errmsg = $obj->{"errmsg"};//string 2    ok
             
-            $this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+           
             
             if($errcode==0){
-                $this->success('发送成功','index');
+            	$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            	$this->redirect('/chat/message?id='.$receive);
+               // $this->success('发送成功','index');
             }else{
+            	
+            	$res = $this->msg_super($receive,$send,$send_role,$content,$order_id);
+            	$res = json_decode($res);
+            	$errcode = $res->{"errcode"};//int 0
+            	$errmsg = $res->{"errmsg"};//string 2    ok
+            	
+            	if($errcode == 0){
+            		$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            		$this->redirect('/chat/message?id='.$receive);
+            		exit;
+            		// $this->success('发送成功','index');
+            	}
+
+            	
                 $this->error('发送失败'.$errmsg,'index');
             }
             
@@ -185,7 +223,7 @@ class Index extends MobileBase {
          * 向用户推送消息
          */
     public function msg($receive,$send,$send_role,$content,$order_id){
-            $url = 'http://v.yykddn.com/chat/index/reply/receive/'.$send.'/send/'.$receive.'/order_id/'.$order_id.'/send_role/用户';
+    	$url = 'http://v.yykddn.com/chat/message?id='.$send;
             $content2 = '<a href="'.$url.'">点这里回复此消息</a>';
             
             if(!$send_role){
@@ -202,7 +240,6 @@ class Index extends MobileBase {
            
             $openid = M('users') ->where('user_id',$receive)->getField('openid');
             
-            
             $access_token = access_token();
             
             $url ="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$access_token}";
@@ -216,10 +253,7 @@ class Index extends MobileBase {
             
             header("Content-type: text/html; charset=utf-8");
            
-            
-            
             $json = json_encode($json,JSON_UNESCAPED_UNICODE);
-            
           
             $ch=curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -235,6 +269,53 @@ class Index extends MobileBase {
             
     }
     
-   
+    public function msg_super($receive,$send,$send_role,$content,$order_id){
+    		$send_name = M('users') ->where('user_id',$send)->getField('nickname');
+    		$openid = M('users') ->where('user_id',$receive)->getField('openid');
+    		$access_token = access_token();
+    		$url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$access_token;
+    		$json = array(
+    				'touser'=> $openid,
+    				'template_id'=>"i3qyVqZVVTsY6cUwJxI9szLUNZCqb1XLZy6nR0kL_Go",
+    				'url'=>"http://v.yykddn.com/chat/message?id=".$send,
+    				'data'=>array(
+    						'first'=>array(
+    								'value'=>"你有一条新留言，请尽快回复
+",
+    								'color'=>"#000099"
+    						),
+    						'keyword1'=>array(
+    								'value'=> $send_name,
+    								'color'=>"#000000"
+    						),
+    						'keyword2'=>array(
+    								'value'=>$content,
+    								'color'=>"#000099"
+    						),
+    						'keyword3'=>array(
+    								'value'=>'聊天系统发送',
+    								'color'=>"#000000"
+    						),
+    						'remark'=>array(
+    								'value'=>"							
+点击详情，进行回复此消息",
+    								'color'=>"#000000"
+    						)
+    				)
+    		);
+    		
+    		$json = json_encode($json);
+    		$ch=curl_init();
+    		curl_setopt($ch, CURLOPT_URL, $url);
+    		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    		curl_setopt($ch, CURLOPT_POST, 1);
+    		curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    		$out=curl_exec($ch);
+    		curl_close($ch);
+    		return $out ;
+    	
+    }
    
 }
