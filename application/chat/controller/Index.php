@@ -130,8 +130,9 @@ class Index extends MobileBase {
             	$errcode = $res->{"errcode"};//int 0
             	$errmsg = $res->{"errmsg"};//string 2    ok
             	
+            	$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
             	if($errcode==0){
-            		$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            		
             		$this->redirect('/chat/message?id='.$receive);
             		exit;
             	}
@@ -185,8 +186,9 @@ class Index extends MobileBase {
             	$errcode = $res->{"errcode"};//int 0
             	$errmsg = $res->{"errmsg"};//string 2    ok
             	
+            	$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
             	if($errcode == 0){
-            		$this->save_msg($receive,$send,$send_role,$content,$order_id,$errcode,$errmsg);
+            		
             		$this->redirect('/chat/message?id='.$receive);
             		exit;
             		// $this->success('发送成功','index');
