@@ -223,6 +223,9 @@ else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
             }else if(strstr(strtolower($keyword), "sb") || strstr($keyword, "滚") || strstr($keyword, "妈的") )
             {
                 $content = "好孩子都是不说脏话的,您应该向我学习.";
+            }else if(strstr($keyword, "代取") )
+            {
+            	$content['MediaId'] = "eEIeNun4w974y0iL14Wv2Sr5CgPSCO1X9GTAFaOVCwdoMTB8hTl1wDE1w3J75c7M";
             }
             
           else{
@@ -230,11 +233,16 @@ else if(strstr($keyword, "客服") || strstr($keyword, "咨询"))
           }
 
             if(is_array($content)){
-                if (isset($content[0]['PicUrl'])){
+                
+            	if (isset($content[0]['PicUrl'])){
                     $result = $this->transmitNews($object, $content);
                 }else if (isset($content['MusicUrl'])){
                     $result = $this->transmitMusic($object, $content);
                 }
+                elseif($content['MediaId'] !== NULL){
+                	$result = $this->transmitImage($object, $content);
+                }
+                
             }elseif($content !== '123'){
             	$result = $this->transmitText($object, $content);
             }
