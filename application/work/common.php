@@ -141,11 +141,7 @@ function get_name_by_uid($uid) {
         return $name;
     }
     
-    if(!$name){
-        $name = M('users_kd') ->where('user_id',$uid)->getField('name');
-    }else{
-        return $name;
-    }
+    
     
     return $name;
 }
@@ -155,11 +151,6 @@ function get_duanhao_by_uid($uid) {
      
     $duanhao = M('user_address') ->where(array('user_id'=>$uid,'is_default'=>'1'))->getField('duanhao');
     return $duanhao;
-}
-function get_renren_mobile_by_uid($uid) {
-     
-    $mobile = M('users_kd') ->where('user_id',$uid)->getField('mobile');
-    return $mobile;
 }
 
 function get_img_by_type($type) {

@@ -49,11 +49,12 @@ class Index extends MobileBase
            
            
            $content = '【手机维修】名字：'.$name.'，联系方式：'.$mobile.'，问题：'.$problem;
-           $this->send($content);
-           $this->send1($content);
+           
+           $this->send("1",$content);
+           $this->send("29",$content);
            
            $this->msg_super("1",$name,$mobile,$content);
-           $this->msg_super("4",$name,$mobile,$content);
+           $this->msg_super("29",$name,$mobile,$content);
            
            
            $this->success('提交成功','index');
@@ -78,12 +79,12 @@ class Index extends MobileBase
     		
     		
     		$content = '【手机维修】名字：'.$name.'，联系方式：'.$mobile.'，问题：'.$problem;
-    		$this->send($content);
-    		$this->send1($content);
+    		
+    		$this->send("1",$content);
+    		$this->send("29",$content);
     		
     		$this->msg_super("1",$name,$mobile,$content);
-    		$this->msg_super("4",$name,$mobile,$content);
-    		
+    		$this->msg_super("29",$name,$mobile,$content);
     		
     		
     		$this->success('提交成功','index');
@@ -94,11 +95,11 @@ class Index extends MobileBase
     }
     
     
-    private function send($content)
+    private function send($receive,$content)
     {
        
         $user_id = session('user.user_id');
-        $url = "http://v.yykddn.com/chat/index/send/receive/4/send/".$user_id."/content/".$content;
+        $url = "http://v.yykddn.com/chat/index/send/receive/".$receive."/send/".$user_id."/content/".$content;
         $json = array(
         );
         
@@ -116,30 +117,7 @@ class Index extends MobileBase
        // dump($json);
     }
     
-    
-    private function send1($content)
-    {
-    	
-    	$user_id = session('user.user_id');
-    	$url = "http://v.yykddn.com/chat/index/send/receive/1/send/".$user_id."/content/".$content;
-    	$json = array(
-    	);
-    	
-    	$json = json_encode($json);
-    	$ch=curl_init();
-    	curl_setopt($ch, CURLOPT_URL, $url);
-    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-    	curl_setopt($ch, CURLOPT_POST, 1);
-    	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    	$out=curl_exec($ch);
-    	curl_close($ch);
-    	
-    	// dump($json);
-    }
-    
-    
+
     public function msg_super($receive,$name,$mobile,$content){
     	
     	$openid = M('users') ->where('user_id',$receive)->getField('openid');

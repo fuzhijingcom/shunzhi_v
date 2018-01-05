@@ -21,11 +21,7 @@ function get_name_by_uid($uid) {
         return $name;
     }
 
-    if(!$name){
-        $name = M('users_kd') ->where('user_id',$uid)->getField('name');
-    }else{
-        return $name;
-    }
+   
     
     if(!$name){
         $name = M('users') ->where('user_id',$uid)->getField('nickname');

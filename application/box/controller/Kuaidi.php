@@ -230,34 +230,7 @@ if($type=='ht'){
 
         return $this->fetch();
     }
-    
-    
-    public function userid()
-    {
-       
-        $user = Db::table('tp_users_kd')->field('user_id')->where(array('tuisong' => 1 , 'is_validated' => 5 ))->select();
-        return $user;
-    
-    }
-    public function get_openid_by_uid($uid)
-    {
-         
-        $openid = M('users')->where(array('user_id' => $uid))->getField('openid');
-        return $openid;
-    
-    }
-
-    //不同了
-    public function user()
-    {
-         $join = [
-            ['users w','a.user_id=w.user_id'],
-        ];
-        $user = Db::table('tp_users_kd')->alias('a')->join($join)->field('w.openid')->where(array('a.tuisong' => 1 , 'a.is_validated' => 5 ))->select();
-        return $user;
-
-    
-    }
+  
     
    public function chenggong() {
        $order_id = I('order_id/d');
@@ -273,59 +246,6 @@ if($type=='ht'){
       return $this->fetch();
    }
    
-   public function send_all() {
-       //curl 请求
-       //发送成功通知
-       //return
-       $type = I('type');
-       $order_sn = I('order_sn');
-       $consignee = I('consignee');
-       $mobile = I('mobile');
-       $sushe = I('sushe');
-       //dump(I(''));
-        if($type == 'ht'){
-            $user = $this->user();
-            $c = count($user);
-                //dump($user);
-                //dump($c);
-            $pushlogic = new Push();
-        
-            for ($i = 0; $i < $c; $i++){
-                $openid =  $user[$i]['openid'];
-                $pushlogic->push_msg_all($openid,$order_sn,$consignee,$mobile,$sushe);
-                }
-          $this->success('发送通知成功！',U('/mobile/kuaidi/order_list'));
-        }
-        
-        
-   }
-   
-   
-   public function send_all_jijian() {
-       //curl 请求
-       //发送成功通知
-       //return
-       $type = I('type');
-       $order_sn = I('order_sn');
-       $consignee = I('consignee');
-       $mobile = I('mobile');
-       $sushe = I('sushe');
-      
-   
-       if($type == 'ji'){
-           $user = $this->user();
-           $c = count($user);
-           //dump($user);
-           //dump($c);
-           $pushlogic = new Pushji();
-   
-           for ($i = 0; $i < $c; $i++){
-               $openid =  $user[$i]['openid'];
-               $pushlogic->push_msg_all_jijian($openid,$order_sn,$consignee,$mobile,$sushe);
-           }
-        $this->success('发送通知成功！',U('/mobile/kuaidi/order_list'));
-       }
-   }
     
    /*
     * 订单详情
@@ -438,133 +358,7 @@ if($type=='ht'){
        return $this->fetch();
    }
    
-   /*
-    * 订单支付页面
-    */
-   public function cart4(){
-       $order_id = I('order_id/d');
-       
-       $type = I('type');
-       if(!$type){
-           $type = 'kd';
-       }
-       
-       
-       if($this->user_id == 0){
-          $url = SITE_URL.'/mobile/kuaidi/cart4/order_id/'.$order_id.'/type/'.$type;
-          session('url',$url);
-           header("Location: " . "http://www.yykddn.com/codetoany/getcode.php?auk=url" );
-          exit;
-       }
-       
-       
-       
-      
-       $order = M('kd_order')->where("order_id", $order_id)->find();
-   
-       //订单不存在或者订单不是本人
-       if(!$order || $order['user_id'] !== session('user.user_id')){
-           header("Location: " . "/index.php?m=Mobile&c=User&a=index" );
-           exit;
-       }
-       // 如果已经支付过的订单直接到订单详情页面. 不再进入支付页面
-       if($order['pay_status'] == 1 || $order['pay_code'] == 'cod'){
-           $order_detail_url = U("Mobile/kuaidi/order_detail",array('id'=>$order_id));
-           header("Location: $order_detail_url");
-           exit;
-       }
-   
-       if(strstr($_SERVER['HTTP_USER_AGENT'],'MicroMessenger')){
-           //微信浏览器
-           if($order['order_prom_type'] == 4){
-               //预售订单
-               $payment_where['code'] = 'weixin';
-           }else{
-               $payment_where['code'] = array('in',array('weixin','cod'));
-           }
-       }else{
-           if($order['order_prom_type'] == 4){
-               //预售订单
-               $payment_where['code'] = array('neq','cod');
-           }
-           $payment_where['scene'] = array('in',array('0','1'));
-       }
-   
-       $payment_where['status'] = array('eq','1');
-       $paymentList = M('Plugin')->where($payment_where)->select();
-       $paymentList = convert_arr_key($paymentList, 'code');
-   
-       foreach($paymentList as $key => $val)
-       {
-           $val['config_value'] = unserialize($val['config_value']);
-           if($val['config_value']['is_bank'] == 2)
-           {
-               $bankCodeList[$val['code']] = unserialize($val['bank_code']);
-           }
-           //判断当前浏览器显示支付方式
-           if(($key == 'weixin' && !is_weixin()) || ($key == 'alipayMobile' && is_weixin())){
-               unset($paymentList[$key]);
-           }
-       }
-   
-       $bank_img = include APP_PATH.'home/bank.php'; // 银行对应图片
-       $payment = M('Plugin')->where("`type`='payment' and status = 1")->select();
-       $this->assign('paymentList',$paymentList);
-       $this->assign('bank_img',$bank_img);
-       $this->assign('order',$order);
-       $this->assign('type',$type);
-       $this->assign('bankCodeList',$bankCodeList);
-       $this->assign('pay_date',date('H:i', strtotime("+1 hours")));
-       return $this->fetch();
-   }
-   public function money_pay(){
-       
-       $id = I('get.id/d');
-
-       if(!$id){
-           $this->error('支付超时，请重新下单');
-           exit;
-       }
-        
-       $map['order_id'] = $id;
-       $map['user_id'] = $this->user_id;
-       
-       $order_info = M('kd_order')->where($map)->find();
-        
-       if ($order_info['user_id'] !== $this->user_id) {
-           $this->error('该订单不是你的，不能查看信息');
-           exit;
-       }
-        
-        
-        
-       if (!$order_info) {
-           $this->error('没有获取到订单信息');
-           exit;
-       }
-       
-       if ($order_info['pay_status'] == 1) {
-           $this->error('订单已经支付，请勿重复操作');
-           exit;
-       }
-       
-       update_pay_status_kd($order_info['order_sn']);
-       
-       //扣减余额
-       accountLog($order_info['user_id'],$order_info['order_amount']*(-1),$order_info['order_amount']*100,'快递代拿余额支付'.$order_info['order_amount'].'元，并赠送'.($order_info['order_amount']*100).'积分');
-       
   
-       $pay_status = M('kd_order')->where(array('order_id' => $id,'user_id' => $this->user_id))->getField('pay_status');
-       
-        if($pay_status == 1){
-            header("Location: ".U('Mobile/kuaidi/chenggong',array('order_id'=>$id,'type'=>$order_info['type'] )));
-            exit;
-        }else{
-            header("Location: ".U('Mobile/kuaidi/cart4',array('order_id'=>$id,'type'=>'kd' ))); 
-        }
-       
-
-   }
    
    
    /*
@@ -748,9 +542,7 @@ if($type=='ht'){
        }
    }
   
-   public function kefu(){
-       return $this->fetch();
-   }
+   
     public function ajaxGetMore(){
     	$p = I('p/d',1);
     	$favourite_goods = M('goods')->where("is_recommend=1 and is_on_sale=1")->order('goods_id DESC')->page($p,10)->cache(true,TPSHOP_CACHE_TIME)->select();//首页推荐商品
