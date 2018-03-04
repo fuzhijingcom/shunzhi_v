@@ -626,8 +626,8 @@ class UsersLogic extends Model
         //检查手机格式
         if($post['consignee'] == '')
             return array('status'=>-1,'msg'=>'收货人不能为空','result'=>'');
-        if(!$post['province'] || !$post['city'] || !$post['district'])
-            return array('status'=>-1,'msg'=>'所在地区不能为空','result'=>'');
+        //if(!$post['province'] || !$post['city'] || !$post['district'])
+           // return array('status'=>-1,'msg'=>'所在地区不能为空','result'=>'');
         if(!$post['address'])
             return array('status'=>-1,'msg'=>'地址不能为空','result'=>'');
         if(!check_mobile($post['mobile']))

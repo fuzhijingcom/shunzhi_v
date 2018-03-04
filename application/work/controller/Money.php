@@ -35,6 +35,7 @@ class Money extends MobileBase {
     }
     
     public function water(){
+        $condition['order_id'] = array('egt',670);
     	$condition['pay_status'] = array('eq',1);
     	$condition['transaction_id'] = array('gt',1);
     	$list = M('kd_order')->field('order_id,consignee,order_amount,transaction_id')->order('order_id desc')->where($condition)->select();
@@ -49,8 +50,8 @@ class Money extends MobileBase {
     		$allwater= $allwater + $m;
     	}
     	
-    	$allwater= $allwater + 6;
-    	//包含错误的6块钱
+    	// $allwater= $allwater + 6;
+    	// //包含错误的6块钱
     	$this->assign("allwater",$allwater);
     	return $this->fetch();
     }
