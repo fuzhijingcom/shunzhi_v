@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
   <link rel="stylesheet" href="__PUBLIC__/chat_detail_files/boot.css" /> 
   <link rel="stylesheet" href="__PUBLIC__/chat_detail_files/chat_detail.css" /> 
+  <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
   <title>{$receive|get_name_by_uid}</title>  
   <div> 
    <style>
@@ -171,23 +172,40 @@
 <div class="send-button" style="display: none;">发送</div>
 </div>
 --> 
-    <!-- 这是发送 --> 
-    <form action="{:U('chat/index/send')}" method="post" id="subform">
-	     <input type="hidden" name="receive" value="{$receive}">
-	   <input type="hidden" name="send" value="{$send}">
-	    <input type="hidden" name="order_id" value="0">
-    
-    <div id="chat-order-list-text-container"> 
-     <textarea rows="1" id="message-input" name="content" class="input-content typing" type="text" placeholder="" style="height: 38px;"></textarea> 
-     <div id="extra-button" style="display: none;"> 
-     </div> 
-     <div id="extra-button-fold" style="display: none;"> 
-     </div> 
-     <div class="send-button" style="" onclick="document.getElementById('subform').submit();return false" >
-      发送
-     </div> 
+
+      <!-- 这是发送 --> 
+      <form action="{:U('chat/index/send')}" method="post" id="subform">
+        <input type="hidden" name="receive" value="{$receive}">
+      <input type="hidden" name="send" value="{$send}">
+       <input type="hidden" name="order_id" value="0">
+   
+   <div id="chat-order-list-text-container"> 
+    <textarea rows="1" id="message-input" name="content" class="input-content typing" type="text" placeholder="" style="height: 38px;"></textarea> 
+    <div id="extra-button" style="display: none;"> 
     </div> 
-    </form>
+    <div id="extra-button-fold" style="display: none;"> 
+    </div> 
+    <div class="send-button" style="" onclick="javascript:send();" >
+     发送
+    </div> 
+   </div> 
+   </form>
+
+   <!-- 优化发送 -->
+<script>
+   function send(){
+       var content = $('#message-input').val();
+       if(content){
+           $('#subform').submit();
+           $(".send-button").removeAttr("onclick");
+           $('#message-input').html("");
+       }else{
+           alert("消息不能为空");
+       }
+   }
+</script>
+
+
     <div id="extra-panel" style="display: none;"> 
      <div class="panel-btn"> 
       <div class="panel-btn-image" id="find-order"></div> 
