@@ -78,7 +78,30 @@ class Send extends MobileBase {
         return $this->fetch();
     }
     
-    
+    public function checksend(){
+
+        $ids = M('kd_order')->where(array('pay_status'=>1,'order_status'=>0,'qiang'=>1))->field('order_id,consignee')->order('order_id desc')->limit(10)->select();
+
+        $c = count($ids);
+        dump($ids);
+        echo $c;
+        for($i=0;$i<$c;$i++){
+
+            $order_id =  $ids[$i]['order_id'];
+            $qiangurl =  "http://v.yykddn.com/kuaidi/send/send_all?order_id=".$order_id;
+            $ch=curl_init();
+            curl_setopt($ch, CURLOPT_URL, $qiangurl);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $out=curl_exec($ch);
+            curl_close($ch);
+        }
+            
+
+
+    }
      
     public function send_all() {
        
@@ -97,20 +120,10 @@ class Send extends MobileBase {
         $type = $order['type'];
         //,'school'=>$school 
         
-        if($type == 'ji'){
-        	
-        	$join = [
-        			['yuangong w','a.user_id=w.yid'],
-        	];
-        	$user = Db::table('tp_users')->alias('a')->join($join)->field('a.openid')->select();
-        }else{
-            $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1))->order('credit desc')->field('openid')->select();
-        }
-        $c = count($user);
-           
-       // dump($user);
-        
-        dump($c);
+    //,'qun'=>1,'school'=>$school
+
+    $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1 ))->order('credit desc')->field('openid')->select();
+    $c = count($user);
             
             $logic = new SendLogic();
  
@@ -121,6 +134,7 @@ class Send extends MobileBase {
                 if($errcode !== 0){
                 	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex,$type);
                     $data = json_decode($data,true);
+                   
                     $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                     M('msg_qiang')->add($data);
                 } 
@@ -137,7 +151,13 @@ class Send extends MobileBase {
         $kuaidi_name = $order['kuaidi_name'];
         $discount = $order['discount'];
         $school = $order['school'];
+        $lou = $order['lou'];
+        $sex = $order['sex'];
+        if($sex == 'sex'){
+        	$sex = "不限男女";
+        }
         $type = $order['type'];
+
     
         $user = M('users_qiang')->where(array('is_validated'=>1,'tuisong'=>1,'qun'=>1,'school'=>$school ))->field('openid')->select();
         $c = count($user);
@@ -150,15 +170,15 @@ class Send extends MobileBase {
     
             $errcode = M('msg_qiang2')->where(array("order_id"=>$order_id,"openid"=>$openid ))->getField('errcode');
             if($errcode !== 0){
-            	$data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$type);
+
+                $data = $logic->push_msg_all($openid,$order_id,$name,$sushe,$kuaidi_name,$discount,$lou,$sex,$type);
                 $data = json_decode($data,true);
+                   
                 $data = array_merge($data,array("order_id"=>$order_id,"openid"=>$openid));
                 M('msg_qiang2')->add($data);
             }
         }
     
-        
-     
         
     }
     

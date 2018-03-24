@@ -21,7 +21,17 @@ class Index extends MobileBase {
     		M('users')->where('user_id',$user_id)->save(array('openid_yy'=>$openid_yy));
     	}
     	//获取结束
-    	
+		
+			//通知查漏补缺
+			$url =  "http://v.yykddn.com/kuaidi/send/checksend";
+			$ch=curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$out=curl_exec($ch);
+			curl_close($ch);
     	
     	$user_id  =  session('user.user_id');
     	
