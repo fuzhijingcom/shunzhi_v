@@ -7,14 +7,17 @@ class Index extends MobileBase {
 
     public function index(){
         
-        $kefu = M('yuangong')->where('grade',8)->select();
-        
-        $this->assign('kefu',$kefu);
-        
+     
         
         return $this->fetch();
     }
 
+    public function movie(){
+    	
+    	
+    	
+    	return $this->fetch();
+    }
     
     public function wenti(){
         $order_id = I('order_id');

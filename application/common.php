@@ -16,7 +16,7 @@ use think\Db;
 function update_pay_status_diy($order_sn,$source,$ext=array())
 {
 
-    if($source=='kuaidi'){
+    if($source=='sz'){
         // 找出对应的订单
         $order = M('kd_order')->where("order_sn",$order_sn)->find();
         // 修改支付状态  已支付

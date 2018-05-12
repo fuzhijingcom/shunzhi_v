@@ -35,7 +35,7 @@ class Money extends MobileBase {
     }
     
     public function water(){
-        $condition['order_id'] = array('egt',670);
+        $condition['order_id'] = array('egt',1593);
     	$condition['pay_status'] = array('eq',1);
     	$condition['transaction_id'] = array('gt',1);
     	$list = M('kd_order')->field('order_id,consignee,order_amount,transaction_id')->order('order_id desc')->where($condition)->select();

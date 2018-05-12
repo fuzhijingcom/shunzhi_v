@@ -89,7 +89,8 @@ class User extends MobileBase
         setcookie('user_id','',time()-3600,'/');
         setcookie('PHPSESSID','',time()-3600,'/');
         //$this->success("退出成功",U('Mobile/Index/index'));
-        header("Location:" . U('Mobile/Index/index'));
+        //header("Location:" . U('Mobile/Index/index'));
+        dump("logout");
         exit();
     }
 

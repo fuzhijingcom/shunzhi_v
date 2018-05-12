@@ -38,6 +38,11 @@ class MobileBase extends Controller {
         $wx_qr = M('wx_user')->cache(true)->value('qr'); //获取微信配置
         $this->assign('wx_qr',$wx_qr);
         
+
+        $userLogic = new \app\kuaidi\logic\UserLogic();
+        $userLogic->save_openid_ch();
+
+        
         //微信浏览器
         if(strstr($_SERVER['HTTP_USER_AGENT'],'MicroMessenger')){
             $user_temp = session('user');

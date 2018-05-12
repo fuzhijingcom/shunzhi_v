@@ -16,7 +16,15 @@ class Menu extends Controller {
 		
 	}
 	
-	
+	// ,
+	// 			{
+	// 			"type":"view",
+	// 			"name":"数码维修下单",
+	// 			"url":"http://v.yykddn.com/repair"   
+	//            }
+
+
+
     public function create(){
         $access_token = access_token();
          
@@ -42,11 +50,6 @@ class Menu extends Controller {
 				"name":"抢单赚钱大厅",
 				"url":"http://v.yykddn.com/qiangdan"   
 	           },
-				{
-				"type":"view",
-				"name":"数码维修下单",
-				"url":"http://v.yykddn.com/repair"   
-	           },
                 {
 				"type":"view",
 				"name":"你的个人中心",
@@ -55,12 +58,21 @@ class Menu extends Controller {
 	           
 	           ]
 	        },
-	         {
-	           "name":"淘淘",
+	        {
+			"name":"商城",
+			"sub_button":[
+				{
 				"type":"view",
-				"url":"http://wx.quanzijishi.com/circle/obokla42irx"   
-	           
-	        },
+				"name":"商城入口",
+				"url":"http://c3w.cc/entry/click?go=szmall&school=1904"   
+			},
+			{
+				"type":"view",
+				"name":"个人中心",
+				"url":"http://c3w.cc/entry/click?go=szuser&school=1904"   
+			}
+			]
+			},
 	        
 	        {
 	           "name":"我们",
@@ -76,8 +88,8 @@ class Menu extends Controller {
 				"url":"http://v.yykddn.com/jiameng"   
 	           },{
 	             "type":"view",
-				"name":"在线观影",
-				"url":"http://17kyun.com" 
+				"name":"商家入驻",
+				"url":"http://c3w.cc/entry/click?go=szsj&school=1904" 
 	           }
 	        
              ]

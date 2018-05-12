@@ -13,7 +13,7 @@ class Send extends MobileBase {
         
         //只有当未付款时，才去获取订单数据
         if($pay_status == 0){
-		        $url = "http://www.yykddn.com/pay/payment/payresult?order_id=".$order_id;
+		        $url = "http://c3w.cc/pay/payment/payresult?order_id=".$order_id;
 		        $ch = curl_init();
 		        curl_setopt($ch, CURLOPT_URL, $url);
 		        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
