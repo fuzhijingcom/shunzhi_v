@@ -9,9 +9,9 @@ return array(
     'icon' => 'logo.jpg',
     'scene' => 0,  // 使用场景 0 PC+手机 1 手机 2 PC
     'config' => array(
-        array('name' => 'appid','label'=>'绑定支付的APPID','type' => 'text',   'value' => 'wx9a1f0bef4dbb9da0'), // * APPID：绑定支付的APPID（必须配置，开户邮件中可查看）
-        array('name' => 'mchid',   'label'=>'商户号', 'type' => 'text',   'value' => '1461107202'), // * MCHID：商户号（必须配置，开户邮件中可查看）
-        array('name' => 'key',  'label'=>'商户支付密钥', 'type' => 'text',   'value' => ''), // KEY：商户支付密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）
-        array('name' => 'appsecret',  'label'=>'公众帐号secert（仅JSAPI支付的时候需要配置)', 'type' => 'text',   'value' => '9879b778276fe4349cbc53d835d70286'), // 公众帐号secert（仅JSAPI支付的时候需要配置)，
+        array('name' => 'appid','label'=>'绑定支付的APPID','type' => 'text',   'value' => 'wxe6521d177830148a'), // * APPID：绑定支付的APPID（必须配置，开户邮件中可查看）
+        array('name' => 'mchid',   'label'=>'商户号', 'type' => 'text',   'value' => '1501764661'), // * MCHID：商户号（必须配置，开户邮件中可查看）
+        array('name' => 'key',  'label'=>'商户支付密钥', 'type' => 'text',   'value' => 'BZPMP0BbXBXWvHg1zsxIF0YnNRBY8lSO'), // KEY：商户支付密钥，参考开户邮件设置（必须配置，登录商户平台自行设置）
+        array('name' => 'appsecret',  'label'=>'公众帐号secert（仅JSAPI支付的时候需要配置)', 'type' => 'text',   'value' => '4322bf3ec27f97d84169ace2d7545b09'), // 公众帐号secert（仅JSAPI支付的时候需要配置)，
     ),
 );

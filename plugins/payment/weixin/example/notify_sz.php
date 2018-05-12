@@ -53,7 +53,7 @@ class PayNotifyCallBack extends WxPayNotify
 			$order_sn = substr($order_sn,0,18);
 		}
 		
-		update_pay_status_diy($order_sn,'kuaidi',array('transaction_id'=>$data["transaction_id"],'out_trade_no'=>$out_trade_no)); // 修改订单支付状态
+		update_pay_status_diy($order_sn,'sz',array('transaction_id'=>$data["transaction_id"],'out_trade_no'=>$out_trade_no)); // 修改订单支付状态
 		
 		return true;
 	}

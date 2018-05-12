@@ -21,8 +21,17 @@ class weixin extends Model
         require_once("example/WxPay.NativePay.php");
         require_once("example/WxPay.JsApiPay.php");
 
-        $paymentPlugin = M('Plugin')->where("code='weixin' and  type = 'payment' ")->find(); // 找到微信支付插件的配置
-        $config_value = unserialize($paymentPlugin['config_value']); // 配置反序列化        
+		//$paymentPlugin = M('Plugin')->where("code='weixin' and  type = 'payment' ")->find(); // 找到微信支付插件的配置
+		
+		$config_value = array(
+			'appid' => 'wxe6521d177830148a', // * APPID：绑定支付的APPID（必须配置，开户邮件中可查看）
+			'mchid'=> '1501764661', // * MCHID：商户号（必须配置，开户邮件中可查看）
+			'key' => 'BZPMP0BbXBXWvHg1zsxIF0YnNRBY8lSO',
+			'appsecret' => '4322bf3ec27f97d84169ace2d7545b09'
+		);
+
+		//$config_value = unserialize($paymentPlugin['config_value']); // 配置反序列化  
+
         WxPayConfig::$appid = $config_value['appid']; // * APPID：绑定支付的APPID（必须配置，开户邮件中可查看）
         WxPayConfig::$mchid = $config_value['mchid']; // * MCHID：商户号（必须配置，开户邮件中可查看）
         WxPayConfig::$smchid = isset($config_value['smchid']) ? $config_value['smchid'] : ''; // * SMCHID：服务商商户号（必须配置，开户邮件中可查看）
@@ -34,24 +43,26 @@ class weixin extends Model
      * @param   array   $order      订单信息
      * @param   array   $config_value    支付方式信息
      */
-    function get_code($order, $config_value)
-    {       
-            $notify_url = SITE_URL.'/index.php/Home/Payment/notifyUrl/pay_code/weixin'; // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
-            //$notify_url = C('site_url').U('Home/Payment/notifyUrl',array('pay_code'=>'weixin')); // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
-            //$notify_url = C('site_url')."/index.php?m=Home&c=Payment&a=notifyUrl&pay_code=weixin";
-            $input = new WxPayUnifiedOrder();
-            $input->SetBody("TPshop商品"); // 商品描述
-            $input->SetAttach("weixin"); // 附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
-            $input->SetOut_trade_no($order['order_sn'].time()); // 商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
-            $input->SetTotal_fee($order['order_amount']*100); // 订单总金额，单位为分，详见支付金额
-            $input->SetNotify_url($notify_url); // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
-            $input->SetTrade_type("NATIVE"); // 交易类型   取值如下：JSAPI，NATIVE，APP，详细说明见参数规定    NATIVE--原生扫码支付
-            $input->SetProduct_id("123456789"); // 商品ID trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。
-            $notify = new NativePay();
-            $result = $notify->GetPayUrl($input); // 获取生成二维码的地址
-            $url2 = $result["code_url"];
-            return '<img alt="模式二扫码支付" src="/index.php?m=Home&c=Index&a=qr_code&data='.urlencode($url2).'" style="width:110px;height:110px;"/>';        
-    }    
+
+    // function get_code($order, $config_value)
+    // {       
+    //         $notify_url = SITE_URL.'/index.php/Home/Payment/notifyUrl/pay_code/weixin'; // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
+    //         //$notify_url = C('site_url').U('Home/Payment/notifyUrl',array('pay_code'=>'weixin')); // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
+    //         //$notify_url = C('site_url')."/index.php?m=Home&c=Payment&a=notifyUrl&pay_code=weixin";
+    //         $input = new WxPayUnifiedOrder();
+    //         $input->SetBody("TPshop商品"); // 商品描述
+    //         $input->SetAttach("weixin"); // 附加数据，在查询API和支付通知中原样返回，该字段主要用于商户携带订单的自定义数据
+    //         $input->SetOut_trade_no($order['order_sn'].time()); // 商户系统内部的订单号,32个字符内、可包含字母, 其他说明见商户订单号
+    //         $input->SetTotal_fee($order['order_amount']*100); // 订单总金额，单位为分，详见支付金额
+    //         $input->SetNotify_url($notify_url); // 接收微信支付异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
+    //         $input->SetTrade_type("NATIVE"); // 交易类型   取值如下：JSAPI，NATIVE，APP，详细说明见参数规定    NATIVE--原生扫码支付
+    //         $input->SetProduct_id("123456789"); // 商品ID trade_type=NATIVE，此参数必传。此id为二维码中包含的商品ID，商户自行定义。
+    //         $notify = new NativePay();
+    //         $result = $notify->GetPayUrl($input); // 获取生成二维码的地址
+    //         $url2 = $result["code_url"];
+    //         return '<img alt="模式二扫码支付" src="/index.php?m=Home&c=Index&a=qr_code&data='.urlencode($url2).'" style="width:110px;height:110px;"/>';        
+	// }    
+	
     /**
      * 服务器点对点响应操作给支付接口方调用
      * 
@@ -62,8 +73,8 @@ class weixin extends Model
         $source = I('source');
         
         //不同的来源调用不同的
-        if($source=='kuaidi'){
-            require_once("example/notify_kuaidi.php");  
+        if($source=='sz'){
+            require_once("example/notify_sz.php");  
             $notify = new PayNotifyCallBack();
             $notify->Handle(false);  
         }
@@ -89,7 +100,8 @@ class weixin extends Model
     
     
     function getpay($order_id,$source){
-        if($source=='kuaidi'){
+		
+        if($source=='sz'){
             $go_url = U('kuaidi/send/check',array('order_id'=>$order_id,'source'=>$source));
             $back_url = U('pay/payment/kuaidi',array('order_id'=>$order_id,'source'=>$source));
             $order = M('kd_order')->where('order_id',$order_id)->find();
@@ -112,13 +124,15 @@ class weixin extends Model
         
        else{
            $this->error('支付出错，getpay错误，请联系我们');
-        }
+		}
+		
         //①、获取用户openid
         $tools = new JsApiPay();
         //$openId = $tools->GetOpenid();
         //$openId = $_SESSION['openid'];
-        $openId = session('user.openid');
-        //②、统一下单
+        $openId = session('user.openid_ch');
+		//②、统一下单
+		
         $input = new WxPayUnifiedOrder();
         $input->SetBody($body);
         $input->SetAttach("weixin");
@@ -146,8 +160,8 @@ class weixin extends Model
 				 if(res.err_msg == "get_brand_wcpay_request:ok") {
 				    location.href='$go_url';
 				 }else{
-				 	//alert(res.err_code+res.err_desc+res.err_msg);
-				 	alert("您取消了支付，请重新支付");
+				 	alert(res.err_code+res.err_desc+res.err_msg);
+				 	//alert("您取消了支付，请重新支付");
 				    location.href='$back_url';
 				 }
 			}
@@ -181,6 +195,10 @@ EOF;
     {
         // 微信扫码支付这里没有页面返回
     }
+
+
+	//这是商城自带  的   支付
+
 
     function getJSAPI($order){
     	if(stripos($order['order_sn'],'recharge') !== false){
